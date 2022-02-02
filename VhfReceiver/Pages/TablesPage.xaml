@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.TablesPage"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#E4E7EB">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="StartAndExpand"
+                Spacing="0">
+
+                <StackLayout
+                    HeightRequest="8"
+                    BackgroundColor="#147D64"
+                    HorizontalOptions="Fill"/>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="#F5F7FA"
+                    VerticalOptions="Center"
+                    Spacing="0"
+                    Padding="16, 8">
+
+                    <ImageButton
+                        Clicked="Back_Clicked"
+                        Source="back.png"
+                        BackgroundColor="#F5F7FA"/>
+
+                    <Label
+                        Text="Edit Frequency Tables"
+                        TextColor="#334E68"
+                        FontSize="20"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="Center"/>
+
+                </StackLayout>
+
+                <Label
+                    Text="Select a Table"
+                    TextColor="#000000"
+                    FontSize="20"
+                    Margin="16, 24, 16, 0"/>
+
+                <ListView
+                    x:Name="TablesList"
+                    ItemTapped="TablesList_Tapped"
+                    VerticalOptions="Fill"
+                    BackgroundColor="#E4E7EB"
+                    SeparatorVisibility="None"
+                    RowHeight="90">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout
+                                    Orientation="Horizontal"
+                                    Spacing="0"
+                                    Padding="16"
+                                    Margin="16, 0, 16, 16"
+                                    BackgroundColor="#F5F7FA">
+
+                                    <StackLayout
+                                        Orientation="Vertical"
+                                        Spacing="0">
+
+                                        <Label
+                                            Text="{Binding TableNumber}"
+                                            TextColor="#3E4C59"
+                                            FontSize="12"
+                                            Margin="0, 0, 0, 8"/>
+
+                                        <Label
+                                            Text="{Binding FrequencyNumber}"
+                                            TextColor="#1F2933"
+                                            FontSize="16"/>
+
+                                    </StackLayout>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+                <Button
+                    Clicked="LoadFromFile_Clicked"
+                    Text="Load from File"
+                    TextColor="#3E4C59"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    BackgroundColor="#E4E7EB"
+                    BorderColor="#3E4C59"
+                    BorderWidth="1"
+                    CornerRadius="22"
+                    Margin="16, 0, 16, 16"/>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    VerticalOptions="End"
+                    BackgroundColor="#F5F7FA"
+                    Padding="16">
+
+                    <StackLayout
+                        Orientation="Vertical">
+
+                        <Label
+                            x:Name="Name"
+                            FontSize="18"
+                            TextColor="#1F2933"/>
+
+                        <Label
+                            x:Name="Range"
+                            FontSize="12"
+                            TextColor="#1F2933"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="CenterAndExpand">
+
+                        <Image
+                            Source="battery_full.png"/>
+
+                        <Label
+                            x:Name="Battery"
+                            TextColor="#1F2933"
+                            FontSize="12"/>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

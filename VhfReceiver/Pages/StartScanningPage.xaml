@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.StartScanningPage"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#E4E7EB">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="Start"
+                Spacing="0">
+
+                <StackLayout
+                    HeightRequest="8"
+                    BackgroundColor="#147D64"
+                    HorizontalOptions="Fill"/>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="#F5F7FA"
+                    VerticalOptions="Center"
+                    Spacing="0"
+                    Padding="16, 8">
+
+                    <ImageButton
+                        Clicked="Back_Clicked"
+                        Source="back.png"
+                        BackgroundColor="#F5F7FA"/>
+
+                    <Label
+                        Text="Start Scanning"
+                        TextColor="#334E68"
+                        FontSize="20"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="Center"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="#F5F7FA"
+                    Padding="16"
+                    Spacing="0"
+                    Margin="16, 24, 16, 16"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ManualScan_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="Manual Scan"
+                        TextColor="#3E4C59"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Image
+                        Source="next.png"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="#F5F7FA"
+                    Padding="16"
+                    Spacing="0"
+                    Margin="16, 0, 16, 16"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="MobileScan_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="Mobile Scan"
+                        TextColor="#3E4C59"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Image
+                        Source="next.png"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="#F5F7FA"
+                    Padding="16, 4"
+                    Spacing="0"
+                    Margin="16, 0, 16, 16"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="StationaryScan_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="Stationary Scan"
+                        TextColor="#3E4C59"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Image
+                        Source="next.png"/>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Horizontal"
+                VerticalOptions="End"
+                BackgroundColor="#F5F7FA"
+                Padding="16">
+
+                <StackLayout
+                    Orientation="Vertical">
+
+                    <Label
+                        x:Name="Name"
+                        FontSize="18"
+                        TextColor="#1F2933"/>
+
+                    <Label
+                        x:Name="Range"
+                        FontSize="12"
+                        TextColor="#1F2933"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Vertical"
+                    HorizontalOptions="EndAndExpand"
+                    VerticalOptions="CenterAndExpand">
+
+                    <Image
+                        Source="battery_full.png"/>
+
+                    <Label
+                        x:Name="Battery"
+                        TextColor="#1F2933"
+                        FontSize="12"/>
+
+                </StackLayout>
+
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

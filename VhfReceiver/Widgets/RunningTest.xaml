@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<rg:PopupPage
+    xmlns:rg="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.RunningTest">
+
+    <Grid>
+        <StackLayout
+            Orientation="Vertical"
+            VerticalOptions="Center"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="#F5F7FA"
+            Spacing="0"
+            Margin="16"
+            Padding="16, 48">
+
+            <ActivityIndicator
+                IsRunning="True"
+                Margin="0, 0, 0, 24"
+                Color="#3EBD93"
+                HeightRequest="48"
+                WidthRequest="48"/>
+
+            <Label
+                Text="Runnning Test..."
+                TextColor="#1F2933"
+                FontSize="30"
+                HorizontalTextAlignment="Center"/>
+
+        </StackLayout>
+    </Grid>
+
+</rg:PopupPage>

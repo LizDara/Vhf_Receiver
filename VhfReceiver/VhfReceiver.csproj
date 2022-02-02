@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Plugin.BLE" Version="2.1.2" />
+    <PackageReference Include="Sharpnado.Shadows" Version="1.2.0" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.14" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Pages\" />
+    <None Remove="Plugin.BLE" />
+    <None Remove="Sharpnado.Shadows" />
+    <None Remove="Utils\" />
+    <None Remove="Rg.Plugins.Popup" />
+    <None Remove="Widgets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Widgets\" />
+  </ItemGroup>
+</Project>

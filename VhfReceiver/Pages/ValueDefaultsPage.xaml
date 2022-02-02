@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.ValueDefaultsPage"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#E4E7EB">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="Fill"
+                Spacing="0">
+
+                <StackLayout
+                    HeightRequest="8"
+                    BackgroundColor="#147D64"
+                    HorizontalOptions="Fill"/>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="#F5F7FA"
+                    VerticalOptions="Center"
+                    Spacing="0"
+                    Padding="16, 8">
+
+                    <ImageButton
+                        Clicked="Back_Clicked"
+                        Source="back.png"
+                        BackgroundColor="#F5F7FA"/>
+
+                    <Label
+                        Text="Edit Receiver Defaults"
+                        TextColor="#334E68"
+                        FontSize="20"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="Center"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="SetValue"
+                    Orientation="Vertical"
+                    BackgroundColor="#F5F7FA"
+                    Spacing="0"
+                    Margin="16"
+                    Padding="16"
+                    VerticalOptions="FillAndExpand">
+
+                    <Label
+                        Text="Set Value"
+                        TextColor="#3E4C59"
+                        FontSize="12"
+                        Margin="0, 8"/>
+
+                    <Picker
+                        x:Name="Value"
+                        Title="Value"
+                        BackgroundColor="#E4E7EB"
+                        ItemDisplayBinding="{Binding ValueNumber}"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand"/>
+
+                    <Button
+                        Clicked="SaveChanges_Clicked"
+                        Text="Save Changes"
+                        TextColor="#EFFCF6"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="22"
+                        VerticalOptions="EndAndExpand">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+
+                                <GradientStop
+                                    Color="#1BA786"
+                                    Offset="0.5"/>
+
+                                <GradientStop
+                                    Color="#147D64"
+                                    Offset="1.0"/>
+
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="StoreRate"
+                    Orientation="Vertical"
+                    Margin="16"
+                    Spacing="0"
+                    IsVisible="False"
+                    VerticalOptions="FillAndExpand">
+
+                    <Label
+                        Text="Select Store Rate"
+                        TextColor="#3E4C59"
+                        FontSize="20"
+                        Margin="0, 0, 0, 8"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        VerticalOptions="StartAndExpand"
+                        BackgroundColor="#F5F7FA">
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StoreRateCommand}" CommandParameter="0"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="No Store Rate"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="NoStoreRate"
+                                Source="check.png"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StoreRateCommand}" CommandParameter="5"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="5 minutes"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="FiveMinutes"
+                                Source="check.png"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StoreRateCommand}" CommandParameter="10"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="10 minutes"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="TenMinutes"
+                                Source="check.png"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StoreRateCommand}" CommandParameter="20"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="20 minutes"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="TwentyMinutes"
+                                Source="check.png"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StoreRateCommand}" CommandParameter="30"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="30 minutes"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="ThirtyMinutes"
+                                Source="check.png"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StoreRateCommand}" CommandParameter="60"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="60 minutes"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="SixtyMinutes"
+                                Source="check.png"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    VerticalOptions="End"
+                    BackgroundColor="#F5F7FA"
+                    Padding="16">
+
+                    <StackLayout
+                        Orientation="Vertical">
+
+                        <Label
+                            x:Name="Name"
+                            FontSize="18"
+                            TextColor="#1F2933"/>
+
+                        <Label
+                            x:Name="Range"
+                            FontSize="12"
+                            TextColor="#1F2933"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="CenterAndExpand">
+
+                        <Image
+                            Source="battery_full.png"/>
+
+                        <Label
+                            x:Name="Battery"
+                            TextColor="#1F2933"
+                            FontSize="12"/>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

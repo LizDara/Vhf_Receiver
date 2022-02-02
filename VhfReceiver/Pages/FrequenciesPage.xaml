@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.FrequenciesPage"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#E4E7EB">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="StartAndExpand"
+                Spacing="0">
+
+                <StackLayout
+                    HeightRequest="8"
+                    BackgroundColor="#147D64"
+                    HorizontalOptions="Fill"/>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="#F5F7FA"
+                    VerticalOptions="Center"
+                    Spacing="0"
+                    Padding="16, 8">
+
+                    <ImageButton
+                        Clicked="Back_Clicked"
+                        Source="back.png"
+                        BackgroundColor="#F5F7FA"/>
+
+                    <Label
+                        Text="Edit Frequency Tables"
+                        TextColor="#334E68"
+                        FontSize="20"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="Center"/>
+
+                </StackLayout>
+
+                <Label
+                    x:Name="TableNumber"
+                    TextColor="#000000"
+                    FontSize="20"
+                    Margin="16, 24, 16, 16"/>
+
+                <ListView
+                    x:Name="FrequenciesList"
+                    HeightRequest="256"
+                    BackgroundColor="#F5F7FA"
+                    SeparatorVisibility="None"
+                    SelectionMode="None"
+                    Margin="16, 0"
+                    VerticalScrollBarVisibility="Always">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label
+                                    Text="{Binding Frequency}"
+                                    TextColor="#334E68"
+                                    FontSize="16"
+                                    Padding="16, 0"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+                <StackLayout
+                    HeightRequest="1"
+                    BackgroundColor="#E5E5E5"
+                    HorizontalOptions="Fill"
+                    Margin="16, 0"/>
+
+                <StackLayout
+                    x:Name="Menu"
+                    Orientation="Horizontal"
+                    BackgroundColor="#F5F7FA"
+                    Spacing="0"
+                    Margin="16, 0"
+                    Padding="16"
+                    HorizontalOptions="Fill"
+                    IsVisible="False">
+
+                    <Button
+                        Clicked="UndoChanges_Clicked"
+                        Text="Undo Changes"
+                        TextColor="#3E4C59"
+                        FontSize="16"
+                        BackgroundColor="Transparent"
+                        BorderColor="#3E4C59"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        HeightRequest="32"
+                        Padding="11, 6"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Button
+                        Clicked="EditTable_Clicked"
+                        Text="Edit Table"
+                        TextColor="#147D64"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="15"
+                        HeightRequest="32"
+                        Padding="11, 6"
+                        HorizontalOptions="End">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+
+                                <GradientStop
+                                    Color="#c6F7E2"
+                                    Offset="0.5"/>
+
+                                <GradientStop
+                                    Color="#ACF3D5"
+                                    Offset="1.0"/>
+
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Vertical"
+                Spacing="0">
+
+                <Button
+                    x:Name="EditTable"
+                    Clicked="EditTable_Clicked"
+                    Text="Edit Table"
+                    TextColor="#EFFCF6"
+                    FontAttributes="Bold"
+                    CornerRadius="22"
+                    VerticalOptions="EndAndExpand"
+                    Margin="16, 0, 16, 24">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+                            <GradientStop
+                                Color="#1BA786"
+                                Offset="0.5"/>
+                            <GradientStop
+                                Color="#147D64"
+                                Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+                <Button
+                    x:Name="SaveChanges"
+                    Clicked="SaveChanges_Clicked"
+                    Text="Save Changes"
+                    TextColor="#EFFCF6"
+                    FontAttributes="Bold"
+                    CornerRadius="22"
+                    VerticalOptions="EndAndExpand"
+                    Margin="16, 0, 16, 24"
+                    IsVisible="False">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+                            <GradientStop
+                                Color="#1BA786"
+                                Offset="0.5"/>
+                            <GradientStop
+                                Color="#147D64"
+                                Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    VerticalOptions="End"
+                    BackgroundColor="#F5F7FA"
+                    Padding="16">
+
+                    <StackLayout
+                        Orientation="Vertical">
+
+                        <Label
+                            x:Name="Name"
+                            FontSize="18"
+                            TextColor="#1F2933"/>
+
+                        <Label
+                            x:Name="Range"
+                            FontSize="12"
+                            TextColor="#1F2933"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        HorizontalOptions="EndAndExpand"
+                        VerticalOptions="CenterAndExpand">
+
+                        <Image
+                            Source="battery_full.png"/>
+
+                        <Label
+                            x:Name="Battery"
+                            TextColor="#1F2933"
+                            FontSize="12"/>
+
+                    </StackLayout>
+
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

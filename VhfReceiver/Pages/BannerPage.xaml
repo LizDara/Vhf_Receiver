@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.BannerPage"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False">
+    <ContentPage.Background>
+        <LinearGradientBrush
+            EndPoint="0,1">
+
+            <GradientStop
+                Color="#1BA786"
+                Offset="0.5"/>
+
+            <GradientStop
+                Color="#147D64"
+                Offset="1.0"/>
+
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <ContentPage.Content>
+        <StackLayout
+            Orientation="Vertical"
+            HorizontalOptions="Center"
+            Margin="0, 64, 0, 0"
+            Spacing="0">
+
+            <RelativeLayout
+                HeightRequest="256"
+                VerticalOptions="Center">
+
+                <Ellipse
+                    Fill="#3EBD93"
+                    Stroke="#C6F7E2"
+                    StrokeThickness="8"
+                    HeightRequest="256"
+                    WidthRequest="256"/>
+
+                <Image
+                    Source="receiver.png"
+                    HeightRequest="200"
+                    Margin="28, 28, 0, 0"/>
+
+            </RelativeLayout>
+
+            <Image
+                Source="logo.png"
+                Margin="0, 64, 0, 0"/>
+
+            <Label
+                Text="VHF Receiver"
+                TextColor="#EFFCF6"
+                FontSize="30"
+                HorizontalTextAlignment="Center"
+                Margin="0, 24, 0, 0"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

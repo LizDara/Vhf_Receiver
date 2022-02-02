@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.MobileScanningPage"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#E4E7EB">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="StartAndExpand"
+                Spacing="0">
+
+                <StackLayout
+                    HeightRequest="8"
+                    BackgroundColor="#147D64"
+                    HorizontalOptions="Fill"/>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="#F5F7FA"
+                    VerticalOptions="Center"
+                    Spacing="0"
+                    Padding="16, 8">
+
+                    <ImageButton
+                        Clicked="Back_Clicked"
+                        Source="back.png"
+                        BackgroundColor="#F5F7FA"/>
+
+                    <Label
+                        Text="Mobile Scanning"
+                        TextColor="#334E68"
+                        FontSize="20"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="Center"/>
+
+                </StackLayout>
+
+                <Label
+                    Text="Current Settings"
+                    TextColor="#000000"
+                    FontSize="20"
+                    Margin="16, 24, 16, 16"/>
+
+                <StackLayout
+                    Orientation="Vertical"
+                    Spacing="0"
+                    BackgroundColor="#F5F7FA"
+                    Margin="16, 12">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        Padding="16">
+
+                        <Label
+                            Text="Scan Time (Seconds)"
+                            TextColor="#3E4C59"
+                            FontSize="12"
+                            Margin="0, 0, 0, 8"/>
+
+                        <Label
+                            x:Name="ScanTime"
+                            TextColor="#1F2933"
+                            FontSize="16"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        HeightRequest="1"
+                        BackgroundColor="#E5E5E5"
+                        HorizontalOptions="Fill"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        Padding="16">
+
+                        <Label
+                            Text="Selected Frequency Table"
+                            TextColor="#3E4C59"
+                            FontSize="12"
+                            Margin="0, 0, 0, 8"/>
+
+                        <Label
+                            x:Name="SelectedFrequencyTable"
+                            TextColor="#1F2933"
+                            FontSize="16"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        HeightRequest="1"
+                        BackgroundColor="#E5E5E5"
+                        HorizontalOptions="Fill"/>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        Padding="16">
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            HorizontalOptions="StartAndExpand">
+
+                            <Label
+                                Text="GPS"
+                                TextColor="#3E4C59"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="GPS"
+                                TextColor="#1F2933"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            HorizontalOptions="StartAndExpand">
+
+                            <Label
+                                Text="Auto Record"
+                                TextColor="#3E4C59"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="AutoRecord"
+                                TextColor="#1F2933"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+                <StackLayout
+                    VerticalOptions="Fill"/>
+
+                <StackLayout
+                    Orientation="Vertical"
+                    VerticalOptions="EndAndExpand"
+                    Margin="16, 0, 16, 24"
+                    Spacing="0">
+
+                    <Button
+                        Clicked="EditSettings_Clicked"
+                        Text="Edit Settings"
+                        TextColor="#147D64"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="22"
+                        VerticalOptions="EndAndExpand"
+                        Margin="0, 0, 0, 16">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+
+                                <GradientStop
+                                    Color="#c6F7E2"
+                                    Offset="0.5"/>
+
+                                <GradientStop
+                                    Color="#ACF3D5"
+                                    Offset="1.0"/>
+
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                    <Button
+                        Clicked="StartMobileScan_Clicked"
+                        Text="Start Mobile Scan"
+                        TextColor="#EFFCF6"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="22"
+                        VerticalOptions="EndAndExpand">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+
+                                <GradientStop
+                                    Color="#1BA786"
+                                    Offset="0.5"/>
+
+                                <GradientStop
+                                    Color="#147D64"
+                                    Offset="1.0"/>
+
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Horizontal"
+                VerticalOptions="End"
+                BackgroundColor="#F5F7FA"
+                Padding="16">
+
+                <StackLayout
+                    Orientation="Vertical">
+
+                    <Label
+                        x:Name="Name"
+                        FontSize="18"
+                        TextColor="#1F2933"/>
+
+                    <Label
+                        x:Name="Range"
+                        FontSize="12"
+                        TextColor="#1F2933"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Vertical"
+                    HorizontalOptions="EndAndExpand"
+                    VerticalOptions="CenterAndExpand">
+
+                    <Image
+                        Source="battery_full.png"/>
+
+                    <Label
+                        x:Name="Battery"
+                        TextColor="#1F2933"
+                        FontSize="12"/>
+
+                </StackLayout>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
