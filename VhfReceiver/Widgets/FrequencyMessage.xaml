@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<rg:PopupPage
+    xmlns:rg="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.FrequencyMessage">
+
+    <Grid>
+        <StackLayout
+            Orientation="Vertical"
+            VerticalOptions="Center"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="#F5F7FA"
+            Spacing="0"
+            Margin="16"
+            Padding="16, 48">
+
+            <Image
+                Source="GreenChecked"/>
+
+            <Label
+                x:Name="StateMessage"
+                TextColor="#1F2933"
+                FontSize="30"
+                Margin="0, 24, 0, 0"
+                HorizontalTextAlignment="Center"/>
+
+        </StackLayout>
+    </Grid>
+
+</rg:PopupPage>

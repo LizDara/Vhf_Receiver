@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.ReceiverStatus"
+    VerticalOptions="End">
+
+    <StackLayout
+        Orientation="Horizontal"
+        BackgroundColor="#F5F7FA"
+        Padding="16">
+
+        <StackLayout
+            Orientation="Vertical">
+
+            <Label
+                Text="{Binding Status}"
+                FontSize="18"
+                TextColor="#1F2933"/>
+
+            <Label
+                x:Name="Range"
+                FontSize="12"
+                TextColor="#1F2933"/>
+
+        </StackLayout>
+
+        <StackLayout
+            Orientation="Vertical"
+            HorizontalOptions="EndAndExpand"
+            VerticalOptions="CenterAndExpand">
+
+            <Image
+                Source="FullBattery"/>
+
+            <Label
+                x:Name="Battery"
+                TextColor="#1F2933"
+                FontSize="12"/>
+
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentView>

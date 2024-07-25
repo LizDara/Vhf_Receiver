@@ -3,14 +3,15 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="VhfReceiver.Pages.StationaryScanningPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False"
     BackgroundColor="#E4E7EB">
     <ContentPage.Content>
-        <Grid>
+
             <StackLayout
                 Orientation="Vertical"
-                VerticalOptions="Start"
+                VerticalOptions="Fill"
                 Spacing="0">
 
                 <StackLayout
@@ -26,11 +27,14 @@
                     Padding="16, 8">
 
                     <ImageButton
+                        x:Name="Back"
                         Clicked="Back_Clicked"
-                        Source="back.png"
+                        Source="Back"
+                        Padding="8"
                         BackgroundColor="#F5F7FA"/>
 
                     <Label
+                        x:Name="TitleToolbar"
                         Text="Stationary Scanning"
                         TextColor="#334E68"
                         FontSize="20"
@@ -40,92 +44,383 @@
                 </StackLayout>
 
                 <StackLayout
-                    Orientation="Horizontal"
-                    BackgroundColor="#F5F7FA"
-                    Padding="16"
-                    Spacing="0"
-                    Margin="16, 24, 16, 16"
-                    HorizontalOptions="Fill"
-                    VerticalOptions="Center">
-
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="ScanWithDefaultSettings_Tapped"/>
-                    </StackLayout.GestureRecognizers>
-
-                    <Label
-                        Text="Scan With Default Settings"
-                        TextColor="#3E4C59"
-                        FontAttributes="Bold"
-                        HorizontalOptions="StartAndExpand"/>
-
-                    <Image
-                        Source="next.png"/>
-
-                </StackLayout>
-
-                <StackLayout
-                    Orientation="Horizontal"
-                    BackgroundColor="#F5F7FA"
-                    Padding="16"
-                    Spacing="0"
-                    Margin="16, 0, 16, 16"
-                    HorizontalOptions="Fill"
-                    VerticalOptions="Center">
-
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="ScanWithTemporarySettings_Tapped"/>
-                    </StackLayout.GestureRecognizers>
-
-                    <Label
-                        Text="Scan With Temporary Settings"
-                        TextColor="#3E4C59"
-                        FontAttributes="Bold"
-                        HorizontalOptions="StartAndExpand"/>
-
-                    <Image
-                        Source="next.png"/>
-
-                </StackLayout>
-
-            </StackLayout>
-
-            <StackLayout
-                Orientation="Horizontal"
-                VerticalOptions="End"
-                BackgroundColor="#F5F7FA"
-                Padding="16">
-
-                <StackLayout
-                    Orientation="Vertical">
-
-                    <Label
-                        x:Name="Name"
-                        FontSize="18"
-                        TextColor="#1F2933"/>
-
-                    <Label
-                        x:Name="Range"
-                        FontSize="12"
-                        TextColor="#1F2933"/>
-
-                </StackLayout>
-
-                <StackLayout
+                    x:Name="CurrentSettings"
                     Orientation="Vertical"
-                    HorizontalOptions="EndAndExpand"
-                    VerticalOptions="CenterAndExpand">
-
-                    <Image
-                        Source="battery_full.png"/>
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand"
+                    Margin="16, 24">
 
                     <Label
-                        x:Name="Battery"
-                        TextColor="#1F2933"
-                        FontSize="12"/>
+                        Text="Current Settings"
+                        TextColor="#000000"
+                        FontSize="20"
+                        Margin="0, 0, 0, 16"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        BackgroundColor="#F5F7FA"
+                        Margin="0, 12">
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            Spacing="0">
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0"
+                                HorizontalOptions="StartAndExpand">
+
+                                <Label
+                                    Text="Frequency Table"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    Margin="0, 0, 0, 8"/>
+
+                                <Label
+                                    x:Name="SelectedFrequencyTable"
+                                    TextColor="#1F2933"
+                                    FontSize="16"/>
+
+                            </StackLayout>
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0"
+                                HorizontalOptions="StartAndExpand">
+
+                                <Label
+                                    Text="Scan Time"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    Margin="0, 0, 0, 8"/>
+
+                                <Label
+                                    x:Name="ScanTime"
+                                    TextColor="#1F2933"
+                                    FontSize="16"/>
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            Spacing="0">
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0"
+                                HorizontalOptions="StartAndExpand">
+
+                                <Label
+                                    Text="Timeout (Seconds)"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    Margin="0, 0, 0, 8"/>
+
+                                <Label
+                                    x:Name="Timeout"
+                                    TextColor="#1F2933"
+                                    FontSize="16"/>
+
+                            </StackLayout>
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0"
+                                HorizontalOptions="StartAndExpand">
+
+                                <Label
+                                    Text="Number of Antennas"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    Margin="0, 0, 0, 8"/>
+
+                                <Label
+                                    x:Name="NumberAntennas"
+                                    TextColor="#1F2933"
+                                    FontSize="16"/>
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Spacing="0"
+                            Padding="16">
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0"
+                                HorizontalOptions="StartAndExpand">
+
+                                <Label
+                                    Text="Store Rate"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    Margin="0, 0, 0, 8"/>
+
+                                <Label
+                                    x:Name="StoreRate"
+                                    TextColor="#1F2933"
+                                    FontSize="16"/>
+
+                            </StackLayout>
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0"
+                                HorizontalOptions="StartAndExpand">
+
+                                <Label
+                                    Text="External Data Transfer"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    Margin="0, 0, 0, 8"/>
+
+                                <Label
+                                    x:Name="ExternalDataTransfer"
+                                    TextColor="#1F2933"
+                                    FontSize="16"/>
+
+                            </StackLayout>
+
+                        </StackLayout>
+                    
+                    </StackLayout>
+
+                    <Button
+                        Clicked="EditSettings_Clicked"
+                        Text="Edit Settings"
+                        TextColor="#147D64"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="22"
+                        VerticalOptions="EndAndExpand"
+                        Margin="0, 0, 0, 16">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+
+                                <GradientStop
+                                    Color="#c6F7E2"
+                                    Offset="0.5"/>
+
+                                <GradientStop
+                                    Color="#ACF3D5"
+                                    Offset="1.0"/>
+
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                    <Button
+                        x:Name="StartStationaryScan"
+                        Clicked="StartStationaryScan_Clicked"
+                        Text="Start Stationary Scan"
+                        TextColor="#EFFCF6"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="22">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+
+                                <GradientStop
+                                    Color="#1BA786"
+                                    Offset="0.5"/>
+
+                                <GradientStop
+                                    Color="#147D64"
+                                    Offset="1.0"/>
+
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
 
                 </StackLayout>
 
+                <StackLayout
+                    x:Name="StationaryScanning"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand"
+                    Margin="16, 24"
+                    IsVisible="False">
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        VerticalOptions="Center"
+                        Margin="0, 0, 0, 16">
+
+                        <Label
+                            Text="Scan Details"
+                            TextColor="#1F2933"
+                            FontSize="20"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        BackgroundColor="#F5F7FA">
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Spacing="0"
+                            Padding="16"
+                            VerticalOptions="Center">
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0"
+                                HorizontalOptions="StartAndExpand">
+
+                                <Label
+                                    Text="Frequency"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    Margin="0, 0, 0, 16"/>
+
+                                <Label
+                                    x:Name="FrequencyScan"
+                                    TextColor="#3E4C59"
+                                    FontSize="16"/>
+
+                            </StackLayout>
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0"
+                                HorizontalOptions="StartAndExpand">
+
+                                <Label
+                                    x:Name="MaxIndex"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    Margin="0, 0, 0, 16"/>
+
+                                <Label
+                                    x:Name="TableIndex"
+                                    TextColor="#3E4C59"
+                                    FontSize="16"/>
+
+                            </StackLayout>
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0"
+                                HorizontalOptions="StartAndExpand">
+
+                                <Label
+                                    Text="Antenna #"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    Margin="0, 0, 0, 16"/>
+
+                                <Label
+                                    x:Name="CurrentAntenna"
+                                    TextColor="#3E4C59"
+                                    FontSize="16"/>
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <ScrollView
+                            Orientation="Vertical">
+
+                            <StackLayout
+                                x:Name="ScanDetails"
+                                Orientation="Vertical"
+                                Spacing="0"
+                                Padding="16">
+
+                                <StackLayout
+                                    Orientation="Horizontal"
+                                    Spacing="0"
+                                    Padding="0, 0, 0, 8">
+
+                                    <Label
+                                        x:Name="Code"
+                                        Text="Code"
+                                        TextColor="#3E4C59"
+                                        FontSize="12"
+                                        HorizontalOptions="CenterAndExpand"/>
+
+                                    <Label
+                                        x:Name="Period"
+                                        Text="Period"
+                                        TextColor="#3E4C59"
+                                        FontSize="12"
+                                        HorizontalOptions="CenterAndExpand"/>
+
+                                    <Label
+                                        x:Name="Detections"
+                                        Text="Detections"
+                                        TextColor="#3E4C59"
+                                        FontSize="12"
+                                        HorizontalOptions="CenterAndExpand"/>
+
+                                    <Label
+                                        x:Name="PulseRate"
+                                        Text="Pulse Rate"
+                                        TextColor="#3E4C59"
+                                        FontSize="12"
+                                        HorizontalOptions="CenterAndExpand"/>
+
+                                    <Label
+                                        x:Name="Mortality"
+                                        Text="Mortality"
+                                        TextColor="#3E4C59"
+                                        FontSize="12"
+                                        HorizontalOptions="CenterAndExpand"/>
+
+                                    <Label
+                                        x:Name="SignalStrength"
+                                        Text="Signal Strength"
+                                        TextColor="#3E4C59"
+                                        FontSize="12"
+                                        HorizontalOptions="CenterAndExpand"/>
+
+                                </StackLayout>
+
+                                <StackLayout
+                                    HeightRequest="1"
+                                    BackgroundColor="#E5E5E5"
+                                    HorizontalOptions="Fill"/>
+
+                            </StackLayout>
+
+                        </ScrollView>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+                <common:ReceiverStatus/>
+
             </StackLayout>
-        </Grid>
+
     </ContentPage.Content>
 </ContentPage>

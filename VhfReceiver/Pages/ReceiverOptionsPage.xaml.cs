@@ -1,72 +1,83 @@
 ﻿using System;
-using System.Collections.Generic;
-using Plugin.BLE.Abstractions.Contracts;
+using System.Threading.Tasks;
+using Rg.Plugins.Popup.Extensions;
 using VhfReceiver.Utils;
-
+using VhfReceiver.Widgets;
 using Xamarin.Forms;
 
 namespace VhfReceiver.Pages
 {
     public partial class ReceiverOptionsPage : ContentPage
     {
-        private DeviceInformation ConnectedDevice;
+        private readonly ReceiverInformation ReceiverInformation;
+        private bool isChanged = false;
 
-        public ReceiverOptionsPage(DeviceInformation device)
+        public ReceiverOptionsPage()
         {
             InitializeComponent();
-
-            ConnectedDevice = device;
-
-            Name.Text = ConnectedDevice.Name;
-            Range.Text = ConnectedDevice.Range;
-            Battery.Text = ConnectedDevice.Battery;
+            ReceiverInformation = ReceiverInformation.GetReceiverInformation();
         }
 
         private async void Back_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
+            if (isChanged)
+                MessagingCenter.Send("Changing", ValueCodes.TX_TYPE);
+            await Navigation.PopModalAsync(false);
         }
 
         private async void ReceiverConfiguration_Tapped(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new ReceiverConfigurationPage(ConnectedDevice));
+            MessagingCenter.Subscribe<string>(this, ValueCodes.TX_TYPE, (value) =>
+            {
+                if (value.Equals("Changing"))
+                {
+                    Receiver.Status = ReceiverInformation.GetDeviceStatus();
+                    isChanged = true;
+                }
+            });
+            await Navigation.PushModalAsync(new ReceiverConfigurationPage(), false);
         }
 
         private async void ManageReceiverData_Tapped(object sender, EventArgs e)
         {
-            byte[] bytes = new byte[1];
-            var service = await ConnectedDevice.Device.GetServiceAsync(VhfReceiverUuids.UUID_SERVICE_DIAGNOSTIC);
-            if (service != null)
-            {
-                var characteristic = await service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_DIAGNOSTIC_INFO);
-                if (characteristic != null)
-                {
-                    bytes = await characteristic.ReadAsync();
-                }
-            }
-
-            await Navigation.PushModalAsync(new ManageReceiverDataPage(ConnectedDevice, bytes));
+            var bytes = await GetDiagnostic();
+            if (bytes != null)
+                await Navigation.PushModalAsync(new ManageReceiverDataPage(bytes), false);
         }
 
         private async void TestReceiver_Tapped(object sender, EventArgs e)
         {
-            byte[] bytes = new byte[1];
-            var service = await ConnectedDevice.Device.GetServiceAsync(VhfReceiverUuids.UUID_SERVICE_DIAGNOSTIC);
-            if (service != null)
+            var bytes = await GetDiagnostic();
+            if (bytes != null)
             {
-                var characteristic = await service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_DIAGNOSTIC_INFO);
-                if (characteristic != null)
-                {
-                    bytes = await characteristic.ReadAsync();
-                }
-            }
+                var popMessage = new RunningTest();
+                await App.Current.MainPage.Navigation.PushPopupAsync(popMessage, true);
 
-            await Navigation.PushModalAsync(new TestReceiverPage(ConnectedDevice, bytes));
+                await Task.Delay(4000);
+                await Navigation.PushModalAsync(new TestReceiverPage(bytes), false);
+            }
         }
 
-        private async void CheckForUpdates_Tapped(object sender, EventArgs e)
+        private async Task<byte[]> GetDiagnostic()
         {
-
+            try
+            {
+                var service = await ReceiverInformation.GetDevice().GetServiceAsync(VhfReceiverUuids.UUID_SERVICE_DIAGNOSTIC);
+                if (service != null)
+                {
+                    var characteristic = await service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_DIAGNOSTIC_INFO);
+                    if (characteristic != null)
+                    {
+                        byte[] bytes = await characteristic.ReadAsync();
+                        return bytes;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error Service: " + e.Message);
+            }
+            return null;
         }
     }
 }

@@ -1,59 +1,81 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using VhfReceiver.Utils;
-
 using Xamarin.Forms;
 
 namespace VhfReceiver.Pages
 {
     public partial class EditReceiverDefaultsPage : ContentPage
     {
-        private DeviceInformation ConnectedDevice;
+        private readonly ReceiverInformation ReceiverInformation;
 
-        public EditReceiverDefaultsPage(DeviceInformation device)
+        public EditReceiverDefaultsPage()
         {
             InitializeComponent();
-
-            ConnectedDevice = device;
-
-            Name.Text = ConnectedDevice.Name;
-            Range.Text = ConnectedDevice.Range;
-            Battery.Text = ConnectedDevice.Battery;
+            ReceiverInformation = ReceiverInformation.GetReceiverInformation();
         }
 
         private async void Back_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
+            await Navigation.PopModalAsync(false);
         }
 
         private async void EditMobileDefaults_Tapped(object sender, EventArgs e)
         {
-            var service = await ConnectedDevice.Device.GetServiceAsync(VhfReceiverUuids.UUID_SERVICE_SCAN);
-            if (service != null)
-            {
-                var characteristic = await service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_AERIAL);
-                if (characteristic != null)
-                {
-                    var bytes = await characteristic.ReadAsync();
-
-                    await Navigation.PushModalAsync(new MobileDefaultsPage(ConnectedDevice, bytes));
-                }
-            }
+            var bytes = await GetMobileDefaults();
+            if (bytes != null)
+                await Navigation.PushModalAsync(new MobileDefaultsPage(bytes), false);
         }
 
         private async void EditStationaryDefaults_Tapped(object sender, EventArgs e)
         {
-            var service = await ConnectedDevice.Device.GetServiceAsync(VhfReceiverUuids.UUID_SERVICE_SCAN);
-            if (service != null)
-            {
-                var characteristic = await service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_STATIONARY);
-                if (characteristic != null)
-                {
-                    var bytes = await characteristic.ReadAsync();
+            var bytes = await GetStationaryDefaults();
+            if (bytes != null)
+                await Navigation.PushModalAsync(new StationaryDefaultsPage(bytes), false);
+        }
 
-                    await Navigation.PushModalAsync(new StationaryDefaultsPage(ConnectedDevice, bytes));
+        private async Task<byte[]> GetMobileDefaults()
+        {
+            try
+            {
+                var service = await ReceiverInformation.GetDevice().GetServiceAsync(VhfReceiverUuids.UUID_SERVICE_SCAN);
+                if (service != null)
+                {
+                    var characteristic = await service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_AERIAL);
+                    if (characteristic != null)
+                    {
+                        byte[] bytes = await characteristic.ReadAsync();
+                        return bytes;
+                    }
                 }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error Service: " + e.Message);
+            }
+            return null;
+        }
+
+        private async Task<byte[]> GetStationaryDefaults()
+        {
+            try
+            {
+                var service = await ReceiverInformation.GetDevice().GetServiceAsync(VhfReceiverUuids.UUID_SERVICE_SCAN);
+                if (service != null)
+                {
+                    var characteristic = await service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_STATIONARY);
+                    if (characteristic != null)
+                    {
+                        byte[] bytes = await characteristic.ReadAsync();
+                        return bytes;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error Service: " + e.Message);
+            }
+            return null;
         }
     }
 }

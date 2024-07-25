@@ -46,6 +46,14 @@ namespace VhfReceiver.Utils
             return result;
         }
 
+        public static string GetDecimalValue(byte b)
+        {
+            string result = "";
+            result += b & 0xff;
+
+            return result;
+        }
+
         public static byte[] ConvertToUTF8(string input)
         {
             byte[] returnVal;

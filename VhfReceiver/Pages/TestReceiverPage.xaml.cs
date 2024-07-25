@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using VhfReceiver.Utils;
-using VhfReceiver.Widgets;
-using Rg.Plugins.Popup.Extensions;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -11,26 +6,16 @@ namespace VhfReceiver.Pages
 {
     public partial class TestReceiverPage : ContentPage
     {
-        DeviceInformation ConnectedDevice;
-
-        public TestReceiverPage(DeviceInformation device, byte[] bytes)
+        public TestReceiverPage(byte[] bytes)
         {
             InitializeComponent();
-
-            ConnectedDevice = device;
-            Name.Text = ConnectedDevice.Name;
-            Range.Text = ConnectedDevice.Range;
-            Battery.Text = ConnectedDevice.Battery;
-
-            var popMessage = new RunningTest();
-            _ = App.Current.MainPage.Navigation.PushPopupAsync(popMessage, true);
 
             SetData(bytes);
         }
 
         private async void Back_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
+            await Navigation.PopModalAsync(false);
         }
 
         private void SetData(byte[] bytes)

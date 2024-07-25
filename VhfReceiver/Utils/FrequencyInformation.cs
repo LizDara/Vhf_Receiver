@@ -15,11 +15,19 @@ namespace VhfReceiver.Utils
             set;
         }
 
+        public bool IsChecked
+        {
+            get;
+            set;
+        }
+
         public FrequencyInformation(int frequency)
         {
             FrequencyNumber = frequency;
 
-            Frequency = frequency.ToString().Substring(0, 3) + "." + frequency.ToString().Substring(3);
+            Frequency = frequency.ToString();
+
+            IsChecked = false;
         }
     }
 }

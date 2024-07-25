@@ -20,10 +20,16 @@
                 Margin="0, 0, 0, 24"
                 Color="#3EBD93"
                 HeightRequest="48"
+                IsVisible="{Binding IsVisibleLoading}"
                 WidthRequest="48"/>
 
+            <Image
+                Margin="0, 0, 0, 24"
+                IsVisible="{Binding IsVisibleChecked}"
+                Source="check.png"/>
+
             <Label
-                Text="Runnning Test..."
+                Text="{Binding Message}"
                 TextColor="#1F2933"
                 FontSize="30"
                 HorizontalTextAlignment="Center"/>

@@ -1,0 +1,645 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.ManualScanningPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#E4E7EB">
+    <ContentPage.Content>
+        <StackLayout
+            Orientation="Vertical"
+            VerticalOptions="Fill"
+            Spacing="0">
+
+            <StackLayout
+                HeightRequest="8"
+                BackgroundColor="#147D64"
+                HorizontalOptions="Fill"/>
+
+            <StackLayout
+                Orientation="Horizontal"
+                BackgroundColor="#F5F7FA"
+                VerticalOptions="Center"
+                Spacing="0"
+                Padding="16, 8">
+
+                <ImageButton
+                    x:Name="Back"
+                    Clicked="Back_Clicked"
+                    Source="Back"
+                    Padding="8"
+                    BackgroundColor="#F5F7FA"/>
+
+                <Label
+                    x:Name="TitleToolbar"
+                    Text="Manual Scanning"
+                    TextColor="#334E68"
+                    FontSize="20"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="Center"/>
+
+            </StackLayout>
+                
+            <StackLayout
+                x:Name="CurrentFrequency"
+                Orientation="Vertical"
+                Spacing="0"
+                Margin="16, 24"
+                VerticalOptions="FillAndExpand">
+
+                <Label
+                    Text="Current Frequency"
+                    TextColor="#1F2933"
+                    FontSize="20"
+                    Margin="0, 0, 0, 8"/>
+
+                <StackLayout
+                    Orientation="Vertical"
+                    Spacing="0"
+                    BackgroundColor="#F5F7FA">
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        Padding="16"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand">
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0">
+
+                            <Label
+                                Text="Starting Frequency"
+                                TextColor="#3E4C59"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="Frequency"
+                                TextColor="#1F2933"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                        <Button
+                            Clicked="EnterNewFrequency_Clicked"
+                            HeightRequest="32"
+                            Text="Edit Starting Frequency"
+                            TextColor="#3E4C59"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            BorderColor="#3E4C59"
+                            BorderWidth="1"
+                            CornerRadius="22"
+                            Padding="8, 0"
+                            HorizontalOptions="EndAndExpand"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        HeightRequest="1"
+                        BackgroundColor="#E5E5E5"
+                        HorizontalOptions="Fill"/>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        Padding="16">
+
+                        <Label
+                            Text="GPS Data"
+                            TextColor="#3E4C59"
+                            FontSize="12"
+                            HorizontalOptions="StartAndExpand"/>
+
+                        <Switch
+                            x:Name="GPS"
+                            OnColor="#C6F7E2">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="On">
+                                        <VisualState.Setters>
+                                            <Setter
+                                                Property="ThumbColor"
+                                                Value="#147D64"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Off">
+                                        <VisualState.Setters>
+                                            <Setter
+                                                Property="ThumbColor"
+                                                Value="#7B8794"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Switch>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+                <Button
+                    Clicked="StartManualScan_Clicked"
+                    Text="Start Manual Scan"
+                    TextColor="#EFFCF6"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="22"
+                    VerticalOptions="EndAndExpand">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+
+                            <GradientStop
+                                Color="#1BA786"
+                                Offset="0.5"/>
+
+                            <GradientStop
+                                Color="#147D64"
+                                Offset="1.0"/>
+
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </StackLayout>
+
+            <StackLayout
+                x:Name="EnterFrequency"
+                Orientation="Vertical"
+                Margin="16, 24"
+                Padding="0, 24"
+                VerticalOptions="FillAndExpand"
+                IsVisible="False"
+                BackgroundColor="#F5F7FA"
+                Spacing="0">
+
+                <Label
+                    x:Name="NewFrequency"
+                    PropertyChanged="TextListener_Changed"
+                    Text="Enter Frequency Digits"
+                    TextColor="#7B8794"
+                    FontSize="20"
+                    HorizontalOptions="CenterAndExpand"
+                    Margin="24, 0, 24, 8"/>
+
+                <StackLayout
+                    x:Name="Line"
+                    HeightRequest="1"
+                    BackgroundColor="#CBD2D9"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="24, 0, 24, 8"/>
+
+                <Label
+                    x:Name="FrequencyBaseRange"
+                    TextColor="#7B8794"
+                    FontSize="12"
+                    HorizontalOptions="CenterAndExpand"
+                    Margin="24, 0, 24, 16"/>
+
+                <Grid
+                    x:Name="ButtonsNumber"
+                    ColumnSpacing="16"
+                    RowSpacing="16"
+                    Margin="24, 0, 24, 8"/>
+
+                <Grid
+                    ColumnDefinitions="4"
+                    RowDefinitions="3"
+                    ColumnSpacing="16"
+                    RowSpacing="16"
+                    Margin="4, 0, 24, 0">
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="1"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="1"
+                        Grid.Row="1"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="2"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="2"
+                        Grid.Row="1"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="3"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="3"
+                        Grid.Row="1"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="4"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="4"
+                        Grid.Row="1"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="5"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="1"
+                        Grid.Row="2"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="6"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="2"
+                        Grid.Row="2"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="7"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="3"
+                        Grid.Row="2"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="8"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="4"
+                        Grid.Row="2"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="9"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="1"
+                        Grid.Row="3"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="0"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="2"
+                        Grid.Row="3"/>
+
+                    <StackLayout
+                        Margin="8, 0"
+                        Grid.Column="3"
+                        Grid.Row="3"/>
+
+                    <ImageButton
+                        Clicked="Delete_Clicked"
+                        HeightRequest="32"
+                        Source="Delete"
+                        CornerRadius="15"
+                        BackgroundColor="#BA2525"
+                        Padding="0, 6"
+                        Grid.Column="4"
+                        Grid.Row="3"/>
+
+                </Grid>
+
+                <Button
+                    x:Name="ChangeFrequency"
+                    Text="Change Frequency"
+                    Clicked="ChangeFrequency_Clicked"
+                    TextColor="#EFFCF6"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="22"
+                    Margin="24, 0"
+                    VerticalOptions="EndAndExpand">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+                            <GradientStop
+                                Color="#1BA786"
+                                Offset="0.5"/>
+                            <GradientStop
+                                Color="#147D64"
+                                Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </StackLayout>
+
+            <StackLayout
+                x:Name="ManualScanning"
+                Orientation="Vertical"
+                Spacing="0"
+                VerticalOptions="FillAndExpand"
+                Margin="16, 24"
+                IsVisible="False">
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Spacing="0"
+                    Margin="0, 0, 0, 16">
+
+                    <Image
+                        x:Name="GPSLocation"
+                        Source="GpsOff"/>
+
+                    <Label
+                        x:Name="State"
+                        Text="Saving targets ..."
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        VerticalOptions="EndAndExpand"
+                        IsVisible="False"/>
+
+                    <Button
+                        x:Name="RecordData"
+                        Clicked="RecordData_Clicked"
+                        Text="Record Data"
+                        TextColor="#EFFCF6"
+                        FontSize="16"
+                        HeightRequest="32"
+                        Padding="8, 0"
+                        FontAttributes="Bold"
+                        CornerRadius="15"
+                        HorizontalOptions="EndAndExpand">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+
+                            <GradientStop
+                                Color="#1BA786"
+                                Offset="0.5"/>
+
+                            <GradientStop
+                                Color="#147D64"
+                                Offset="1.0"/>
+
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Vertical"
+                    Spacing="0"
+                    BackgroundColor="#F5F7FA">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        Padding="16"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Frequency"
+                            TextColor="#3E4C59"
+                            FontSize="12"
+                            Margin="0, 0, 0, 16"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            VerticalOptions="Center"
+                            Spacing="0">
+
+                            <ImageButton
+                                x:Name="TuneDown"
+                                Clicked="TuneDown_Clicked"
+                                Source="TuneDown"/>
+
+                            <Label
+                                x:Name="FrequencyScan"
+                                TextColor="#1F2933"
+                                FontSize="20"
+                                VerticalOptions="CenterAndExpand"
+                                Margin="8, 0"/>
+
+                            <ImageButton
+                                x:Name="TuneUp"
+                                Clicked="TuneUp_Clicked"
+                                Source="TuneUp"/>
+
+                            <Button
+                                Clicked="EditFrequency_Clicked"
+                                Text="Edit Frequency"
+                                TextColor="#3E4C59"
+                                FontSize="12"
+                                BackgroundColor="#F5F7FA"
+                                BorderColor="#3E4C59"
+                                BorderWidth="1"
+                                CornerRadius="22"
+                                HeightRequest="32"
+                                Padding="8, 0"
+                                FontAttributes="Bold"
+                                HorizontalOptions="EndAndExpand"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="AudioOptions"
+                        Orientation="Vertical"
+                        Spacing="0">
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Spacing="0"
+                            Padding="16">
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0">
+
+                                <Label
+                                    Text="ID Audio"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    Margin="0, 0, 0, 16"/>
+
+                                <Label
+                                    x:Name="IDAudio"
+                                    TextColor="#1F2933"
+                                    FontSize="20"
+                                    VerticalOptions="CenterAndExpand"
+                                    Margin="8, 0"/>
+
+                            </StackLayout>
+
+                            <Label
+                                Text="Edit Audio Options"
+                                FontSize="12"
+                                TextColor="#3E4C59"
+                                FontAttributes="Bold"
+                                TextDecorations="Underline"
+                                HorizontalOptions="EndAndExpand"
+                                VerticalOptions="CenterAndExpand">
+
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="EditAudio_Tapped"/>
+                                </Label.GestureRecognizers>
+
+                            </Label>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        HeightRequest="1"
+                        BackgroundColor="#E5E5E5"
+                        HorizontalOptions="Fill"/>
+
+                    <ScrollView
+                        Orientation="Vertical">
+
+                        <StackLayout
+                            x:Name="ScanDetails"
+                            Orientation="Vertical"
+                            Spacing="0"
+                            Padding="16">
+
+                            <Grid
+                                ColumnDefinitions="4"
+                                ColumnSpacing="0"
+                                Padding="0, 0, 0, 8">
+
+                                <Label
+                                    x:Name="Code"
+                                    Text="Code"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    Grid.Column="1"/>
+
+                                <Label
+                                    x:Name="Period"
+                                    Text="Period"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    Grid.Column="1"/>
+
+                                <Label
+                                    x:Name="Detections"
+                                    Text="Detections"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    Grid.Column="2"/>
+
+                                <Label
+                                    x:Name="PulseRate"
+                                    Text="Pulse Rate"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    Grid.Column="3"/>
+
+                                <Label
+                                    x:Name="Mortality"
+                                    Text="Mortality"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    Grid.Column="3"/>
+
+                                <Label
+                                    x:Name="SignalStrength"
+                                    Text="Signal Strength"
+                                    TextColor="#3E4C59"
+                                    FontSize="12"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    Grid.Column="4"/>
+
+                            </Grid>
+
+                            <StackLayout
+                                HeightRequest="1"
+                                BackgroundColor="#E5E5E5"
+                                HorizontalOptions="Fill"/>
+
+                        </StackLayout>
+
+                    </ScrollView>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <common:ReceiverStatus/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

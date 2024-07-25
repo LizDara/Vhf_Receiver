@@ -18,10 +18,12 @@
                 <StackLayout
                     Orientation="Horizontal"
                     Spacing="0">
+
                     <ImageButton
                         x:Name="Refresh"
                         Clicked="Refresh_Clicked"
-                        Source="rotate.png"
+                        IsVisible="False"
+                        Source="Rotate"
                         CornerRadius="25"
                         Padding="15"
                         HeightRequest="48"
@@ -29,6 +31,13 @@
                         BackgroundColor="#F5F7FA"
                         Margin="0, 24, 24, 0"
                         HorizontalOptions="EndAndExpand"/>
+
+                    <StackLayout
+                        x:Name="RefreshSpace"
+                        Spacing="0"
+                        HeightRequest="48"
+                        Padding="15"/>
+
                 </StackLayout>
 
                 <RelativeLayout
@@ -118,7 +127,7 @@
                                         Spacing="0">
 
                                         <Image
-                                            Source="battery_full.png"
+                                            Source="FullBattery"
                                             Margin="0, 0, 0, 8"/>
 
                                         <Label
@@ -170,7 +179,14 @@
                     HeightRequest="48"
                     WidthRequest="48"/>
 
+                <Image
+                    x:Name="CheckedStatus"
+                    Margin="0, 64, 0, 0"
+                    Source="check.png"
+                    IsVisible="False"/>
+
                 <Label
+                    x:Name="ConnectionStatus"
                     Text="Connecting ..."
                     TextColor="#334E68"
                     FontSize="18"
@@ -209,7 +225,7 @@
                     VerticalOptions="CenterAndExpand">
 
                     <Image
-                        Source="battery_full.png"/>
+                        Source="FullBattery"/>
 
                     <Label
                         x:Name="DeviceBattery"

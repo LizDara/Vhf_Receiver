@@ -21,7 +21,7 @@
                     VerticalOptions="Start">
 
                     <Image
-                        Source="battery_full_light.png"
+                        Source="LightFullBattery"
                         VerticalOptions="Start"/>
 
                     <Label
@@ -34,6 +34,7 @@
                         Text="Disconnect"
                         TextColor="#EFFCF6"
                         FontSize="16"
+                        FontAttributes="Bold"
                         BackgroundColor="#147D64"
                         BorderColor="#EFFCF6"
                         BorderWidth="1"

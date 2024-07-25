@@ -3,12 +3,15 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="VhfReceiver.Pages.TestReceiverPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
     BackgroundColor="#E4E7EB">
     <ContentPage.Content>
-        <Grid>
+        <StackLayout
+            Orientation="Vertical">
+
             <StackLayout
                 Orientation="Vertical"
-                VerticalOptions="Start"
+                VerticalOptions="Fill"
                 Spacing="0">
 
                 <StackLayout
@@ -25,7 +28,8 @@
 
                     <ImageButton
                         Clicked="Back_Clicked"
-                        Source="back.png"
+                        Source="Back"
+                        Padding="8"
                         BackgroundColor="#F5F7FA"/>
 
                     <Label
@@ -38,10 +42,11 @@
                 </StackLayout>
 
                 <ScrollView
-                    Orientation="Vertical">
+                    x:Name="Result"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand">
 
                     <StackLayout
-                        x:Name="Result"
                         Orientation="Vertical"
                         Spacing="0"
                         VerticalOptions="Start"
@@ -630,46 +635,10 @@
 
                 </ScrollView>
 
-            </StackLayout>
-
-            <StackLayout
-                Orientation="Horizontal"
-                BackgroundColor="#F5F7FA"
-                VerticalOptions="End"
-                Padding="16">
-
-                <StackLayout
-                    Orientation="Vertical">
-
-                    <Label
-                        x:Name="Name"
-                        FontSize="18"
-                        TextColor="#1F2933"/>
-
-                    <Label
-                        x:Name="Range"
-                        FontSize="12"
-                        TextColor="#1F2933"/>
-
-                </StackLayout>
-
-                <StackLayout
-                    Orientation="Vertical"
-                    HorizontalOptions="EndAndExpand"
-                    VerticalOptions="CenterAndExpand">
-
-                    <Image
-                        Source="battery_full.png"/>
-
-                    <Label
-                        x:Name="Battery"
-                        TextColor="#1F2933"
-                        FontSize="12"/>
-
-                </StackLayout>
+                <common:ReceiverStatus/>
 
             </StackLayout>
 
-        </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

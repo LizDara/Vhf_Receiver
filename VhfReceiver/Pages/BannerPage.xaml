@@ -45,7 +45,7 @@
             </RelativeLayout>
 
             <Image
-                Source="logo.png"
+                Source="Logo"
                 Margin="0, 64, 0, 0"/>
 
             <Label

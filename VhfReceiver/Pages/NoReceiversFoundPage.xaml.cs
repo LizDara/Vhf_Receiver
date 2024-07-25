@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 using Xamarin.Forms;
 
@@ -14,7 +13,7 @@ namespace VhfReceiver.Pages
 
         private async void Retry_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new SearchingDevicesPage());
+            await Navigation.PushModalAsync(new SearchingDevicesPage(), false);
         }
     }
 }

@@ -24,8 +24,8 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <MtouchArch>x86_64</MtouchArch>
-    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -49,8 +49,10 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
+    <DeviceSpecificBuild>false</DeviceSpecificBuild>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -61,6 +63,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -113,6 +116,70 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\Logo.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Logo.imageset\logo.svg" />
+    <ImageAsset Include="Assets.xcassets\Rotate.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Rotate.imageset\rotate.svg" />
+    <ImageAsset Include="Assets.xcassets\LightFullBattery.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LightFullBattery.imageset\battery_full_light.svg" />
+    <ImageAsset Include="Assets.xcassets\MediumBattery.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\MediumBattery.imageset\battery_medium.svg" />
+    <ImageAsset Include="Assets.xcassets\LowBattery.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LowBattery.imageset\battery_low.svg" />
+    <ImageAsset Include="Assets.xcassets\EmptyBattery.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\EmptyBattery.imageset\battery_empty.svg" />
+    <ImageAsset Include="Assets.xcassets\Exit.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Exit.imageset\exit.svg" />
+    <ImageAsset Include="Assets.xcassets\Back.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Back.imageset\back.svg" />
+    <ImageAsset Include="Assets.xcassets\Next.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Next.imageset\next.svg" />
+    <ImageAsset Include="Assets.xcassets\Check.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Check.imageset\check.svg" />
+    <ImageAsset Include="Assets.xcassets\FullBattery.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\FullBattery.imageset\battery_full.svg" />
+    <ImageAsset Include="Assets.xcassets\SplashScreen.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\SplashScreen.imageset\splash_screen.svg" />
+    <ImageAsset Include="Assets.xcassets\LightEllipse.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LightEllipse.imageset\light_ellipse.svg" />
+    <ImageAsset Include="Assets.xcassets\DarkEllipse.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\DarkEllipse.imageset\dark_ellipse.svg" />
+    <ImageAsset Include="Assets.xcassets\Title.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Title.imageset\title.svg" />
+    <ImageAsset Include="Assets.xcassets\LightCircle.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LightCircle.imageset\LightCircle.svg" />
+    <ImageAsset Include="Assets.xcassets\GreenCircle.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\GreenCircle.imageset\GreenCircle.svg" />
+    <ImageAsset Include="Assets.xcassets\SmallChecked.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\SmallChecked.imageset\SmallChecked.svg" />
+    <ImageAsset Include="Assets.xcassets\Line.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Line.imageset\Line.svg" />
+    <ImageAsset Include="Assets.xcassets\Delete.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Delete.imageset\Delete.svg" />
+    <ImageAsset Include="Assets.xcassets\GreenChecked.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\GreenChecked.imageset\Checked.svg" />
+    <ImageAsset Include="Assets.xcassets\Locked.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Locked.imageset\lock.svg" />
+    <ImageAsset Include="Assets.xcassets\Unlocked.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Unlocked.imageset\unlock.svg" />
+    <ImageAsset Include="Assets.xcassets\TuneDownLight.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\TuneUpLight.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\TuneDown.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\TuneUp.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\TuneUp.imageset\up.svg" />
+    <ImageAsset Include="Assets.xcassets\TuneDown.imageset\down.svg" />
+    <ImageAsset Include="Assets.xcassets\TuneUpLight.imageset\upLight.svg" />
+    <ImageAsset Include="Assets.xcassets\TuneDownLight.imageset\downLight.svg" />
+    <ImageAsset Include="Assets.xcassets\Left.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Left.imageset\left.svg" />
+    <ImageAsset Include="Assets.xcassets\Right.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Right.imageset\right.svg" />
+    <ImageAsset Include="Assets.xcassets\Border.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Border.imageset\border.svg" />
+    <ImageAsset Include="Assets.xcassets\GpsOff.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\GpsOff.imageset\gps_off.svg" />
+    <ImageAsset Include="Assets.xcassets\GpsOn.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\GpsOn.imageset\gps_on.svg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -123,16 +190,16 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
     <PackageReference Include="Plugin.BLE">
-      <Version>2.1.2</Version>
+      <Version>2.1.3</Version>
     </PackageReference>
     <PackageReference Include="Sharpnado.Shadows">
-      <Version>1.2.0</Version>
+      <Version>1.2.1</Version>
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
-      <Version>2.0.0.14</Version>
+      <Version>2.1.0</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -143,13 +210,30 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\next.png" />
-    <BundleResource Include="Resources\back.png" />
-    <BundleResource Include="Resources\battery_full_light.png" />
-    <BundleResource Include="Resources\rotate.png" />
-    <BundleResource Include="Resources\battery_full.png" />
-    <BundleResource Include="Resources\logo.png" />
     <BundleResource Include="Resources\receiver.png" />
     <BundleResource Include="Resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\LightEllipse.imageset\" />
+    <Folder Include="Assets.xcassets\DarkEllipse.imageset\" />
+    <Folder Include="Assets.xcassets\Title.imageset\" />
+    <Folder Include="Assets.xcassets\Checked.imageset\" />
+    <Folder Include="Assets.xcassets\LightCircle.imageset\" />
+    <Folder Include="Assets.xcassets\GreenCircle.imageset\" />
+    <Folder Include="Assets.xcassets\SmallChecked.imageset\" />
+    <Folder Include="Assets.xcassets\Line.imageset\" />
+    <Folder Include="Assets.xcassets\Delete.imageset\" />
+    <Folder Include="Assets.xcassets\GreenChecked.imageset\" />
+    <Folder Include="Assets.xcassets\Locked.imageset\" />
+    <Folder Include="Assets.xcassets\Unlocked.imageset\" />
+    <Folder Include="Assets.xcassets\TuneDownLight.imageset\" />
+    <Folder Include="Assets.xcassets\TuneUpLight.imageset\" />
+    <Folder Include="Assets.xcassets\TuneDown.imageset\" />
+    <Folder Include="Assets.xcassets\TuneUp.imageset\" />
+    <Folder Include="Assets.xcassets\Left.imageset\" />
+    <Folder Include="Assets.xcassets\Right.imageset\" />
+    <Folder Include="Assets.xcassets\Border.imageset\" />
+    <Folder Include="Assets.xcassets\GpsOff.imageset\" />
+    <Folder Include="Assets.xcassets\GpsOn.imageset\" />
   </ItemGroup>
 </Project>

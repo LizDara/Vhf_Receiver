@@ -1,64 +1,88 @@
 ﻿using System;
-using System.Text;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Plugin.BLE;
-using Plugin.BLE.Abstractions;
-using Plugin.BLE.Abstractions.Contracts;
 using VhfReceiver.Utils;
-using Xamarin.Essentials;
-
 using Xamarin.Forms;
+using VhfReceiver.Widgets;
+using Rg.Plugins.Popup.Extensions;
 
 namespace VhfReceiver.Pages
 {
     public partial class HomePage : ContentPage
     {
-        private IAdapter BluetoothAdapter;
-        private DeviceInformation ConnectedDevice;
+        private ReceiverInformation ReceiverInformation;
 
-        public HomePage(IAdapter bluetoothAdapter, DeviceInformation deviceInformation, byte[] bytes)
+        public HomePage()
+        {
+            Initialize();
+        }
+
+        public HomePage(byte detectionType)
+        {
+            Initialize();
+            if (detectionType == 0)
+            {
+                MessagingCenter.Subscribe<string>(this, "DetectionType", (value) =>
+                {
+                    ReceiverInformation.ChangeTxType(byte.Parse(value));
+                    DeviceName.Text = ReceiverInformation.GetDeviceStatus();
+                });
+
+                var popMessage = new DetectionFilter();
+                _ = App.Current.MainPage.Navigation.PushPopupAsync(popMessage, true);
+            }
+        }
+
+        private void Initialize()
         {
             InitializeComponent();
 
-            if (bytes.Length > 1)
-            {
-                Task.Run(async () => await Task.Delay(5000)).Wait();
-
-                SetData(bytes);
-            }
-            
-            BluetoothAdapter = bluetoothAdapter;
-            ConnectedDevice = deviceInformation;
-            DeviceName.Text = ConnectedDevice.Name;
-            DeviceBattery.Text = ConnectedDevice.Battery;
-        }
-
-        private void SetData(byte[] bytes)
-        {
-            int baseFrequency = bytes[1];
-            int range = bytes[2];
-            int detectionType = bytes[3];
-            int statusBytesDefault = bytes[7];
-
-            Preferences.Set("BaseFrequency", baseFrequency);
+            ReceiverInformation = ReceiverInformation.GetReceiverInformation();
+            DeviceName.Text = ReceiverInformation.GetDeviceStatus();
+            DeviceBattery.Text = ReceiverInformation.GetDeviceBattery();
         }
 
         private async void Disconnect_Clicked(object sender, EventArgs e)
         {
-            await BluetoothAdapter.DisconnectDeviceAsync(ConnectedDevice.Device);
-
-            await Navigation.PushModalAsync(new SearchingDevicesPage());
+            await ReceiverInformation.GetAdapter().DisconnectDeviceAsync(ReceiverInformation.GetDevice());
         }
 
         private async void StartScanning_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new StartScanningPage(ConnectedDevice));
+            var bytes = await GetTables();
+            if (bytes != null)
+                await Navigation.PushModalAsync(new StartScanningPage(bytes), false);
         }
 
         private async void ReceiverOptions_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new ReceiverOptionsPage(ConnectedDevice));
+            MessagingCenter.Subscribe<string>(this, ValueCodes.TX_TYPE, (value) =>
+            {
+                if (value.Equals("Changing"))
+                    DeviceName.Text = ReceiverInformation.GetDeviceStatus();
+            });
+            await Navigation.PushModalAsync(new ReceiverOptionsPage(), false);
+        }
+
+        private async Task<byte[]> GetTables()
+        {
+            try
+            {
+                var service = await ReceiverInformation.GetDevice().GetServiceAsync(VhfReceiverUuids.UUID_SERVICE_STORED_DATA);
+                if (service != null)
+                {
+                    var characteristic = await service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_FREQ_TABLE);
+                    if (characteristic != null)
+                    {
+                        byte[] bytes = await characteristic.ReadAsync();
+                        return bytes;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error Service: " + e.Message);
+            }
+            return null;
         }
     }
 }

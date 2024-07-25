@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.CloneReceiverPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#E4E7EB">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="Start"
+                Spacing="0">
+
+                <StackLayout
+                    HeightRequest="8"
+                    BackgroundColor="#147D64"
+                    HorizontalOptions="Fill"/>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="#F5F7FA"
+                    VerticalOptions="Center"
+                    Spacing="0"
+                    Padding="16, 8">
+
+                    <ImageButton
+                        Clicked="Back_Clicked"
+                        Source="Back"
+                        Padding="8"
+                        BackgroundColor="#F5F7FA"/>
+
+                    <Label
+                        Text="Clone Receiver"
+                        TextColor="#334E68"
+                        FontSize="20"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="Center"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="NoReceiversDetected"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    BackgroundColor="#F5F7FA"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="16, 24"
+                    Padding="16, 32"
+                    IsVisible="False">
+
+                    <RelativeLayout
+                        HeightRequest="128"
+                        VerticalOptions="Center"
+                        HorizontalOptions="CenterAndExpand">
+
+                        <Ellipse
+                            Fill="#E26F6F"
+                            Stroke="#BA2525"
+                            StrokeThickness="8"
+                            HeightRequest="128"
+                            WidthRequest="128"/>
+
+                        <Image
+                            Source="receiver.png"
+                            HeightRequest="96"
+                            Margin="16, 16, 0, 0"/>
+
+                    </RelativeLayout>
+
+                    <Label
+                        Text="No Receivers Detected"
+                        TextColor="#1F2933"
+                        FontSize="30"
+                        Margin="0, 32, 0, 16"
+                        HorizontalTextAlignment="Center"/>
+
+                    <Label
+                        Text="Make sure receivers are on and connected via the clone cable."
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="ReadyToClone"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    BackgroundColor="#F5F7FA"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="16, 24"
+                    Padding="16, 32"
+                    IsVisible="False">
+
+                    <RelativeLayout
+                        HeightRequest="128"
+                        VerticalOptions="Center"
+                        HorizontalOptions="CenterAndExpand">
+
+                        <Ellipse
+                            Fill="#C6F7E2"
+                            Stroke="#3EBD93"
+                            StrokeThickness="8"
+                            HeightRequest="128"
+                            WidthRequest="128"/>
+
+                        <Image
+                            Source="receiver.png"
+                            HeightRequest="96"
+                            Margin="16, 16, 0, 0"/>
+
+                    </RelativeLayout>
+
+                    <Label
+                        Text="Ready To Clone"
+                        TextColor="#1F2933"
+                        FontSize="30"
+                        Margin="0, 32, 0, 0"
+                        HorizontalTextAlignment="Center"/>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <common:ReceiverStatus/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

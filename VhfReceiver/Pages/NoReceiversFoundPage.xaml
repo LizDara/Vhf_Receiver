@@ -11,7 +11,7 @@
             <StackLayout
                 Orientation="Vertical"
                 Margin="16, 0"
-                VerticalOptions="Start"
+                VerticalOptions="Fill"
                 Spacing="0">
 
                 <RelativeLayout
@@ -47,28 +47,29 @@
                     HorizontalTextAlignment="Center"
                     Margin="0, 24, 0, 0"/>
 
-            </StackLayout>
+                <Button
+                    Clicked="Retry_Clicked"
+                    Text="Retry"
+                    TextColor="#EFFCF6"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="22"
+                    VerticalOptions="EndAndExpand"
+                    Margin="16, 0, 16, 24">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+                            <GradientStop
+                                Color="#1BA786"
+                                Offset="0.5"/>
+                            <GradientStop
+                                Color="#147D64"
+                                Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
 
-            <Button
-                Clicked="Retry_Clicked"
-                Text="Retry"
-                TextColor="#EFFCF6"
-                FontAttributes="Bold"
-                CornerRadius="15"
-                VerticalOptions="EndAndExpand"
-                Margin="16, 0, 16, 24">
-                <Button.Background>
-                    <LinearGradientBrush
-                        EndPoint="0,1">
-                        <GradientStop
-                            Color="#1BA786"
-                            Offset="0.5"/>
-                        <GradientStop
-                            Color="#147D64"
-                            Offset="1.0"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

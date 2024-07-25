@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<rg:PopupPage
+    xmlns:rg="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.DetectionFilter">
+    <rg:PopupPage.Resources>
+        <ResourceDictionary>
+            <ControlTemplate x:Key="ThemeRadioTemplate">
+                <Frame
+                    Padding="0"
+                    BackgroundColor="Transparent"
+                    HasShadow="False"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start">
+                    <StackLayout Orientation="Horizontal">
+                        <Grid
+                            HeightRequest="20"
+                            WidthRequest="20">
+                            <Ellipse
+                                Fill="White"
+                                HeightRequest="18"
+                                HorizontalOptions="Center"
+                                Stroke="#7B8794"
+                                StrokeThickness="1"
+                                VerticalOptions="Center"
+                                WidthRequest="18" />
+                            <Ellipse
+                                x:Name="Check"
+                                BackgroundColor="Transparent"
+                                Fill="#000000"
+                                HeightRequest="10"
+                                HorizontalOptions="Center"
+                                Stroke="#000000"
+                                StrokeThickness="0"
+                                VerticalOptions="Center"
+                                WidthRequest="10" />
+                        </Grid>
+                        <ContentPresenter />
+                    </StackLayout>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CheckedStates">
+                                <VisualState x:Name="Checked">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="Check" Property="Opacity" Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="Check" Property="Opacity" Value="0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                </Frame>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </rg:PopupPage.Resources>
+
+    <Grid>
+        <StackLayout
+            Orientation="Vertical"
+            VerticalOptions="Center"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="#F5F7FA"
+            Spacing="0"
+            Margin="16"
+            Padding="16, 48">
+
+            <Label
+                Text="Select Detection Filter"
+                TextColor="#1F2933"
+                FontSize="24"
+                HorizontalTextAlignment="Center"
+                Margin="0, 0, 0, 32"/>
+
+            <Label
+                Text="Please select a transmitter detection filter to continue. You can change this later in receiver options."
+                TextColor="#000000"
+                FontSize="16"
+                HorizontalTextAlignment="Center"
+                Margin="0, 0, 0, 16"/>
+
+            <RadioButton
+                CheckedChanged="Detection_Changed"
+                TextColor="#3E4C59"
+                FontSize="16"
+                Value="9"
+                Content="Coded"
+                IsChecked="True"
+                ControlTemplate="{StaticResource ThemeRadioTemplate}"/>
+
+            <RadioButton
+                CheckedChanged="Detection_Changed"
+                TextColor="#3E4C59"
+                FontSize="16"
+                Value="8"
+                Content="Non Coded (Fixed Pulse Rate)"
+                ControlTemplate="{StaticResource ThemeRadioTemplate}"/>
+
+            <RadioButton
+                CheckedChanged="Detection_Changed"
+                TextColor="#3E4C59"
+                FontSize="16"
+                Value="7"
+                Content="Non Coded (Variable Pulse Rate)"
+                ControlTemplate="{StaticResource ThemeRadioTemplate}"/>
+
+            <Button
+                Clicked="Continue_Clicked"
+                Text="Continue"
+                TextColor="#EFFCF6"
+                FontSize="16"
+                FontAttributes="Bold"
+                CornerRadius="22"
+                Margin="0, 16, 0, 0">
+                <Button.Background>
+                    <LinearGradientBrush
+                        EndPoint="0,1">
+
+                        <GradientStop
+                            Color="#1BA786"
+                            Offset="0.5"/>
+
+                        <GradientStop
+                            Color="#147D64"
+                            Offset="1.0"/>
+
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
+        </StackLayout>
+    </Grid>
+
+</rg:PopupPage>

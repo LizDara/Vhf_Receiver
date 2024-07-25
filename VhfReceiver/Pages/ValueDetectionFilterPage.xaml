@@ -1,0 +1,572 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.ValueDetectionFilterPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#E4E7EB">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="Fill"
+                Spacing="0">
+
+                <StackLayout
+                    HeightRequest="8"
+                    BackgroundColor="#147D64"
+                    HorizontalOptions="Fill"/>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="#F5F7FA"
+                    VerticalOptions="Center"
+                    Spacing="0"
+                    Padding="16, 8">
+
+                    <ImageButton
+                        Clicked="Back_Clicked"
+                        Source="Back"
+                        Padding="8"
+                        BackgroundColor="#F5F7FA"/>
+
+                    <Label
+                        x:Name="TitleToolbar"
+                        TextColor="#334E68"
+                        FontSize="20"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="Center"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="SelectPulseRate"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    Margin="16, 24"
+                    IsVisible="False"
+                    VerticalOptions="FillAndExpand">
+
+                    <Label
+                        Text="Select Pulse Rate Type"
+                        TextColor="#3E4C59"
+                        FontSize="20"
+                        Margin="0, 0, 0, 8"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        BackgroundColor="#F5F7FA">
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Spacing="0"
+                            Padding="16">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PulseRateCommand}" CommandParameter="Coded"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="Coded"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="Coded"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Spacing="0"
+                            Padding="16">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PulseRateCommand}" CommandParameter="Fixed"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="Non Coded (Fixed Pulse Rate)"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="FixedPulseRate"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Spacing="0"
+                            Padding="16">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PulseRateCommand}" CommandParameter="Variable"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="Non Coded (Variable Pulse Rate)"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="VariablePulseRate"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="NumberOfMatches"
+                    Orientation="Vertical"
+                    Margin="16"
+                    Spacing="0"
+                    IsVisible="False"
+                    VerticalOptions="FillAndExpand">
+
+                    <Label
+                        Text="Number of Matches"
+                        TextColor="#3E4C59"
+                        FontSize="20"
+                        Margin="0, 0, 0, 8"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        VerticalOptions="StartAndExpand"
+                        BackgroundColor="#F5F7FA">
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NumberMatchesCommand}" CommandParameter="2"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="2"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="Two"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NumberMatchesCommand}" CommandParameter="3"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="3"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="Three"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NumberMatchesCommand}" CommandParameter="4"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="4"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="Four"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NumberMatchesCommand}" CommandParameter="5"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="5"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="Five"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NumberMatchesCommand}" CommandParameter="6"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="6"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="Six"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NumberMatchesCommand}" CommandParameter="7"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="7"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="Seven"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NumberMatchesCommand}" CommandParameter="8"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="8"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="Eight"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="TargetPulseRate"
+                    Orientation="Vertical"
+                    IsVisible="False"
+                    Spacing="0"
+                    Margin="16, 24"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="Fill">
+
+                    <Label
+                        x:Name="PulseRateTitle"
+                        TextColor="#3E4C59"
+                        FontSize="20"
+                        Margin="0, 0, 0, 8"/>
+
+                    <Entry
+                        x:Name="PulseRate"
+                        HeightRequest="48"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        Keyboard="Numeric"
+                        HorizontalOptions="Fill"
+                        VerticalTextAlignment="Center"
+                        BackgroundColor="#F5F7FA"/>
+
+                    <Label
+                        x:Name="PulseRateToleranceTitle"
+                        TextColor="#3E4C59"
+                        FontSize="20"
+                        Margin="0, 24, 0, 8"/>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        HeightRequest="48"
+                        Spacing="0"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center">
+
+                            <!--Padding="16, 0, 0, 0">
+                        <Entry
+                            Text="+/-"
+                            TextColor="#1F2933"
+                            FontSize="16"
+                            BackgroundColor="#F5F7FA"
+                            IsReadOnly="True"
+                            VerticalTextAlignment="Center"/-->
+
+                        <Entry
+                            x:Name="PulseRateTolerance"
+                            TextColor="#1F2933"
+                            FontSize="16"
+                            Keyboard="Numeric"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            VerticalTextAlignment="Center"
+                            BackgroundColor="#F5F7FA"/>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="MaxMinPulseRate"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    IsVisible="False"
+                    Margin="16, 24"
+                    VerticalOptions="FillAndExpand">
+
+                    <Label
+                        x:Name="MaxMinPulseRateTitle"
+                        TextColor="#3E4C59"
+                        FontSize="20"
+                        Margin="0, 0, 0, 8"/>
+                    
+                    <Editor
+                        x:Name="MaxMin"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        HorizontalOptions="Fill"
+                        BackgroundColor="#F5F7FA"
+                        TextChanged="MaxMin_TextChanged"/>
+
+                    <Label
+                        x:Name="PeriodPulseRate"
+                        TextColor="#3E4C59"
+                        FontSize="12"
+                        Padding="16, 16, 0, 16"
+                        BackgroundColor="#F5F7FA"
+                        HorizontalOptions="Fill"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="DataCalculationTypes"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    Margin="16, 24"
+                    VerticalOptions="FillAndExpand"
+                    IsVisible="False">
+
+                    <Label
+                        Text="Data Calculation Types"
+                        TextColor="#3E4C59"
+                        FontSize="20"
+                        Margin="0, 0, 0, 8"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        BackgroundColor="#F5F7FA">
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DataCalculationCommand}" CommandParameter="0"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="None"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="None"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DataCalculationCommand}" CommandParameter="8"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="Period"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="Period"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="#E5E5E5"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DataCalculationCommand}" CommandParameter="4"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="Temperature"
+                                TextColor="#1F2933"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="Temperature"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+                <common:ReceiverStatus/>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

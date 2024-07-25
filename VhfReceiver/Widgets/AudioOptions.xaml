@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<rg:PopupPage
+    xmlns:rg="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.AudioOptions">
+    <Grid>
+        <StackLayout
+            Orientation="Vertical"
+            Spacing="0"
+            BackgroundColor="#F5F7FA"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Center"
+            Margin="16"
+            Padding="8">
+
+            <ImageButton
+                Clicked="Close_Clicked"
+                Source="Exit"
+                Margin="24, 24, 0, 0"
+                HorizontalOptions="StartAndExpand"/>
+
+            <Label
+                Margin="24, 0, 24, 24"
+                Text="Select IDs for Audio"
+                TextColor="#3E4C59"
+                FontSize="24"
+                HorizontalOptions="CenterAndExpand"/>
+
+            <StackLayout
+                Orientation="Horizontal"
+                Spacing="0"
+                Margin="32, 0">
+
+                <Button
+                    x:Name="Single"
+                    WidthRequest="56"
+                    HeightRequest="32"
+                    Clicked="Single_Clicked"
+                    Text="Single"
+                    TextColor="#3E4C59"
+                    FontSize="12"
+                    BorderColor="#3E4C59"
+                    BorderWidth="1"
+                    CornerRadius="15"
+                    HorizontalOptions="CenterAndExpand"/>
+
+                <Button
+                    x:Name="All"
+                    WidthRequest="56"
+                    HeightRequest="32"
+                    Clicked="All_Clicked"
+                    Text="All"
+                    TextColor="#F5F7FA"
+                    FontSize="12"
+                    BorderColor="#3E4C59"
+                    BorderWidth="1"
+                    BackgroundColor="#3E4C59"
+                    CornerRadius="15"
+                    HorizontalOptions="CenterAndExpand"/>
+
+                <Button
+                    x:Name="None"
+                    WidthRequest="56"
+                    HeightRequest="32"
+                    Clicked="None_Clicked"
+                    Text="None"
+                    TextColor="#3E4C59"
+                    FontSize="12"
+                    BorderColor="#3E4C59"
+                    BorderWidth="1"
+                    CornerRadius="15"
+                    HorizontalOptions="CenterAndExpand"/>
+
+            </StackLayout>
+
+            <StackLayout
+                x:Name="EnterDigit"
+                Orientation="Vertical"
+                IsVisible="False">
+
+                <Label
+                    x:Name="NewDigit"
+                    TextColor="#1F2933"
+                    FontSize="20"
+                    HorizontalOptions="CenterAndExpand"
+                    Margin="24, 16, 24, 0"/>
+
+                <StackLayout
+                    HeightRequest="1"
+                    BackgroundColor="#CBD2D9"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="24, 0, 24, 8"/>
+
+                <Label
+                    Text="Enter a two digit ID"
+                    TextColor="#7B8794"
+                    FontSize="12"
+                    HorizontalOptions="CenterAndExpand"/>
+
+                <Grid
+                    ColumnDefinitions="4"
+                    RowDefinitions="3"
+                    ColumnSpacing="16"
+                    RowSpacing="16"
+                    Margin="4, 0, 24, 0">
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="1"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="1"
+                        Grid.Row="1"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="2"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="2"
+                        Grid.Row="1"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="3"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="3"
+                        Grid.Row="1"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="4"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="4"
+                        Grid.Row="1"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="5"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="1"
+                        Grid.Row="2"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="6"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="2"
+                        Grid.Row="2"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="7"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="3"
+                        Grid.Row="2"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="8"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="4"
+                        Grid.Row="2"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="9"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="1"
+                        Grid.Row="3"/>
+
+                    <Button
+                        Clicked="Number_Clicked"
+                        HeightRequest="32"
+                        Text="0"
+                        FontAttributes="Bold"
+                        TextColor="#1F2933"
+                        FontSize="16"
+                        BorderColor="#CBD2D9"
+                        BorderWidth="1"
+                        CornerRadius="15"
+                        Grid.Column="2"
+                        Grid.Row="3"/>
+
+                    <StackLayout
+                        Margin="8, 0"
+                        Grid.Column="3"
+                        Grid.Row="3"/>
+
+                    <ImageButton
+                        Clicked="Delete_Clicked"
+                        HeightRequest="32"
+                        Source="Delete"
+                        CornerRadius="15"
+                        BackgroundColor="#BA2525"
+                        Padding="0, 6"
+                        Grid.Column="4"
+                        Grid.Row="3"/>
+
+                </Grid>
+
+            </StackLayout>
+
+            <StackLayout
+                HeightRequest="1"
+                BackgroundColor="#CBD2D9"
+                HorizontalOptions="FillAndExpand"
+                Margin="24, 12"/>
+
+            <StackLayout
+                Orientation="Horizontal"
+                Spacing="0"
+                Margin="24, 0">
+
+                <Label
+                    Text="Play Background Signals"
+                    TextColor="#3E4C59"
+                    FontSize="12"
+                    HorizontalOptions="StartAndExpand"/>
+
+                <Switch
+                    x:Name="Background"
+                    OnColor="#C6F7E2">
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="On">
+                                <VisualState.Setters>
+                                    <Setter
+                                        Property="ThumbColor"
+                                        Value="#147D64"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Off">
+                                <VisualState.Setters>
+                                    <Setter
+                                        Property="ThumbColor"
+                                        Value="#7B8794"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+
+                </Switch>
+
+            </StackLayout>
+
+            <Button
+                Clicked="SaveChanges_Clicked"
+                Text="Save Changes"
+                TextColor="#EFFCF6"
+                FontSize="16"
+                FontAttributes="Bold"
+                CornerRadius="22"
+                Margin="22, 16, 22, 16">
+                <Button.Background>
+                    <LinearGradientBrush
+                        EndPoint="0,1">
+
+                        <GradientStop
+                            Color="#1BA786"
+                            Offset="0.5"/>
+
+                        <GradientStop
+                            Color="#147D64"
+                            Offset="1.0"/>
+
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
+        </StackLayout>
+    </Grid>
+</rg:PopupPage>

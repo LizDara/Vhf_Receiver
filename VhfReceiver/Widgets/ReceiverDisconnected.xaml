@@ -38,6 +38,7 @@
                 Text="Receiver Disconnected"
                 TextColor="#1F2933"
                 FontSize="30"
+                Margin="0, 32, 0, 0"
                 HorizontalTextAlignment="Center"/>
 
         </StackLayout>

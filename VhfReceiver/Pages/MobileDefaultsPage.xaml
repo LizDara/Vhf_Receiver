@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="VhfReceiver.Pages.MobileDefaultsPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False"
     BackgroundColor="#E4E7EB">
@@ -10,7 +11,7 @@
         <Grid>
             <StackLayout
                 Orientation="Vertical"
-                VerticalOptions="Start"
+                VerticalOptions="Fill"
                 Spacing="0">
 
                 <StackLayout
@@ -27,7 +28,8 @@
 
                     <ImageButton
                         Clicked="Back_Clicked"
-                        Source="back.png"
+                        Source="Back"
+                        Padding="8"
                         BackgroundColor="#F5F7FA"/>
 
                     <Label
@@ -67,7 +69,7 @@
                             HorizontalOptions="StartAndExpand">
 
                             <Label
-                                Text="Frequency Table Number"
+                                Text="Scan Table"
                                 TextColor="#3E4C59"
                                 FontSize="12"
                                 Margin="0, 0, 0, 8"/>
@@ -80,7 +82,7 @@
                         </StackLayout>
 
                         <Image
-                            Source="next.png"/>
+                            Source="Next"/>
 
                     </StackLayout>
 
@@ -105,7 +107,7 @@
                             HorizontalOptions="StartAndExpand">
 
                             <Label
-                                Text="Scan Time (Seconds)"
+                                Text="Scan Rate"
                                 TextColor="#3E4C59"
                                 FontSize="12"
                                 Margin="0, 0, 0, 8"/>
@@ -118,7 +120,7 @@
                         </StackLayout>
 
                         <Image
-                            Source="next.png"/>
+                            Source="Next"/>
 
                     </StackLayout>
 
@@ -216,45 +218,14 @@
 
                 </StackLayout>
 
-            </StackLayout>
-
-            <StackLayout
-                Orientation="Horizontal"
-                VerticalOptions="End"
-                BackgroundColor="#F5F7FA"
-                Padding="16">
-
-                <StackLayout
-                    Orientation="Vertical">
-
-                    <Label
-                        x:Name="Name"
-                        FontSize="18"
-                        TextColor="#1F2933"/>
-
-                    <Label
-                        x:Name="Range"
-                        FontSize="12"
-                        TextColor="#1F2933"/>
-
-                </StackLayout>
-
                 <StackLayout
                     Orientation="Vertical"
-                    HorizontalOptions="EndAndExpand"
-                    VerticalOptions="CenterAndExpand">
+                    VerticalOptions="FillAndExpand"/>
 
-                    <Image
-                        Source="battery_full.png"/>
-
-                    <Label
-                        x:Name="Battery"
-                        TextColor="#1F2933"
-                        FontSize="12"/>
-
-                </StackLayout>
+                <common:ReceiverStatus/>
 
             </StackLayout>
+
         </Grid>
     </ContentPage.Content>
 </ContentPage>
