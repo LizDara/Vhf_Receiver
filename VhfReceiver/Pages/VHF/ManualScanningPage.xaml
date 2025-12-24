@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.ManualScanningPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <StackLayout
+            Orientation="Vertical"
+            VerticalOptions="Fill"
+            Spacing="0">
+
+            <common:Toolbar
+                x:Name="Toolbar"/>
+                
+            <StackLayout
+                x:Name="CurrentFrequency"
+                Orientation="Vertical"
+                Spacing="0"
+                Margin="16, 24"
+                VerticalOptions="FillAndExpand">
+
+                <Label
+                    Text="Current Frequency"
+                    TextColor="{StaticResource ebony_clay}"
+                    FontSize="20"
+                    Margin="0, 0, 0, 8"/>
+
+                <StackLayout
+                    Orientation="Vertical"
+                    Spacing="0"
+                    BackgroundColor="{StaticResource catskill_white}">
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        Padding="16"
+                        VerticalOptions="Center"
+                        HorizontalOptions="FillAndExpand">
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0">
+
+                            <Label
+                                Text="Starting Frequency"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="Frequency"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                        <Button
+                            Clicked="EnterNewFrequency_Clicked"
+                            Text="Edit Starting Frequency"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            BorderColor="{StaticResource limed_spruce}"
+                            BorderWidth="1"
+                            CornerRadius="8"
+                            HeightRequest="32"
+                            Padding="11, 6"
+                            HorizontalOptions="EndAndExpand"/>
+
+                    </StackLayout>
+
+                    <common:GpsOption
+                        x:Name="GpsOption"/>
+
+                </StackLayout>
+
+                <Button
+                    Clicked="StartManualScan_Clicked"
+                    Text="Start Manual Scan"
+                    TextColor="{StaticResource catskill_white}"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="4"
+                    VerticalOptions="EndAndExpand">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow_light}"
+                                Offset="0.5"/>
+
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow}"
+                                Offset="1.0"/>
+
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </StackLayout>
+
+            <StackLayout
+                x:Name="EditFrequency"
+                Orientation="Vertical"
+                IsVisible="False"
+                VerticalOptions="FillAndExpand"
+                Spacing="0">
+
+                <common:EnterFrequency
+                    x:Name="EnterFrequency" />
+
+                <Button
+                    x:Name="SaveFrequency"
+                    Clicked="SaveFrequency_Clicked"
+                    Text="Change Frequency"
+                    TextColor="{StaticResource catskill_white}"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="4"
+                    Margin="24, 16"
+                    VerticalOptions="EndAndExpand">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow_light}"
+                                Offset="0.5"/>
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow}"
+                                Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </StackLayout>
+
+            <StackLayout
+                x:Name="ManualScanning"
+                Orientation="Vertical"
+                Spacing="0"
+                VerticalOptions="FillAndExpand"
+                Margin="16, 24"
+                IsVisible="False">
+
+                <common:GpsRecordOptions
+                    x:Name="GpsRecordOptions"/>
+
+                <StackLayout
+                    Orientation="Vertical"
+                    Spacing="0"
+                    BackgroundColor="{StaticResource catskill_white}">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        Padding="16"
+                        VerticalOptions="Center">
+
+                        <Label
+                            Text="Frequency"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="12"
+                            Margin="0, 0, 0, 16"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            VerticalOptions="Center"
+                            Spacing="0">
+
+                            <ImageButton
+                                x:Name="TuneDown"
+                                Clicked="TuneDown_Clicked"
+                                Source="TuneDown"/>
+
+                            <Label
+                                x:Name="FrequencyScan"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="20"
+                                VerticalOptions="CenterAndExpand"
+                                Margin="8, 0"/>
+
+                            <ImageButton
+                                x:Name="TuneUp"
+                                Clicked="TuneUp_Clicked"
+                                Source="TuneUp"/>
+
+                            <Button
+                                Clicked="EditFrequency_Clicked"
+                                Text="Edit Frequency"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                BackgroundColor="{StaticResource catskill_white}"
+                                BorderColor="{StaticResource limed_spruce}"
+                                BorderWidth="1"
+                                CornerRadius="4"
+                                HeightRequest="32"
+                                Padding="8, 0"
+                                FontAttributes="Bold"
+                                HorizontalOptions="EndAndExpand"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <common:IDAudio
+                        x:Name="IDAudio"/>
+
+                    <common:GpsOption
+                        x:Name="GpsScan"/>
+
+                    <common:Coordinates
+                        x:Name="Coordinates"
+                        IsVisible="False"/>
+
+                    <common:Scanning
+                        x:Name="Scanning"/>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <common:VhfReceiverStatus
+                x:Name="ReceiverStatus"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

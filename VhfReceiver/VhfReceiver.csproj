@@ -24,10 +24,20 @@
     <None Remove="Utils\" />
     <None Remove="Rg.Plugins.Popup" />
     <None Remove="Widgets\" />
+    <None Remove="Pages\VHF\" />
+    <None Remove="Pages\Acoustic\" />
+    <None Remove="Pages\BluetoothReceiver\" />
+    <None Remove="Models\" />
+    <None Remove="BluetoothATS\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\" />
     <Folder Include="Utils\" />
     <Folder Include="Widgets\" />
+    <Folder Include="Pages\VHF\" />
+    <Folder Include="Pages\Acoustic\" />
+    <Folder Include="Pages\BluetoothReceiver\" />
+    <Folder Include="Models\" />
+    <Folder Include="BluetoothATS\" />
   </ItemGroup>
 </Project>

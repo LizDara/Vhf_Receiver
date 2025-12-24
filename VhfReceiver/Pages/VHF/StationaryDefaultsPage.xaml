@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.StationaryDefaultsPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="Fill"
+                Spacing="0">
+
+                <common:Toolbar
+                    x:Name="Toolbar"/>
+
+                <ScrollView
+                    Orientation="Vertical"
+                    Margin="16, 12"
+                    VerticalOptions="FillAndExpand">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        VerticalOptions="StartAndExpand">
+
+                        <Label
+                            Text="Stationary Default Settings"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="20"
+                            Margin="0, 16, 16, 16"/>
+
+                        <common:StationarySetting
+                            x:Name="StationarySetting"/>
+
+                    </StackLayout>
+
+                </ScrollView>
+
+                <common:VhfReceiverStatus
+                    x:Name="ReceiverStatus"/>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

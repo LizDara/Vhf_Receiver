@@ -1,350 +1,316 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Timers;
+using Plugin.BLE;
 using Plugin.BLE.Abstractions;
 using Plugin.BLE.Abstractions.Contracts;
-using Plugin.BLE;
-using Xamarin.Forms;
-using VhfReceiver.Utils;
+using Plugin.BLE.Abstractions.EventArgs;
 using Rg.Plugins.Popup.Extensions;
+using VhfReceiver.Utils;
 using VhfReceiver.Widgets;
 using Xamarin.Essentials;
-using Plugin.BLE.Abstractions.EventArgs;
+using Xamarin.Forms;
 
 namespace VhfReceiver.Pages
 {
     public partial class SearchingDevicesPage : ContentPage
     {
-        private readonly IAdapter BluetoothAdapter;
+        private IAdapter BluetoothAdapter;
         private readonly List<IDevice> GattDevices = new List<IDevice>();
-        private readonly List<DeviceInformation> DevicesInformation = new List<DeviceInformation>();
-        private DeviceInformation selectedItem;
-        ReceiverInformation receiverStatus;
+        private bool IsCancel;
+        private Timer ConnectionTimeout;
+        private ReceiverInformation receiverStatus;
+        public string titleSearching;
+        public string TitleSearching
+        {
+            set
+            {
+                titleSearching = value;
+                OnPropertyChanged(nameof(TitleSearching));
+            }
+            get { return titleSearching; }
+        }
+        public string message;
+        public string Message
+        {
+            set
+            {
+                message = value;
+                OnPropertyChanged(nameof(Message));
+            }
+            get { return message; }
+        }
+        public bool isEnabledButton;
+        public bool IsEnabledButton
+        {
+            set
+            {
+                isEnabledButton = value;
+                OnPropertyChanged(nameof(IsEnabledButton));
+            }
+            get { return isEnabledButton; }
+        }
+        public double opacityButton;
+        public double OpacityButton
+        {
+            set
+            {
+                opacityButton = value;
+                OnPropertyChanged(nameof(OpacityButton));
+            }
+            get { return opacityButton; }
+        }
 
-        public SearchingDevicesPage()
+        public SearchingDevicesPage(string type)
         {
             InitializeComponent();
             BindingContext = this;
 
-            BluetoothAdapter = CrossBluetoothLE.Current.Adapter;
-            BluetoothAdapter.ScanTimeout = 8000;
-            BluetoothAdapter.DeviceDiscovered += DeviceDiscovered;
-
+            DevicesFound.SetData(this, true);
+            SelectedDevice.SetData(this, false);
+            Toolbar.SetData("SELECT " + DevicesFound.GetType(type), false);
+            StartSearch();
             Device.BeginInvokeOnMainThread(async () => {
-                if (!await PermissionsGrantedAsync())
-                {
-                    await DisplayAlert("Permission required.", "Application needs location permission.", "OK");
-                    LoadingSearch.IsVisible = LoadingSearch.IsRunning = Searching.IsVisible = !(Refresh.IsEnabled = true);
-                    return;
-                }
-
-                StartSearch();
-
+                BluetoothAdapter = CrossBluetoothLE.Current.Adapter;
+                BluetoothAdapter.ScanTimeout = ValueCodes.SCAN_PERIOD;
+                BluetoothAdapter.DeviceDiscovered += DeviceDiscovered;
                 await BluetoothAdapter.StartScanningForDevicesAsync();
 
-                RefreshSpace.IsVisible = false;
                 SetDevicesList();
-
-                if (GattDevices.Count == 0)
-                    await Navigation.PushModalAsync(new NoReceiversFoundPage(), false);
             });
-
-            SetDevicesList();
         }
 
         private void DeviceDiscovered(object sender, DeviceEventArgs foundBLEDevice)
         {
             if (foundBLEDevice.Device != null
                     && !string.IsNullOrEmpty(foundBLEDevice.Device.Name)
-                    && foundBLEDevice.Device.Name.Contains("ATSvr")
+                    && foundBLEDevice.Device.Name.Contains(DevicesFound.Selector)
                     && !GattDevices.Contains(foundBLEDevice.Device))
             {
                 GattDevices.Add(foundBLEDevice.Device);
-                DevicesInformation.Add(
+                if (DevicesFound.Selector.Equals(ValueCodes.BLUETOOTH_RECEIVER))
+                    DevicesFound.DevicesInformation.Add(new DeviceInformation(foundBLEDevice.Device));
+                else
+                    DevicesFound.DevicesInformation.Add(
                     new DeviceInformation(foundBLEDevice.Device, foundBLEDevice.Device.AdvertisementRecords[2].Data));
+                Console.WriteLine("AFTER TO ADD DEVICE");
             }
-        }
-        
-        private async Task<bool> PermissionsGrantedAsync()
-        {
-            var locationPermissionStatus = await Permissions.CheckStatusAsync<Permissions.LocationAlways>();
-            var storageWritePermissionStatus = await Permissions.CheckStatusAsync<Permissions.StorageWrite>();
-
-            if (locationPermissionStatus != PermissionStatus.Granted)
-            {
-                var locationStatus = await Permissions.RequestAsync<Permissions.LocationAlways>();
-
-                if (storageWritePermissionStatus != PermissionStatus.Granted)
-                {
-                    var writeStatus = await Permissions.RequestAsync<Permissions.StorageWrite>();
-
-                    return locationStatus == PermissionStatus.Granted &&
-                        writeStatus == PermissionStatus.Granted;
-                }
-
-                return locationStatus == PermissionStatus.Granted;
-            }
-            
-            return true;
         }
 
         private void StartSearch()
         {
-            LoadingSearch.IsVisible = LoadingSearch.IsRunning = Searching.IsVisible = !(Refresh.IsEnabled = false);
-            Refresh.Opacity = 0.6;
-            Select.IsVisible = Refresh.IsEnabled;
-            DevicesList.ItemsSource = null;
+            TitleSearching = "Searching For Devices ...";
+            Message = "It is only going to take a few seconds.";
+            Loading.IsVisible = Loading.IsRunning = true;
+            OpacityButton = 0.6;
+            IsEnabledButton = Retry.IsVisible = Cancel.IsVisible = DevicesFound.IsVisible = false;
             GattDevices.Clear();
-            DevicesInformation.Clear();
+            DevicesFound.DevicesInformation.Clear();
         }
 
         private void SetDevicesList()
         {
-            if (GattDevices.Count > 0)
+            if (DevicesFound.DevicesInformation.Count > 0)
             {
-                DevicesList.ItemsSource = DevicesInformation;
-                LoadingSearch.IsVisible = LoadingSearch.IsRunning = Searching.IsVisible = !(Refresh.IsEnabled = true);
-                Refresh.Opacity = 1.0;
-                Select.IsVisible = DevicesList.IsVisible = Refresh.IsEnabled;
-                Refresh.IsVisible = true;
+                Console.WriteLine("BEFORE SET DEVICES");
+                TitleSearching = "Found " + DevicesFound.DevicesInformation.Count + " Devices";
+                Message = "Select device and click the connect button.";
+                DevicesFound.IsVisible = true;
+                DevicesFound.SetDevices();
+                Loading.IsVisible = Loading.IsRunning = Cancel.IsVisible = false;
+                Console.WriteLine("AFTER SET DEVICES");
+            }
+            else
+            {
+                TitleSearching = "No Devices Found";
+                Message = "Please make sure your devices are within bluetooth range.";
+                Loading.IsVisible = Loading.IsRunning = false;
+                Retry.IsVisible = true;
             }
         }
 
-        private async void Refresh_Clicked(object sender, EventArgs e)
+        private async void Retry_Clicked(object sender, EventArgs e)
         {
             StartSearch();
             await BluetoothAdapter.StartScanningForDevicesAsync();
             SetDevicesList();
-
-            if (GattDevices.Count == 0)
-                await Navigation.PushModalAsync(new NoReceiversFoundPage(), false);
         }
 
-        private async void DevicesList_Tapped(object sender, ItemTappedEventArgs e)
+        private async void Connect_Clicked(object sender, EventArgs e)
         {
-            selectedItem = e.Item as DeviceInformation;
+            IsEnabledButton = IsCancel = DevicesFound.IsVisible = false;
+            Loading.IsVisible = Loading.IsRunning = Cancel.IsVisible = SelectedDevice.IsVisible = true;
+            SelectedDevice.DevicesInformation.Add(DevicesFound.SelectedItem);
+            SelectedDevice.SetDevices();
+            TitleSearching = "Connecting ...";
+            Message = "This should only take a few seconds.";
+            OpacityButton = 0.6;
 
-            if (selectedItem.Device == null) return;
-            if (selectedItem.Device.Name.Contains("#000000")) // Error, factory setup required
+            BluetoothAdapter.DeviceConnected += DeviceConnected;
+            BluetoothAdapter.DeviceConnectionLost += DeviceConnectionLost;
+            BluetoothAdapter.DeviceDisconnected += DeviceDisconnected;
+
+            ConnectionTimeout = new Timer(ValueCodes.CONNECT_TIMEOUT);
+            ConnectionTimeout.Elapsed += Tick;
+            ConnectionTimeout.Enabled = true;
+
+            var connectParameters = new ConnectParameters(false, true);
+            await BluetoothAdapter.ConnectToDeviceAsync(DevicesFound.SelectedItem.Device, connectParameters);
+        }
+
+        private void Tick(object source, ElapsedEventArgs e)
+        {
+            ShowDisconnectionMessage("Failed to connect to device");
+            ConnectionTimeout.Enabled = false;
+            ConnectionTimeout.Dispose();
+        }
+
+        private void Cancel_Clicked(object sender, EventArgs e)
+        {
+            ConnectionTimeout.Enabled = false;
+            IsCancel = true;
+            SelectedDevice.IsVisible = false;
+            DevicesFound.IsVisible = true;
+            SetDevicesList();
+        }
+
+        private async void DeviceConnected(object sender, DeviceEventArgs args)
+        {
+            if (!IsCancel)
             {
-                await DisplayAlert("Error", "Factory Setup Required.", "OK");
+                if (args.Device == DevicesFound.SelectedItem.Device)
+                {
+                    ConnectionTimeout.Enabled = false;
+                    ConnectionTimeout.Dispose();
+                    receiverStatus = ReceiverInformation.GetInstance();
+                    receiverStatus.ChangeInformation(DevicesFound.SelectedItem.Battery, DevicesFound.SelectedItem.Device, BluetoothAdapter);
+                    if (DevicesFound.Selector.Equals(ValueCodes.VHF) || DevicesFound.Selector.Equals(ValueCodes.ACOUSTIC))
+                        ScanState();
+                    else if (DevicesFound.Selector.Equals(ValueCodes.BLUETOOTH_RECEIVER))
+                        await Navigation.PushModalAsync(new BluetoothReceiver.HomePage(), false);
+
+                    TitleSearching = "Success";
+                    Message = "Your device is connected.";
+                    Loading.IsVisible = Loading.IsRunning = Cancel.IsVisible = false;
+                    Connected.IsVisible = true;
+                }
             }
             else
             {
-                SearchingDevices.IsVisible = false;
-                LoadingConnect.IsRunning = ConnectingDevice.IsVisible = Status.IsVisible = true;
-                DeviceName.Text = selectedItem.Name;
-                DeviceRange.Text = selectedItem.Range;
-                DeviceBattery.Text = selectedItem.Battery;
-
-                BluetoothAdapter.DeviceConnected += DeviceConnected;
-                BluetoothAdapter.DeviceConnectionLost += DeviceConnectionLost;
-                BluetoothAdapter.DeviceDisconnected += DeviceDisconnected;
-
-                var connectParameters = new ConnectParameters(false, true);
-                await BluetoothAdapter.ConnectToDeviceAsync(selectedItem.Device, connectParameters);
-            }
-        }
-
-        private void DeviceConnected(object sender, DeviceEventArgs args)
-        {
-            if (args.Device == selectedItem.Device)
-            {
-                receiverStatus = ReceiverInformation.GetReceiverInformation();
-                receiverStatus.ChangeInformation(0, 0, selectedItem.Device.Name.Substring(0, 7), selectedItem.Range,
-                    selectedItem.Battery, selectedItem.Device, BluetoothAdapter);
-
-                ScanState(selectedItem);
+                await BluetoothAdapter.DisconnectDeviceAsync(args.Device);
             }
         }
 
         private void DeviceConnectionLost(object sender, DeviceErrorEventArgs e)
         {
-            if (e.Device == selectedItem.Device)
+            if (e.Device == DevicesFound.SelectedItem.Device)
             {
-                Console.WriteLine("Connection Lost: " + e.ErrorMessage);
-                ShowDisconnectionMessage();
+                Console.WriteLine("Connection Lost: " + e.ToString());
+                ReceiverInformation receiverInformation = ReceiverInformation.GetInstance();
+                receiverInformation.Initialize();
+                ShowDisconnectionMessage("Receiver Disconnected");
             }
         }
 
         private void DeviceDisconnected(object sender, DeviceEventArgs args)
         {
-            if (args.Device == selectedItem.Device)
+            if (!IsCancel)
             {
-                Console.WriteLine("Disconnected");
-                ShowDisconnectionMessage();
+                if (args.Device == DevicesFound.SelectedItem.Device)
+                {
+                    Console.WriteLine("Disconnected");
+                    ReceiverInformation receiverInformation = ReceiverInformation.GetInstance();
+                    receiverInformation.Initialize();
+                    ShowDisconnectionMessage("Receiver Disconnected");
+                }
             }
         }
 
-        private async void ScanState(DeviceInformation selectedItem)
+        private async void ScanState()
         {
-            try
+            bool result = await TransferBLEData.NotificationLog(ValueUpdateScan);
+            if (result)
             {
-                var service = await selectedItem.Device.GetServiceAsync(VhfReceiverUuids.UUID_SERVICE_SCREEN);
-                if (service != null)
-                {
-                    var characteristic = await service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_SEND_LOG);
-                    if (characteristic != null)
-                    {
-                        characteristic.ValueUpdated += ValueUpdateScan;
-
-                        await characteristic.StartUpdatesAsync();
-                        byte[] resultBytes = await GetBoardState(selectedItem);
-                        Console.WriteLine(Converters.GetHexValue(resultBytes));
-                        SetData(resultBytes, selectedItem);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error Service: " + e.Message);
+                byte[] resultBytes = await TransferBLEData.ReadBoardState();
+                Console.WriteLine(Converters.GetHexValue(resultBytes));
+                if (DevicesFound.Selector.Equals(ValueCodes.VHF))
+                    SetData(resultBytes);
             }
         }
 
         private async void ValueUpdateScan(object o, CharacteristicUpdatedEventArgs args)
         {
-            var bytes = args.Characteristic.Value;
-            if (bytes.Length > 0)
+            var value = args.Characteristic.Value;
+            if (value.Length > 0)
             {
-                Console.WriteLine(Converters.GetHexValue(bytes));
-                if (Converters.GetHexValue(bytes[0]).Equals("50"))
+                Console.WriteLine(Converters.GetHexValue(value));
+                if (DevicesFound.Selector.Equals(ValueCodes.VHF))
                 {
-                    byte detectionType = 0;
-                    if (selectedItem.Name.Contains("Fixed"))
-                        detectionType = 0x08;
-                    else if (selectedItem.Name.Contains("Variable"))
-                        detectionType = 0x07;
-                    else if (selectedItem.Name.Contains("Coded"))
-                        detectionType = 0x09;
-                    receiverStatus.ChangeScanState(bytes[1]);
-                    if (Converters.GetHexValue(bytes[1]).Equals("00"))
+                    if (Converters.GetHexValue(value[0]).Equals("50"))
                     {
-                        await Navigation.PushModalAsync(new HomePage(detectionType));
-                        args.Characteristic.ValueUpdated -= ValueUpdateScan;
+                        byte detectionType = 0;
+                        if (DevicesFound.SelectedItem.Status.Contains("Fixed"))
+                            detectionType = 0x08;
+                        else if (DevicesFound.SelectedItem.Status.Contains("Variable"))
+                            detectionType = 0x07;
+                        else if (DevicesFound.SelectedItem.Status.Contains("Coded"))
+                            detectionType = 0x09;
+                        if (Converters.GetHexValue(value[1]).Equals("00"))
+                        {
+                            await Navigation.PushModalAsync(new HomePage(detectionType), false);
+                            args.Characteristic.ValueUpdated -= ValueUpdateScan;
+                        }
+                        else if (Converters.GetHexValue(value[1]).Equals("82") || Converters.GetHexValue(value[1]).Equals("81") || Converters.GetHexValue(value[1]).Equals("80"))
+                        {
+                            var characteristic = await args.Characteristic.Service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_SEND_LOG);
+                            args.Characteristic.ValueUpdated -= ValueUpdateScan;
+                            var bytes = await TransferBLEData.ReadDefaults(true);
+                            if (bytes != null)
+                                await Navigation.PushModalAsync(new MobileScanningPage(characteristic, bytes, value), false);
+                        }
+                        else if (Converters.GetHexValue(value[1]).Equals("83"))
+                        {
+                            var characteristic = await args.Characteristic.Service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_SEND_LOG);
+                            args.Characteristic.ValueUpdated -= ValueUpdateScan;
+                            var bytes = await TransferBLEData.ReadDefaults(false);
+                            if (bytes != null)
+                                await Navigation.PushModalAsync(new StationaryScanningPage(characteristic, bytes, value), false);
+                        }
+                        else if (Converters.GetHexValue(value[1]).Equals("86"))
+                        {
+                            var characteristic = await args.Characteristic.Service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_SEND_LOG);
+                            args.Characteristic.ValueUpdated -= ValueUpdateScan;
+                            await Navigation.PushModalAsync(new ManualScanningPage(characteristic, value), false);
+                        }
                     }
-                    else if (Converters.GetHexValue(bytes[1]).Equals("82") || Converters.GetHexValue(bytes[1]).Equals("81") || Converters.GetHexValue(bytes[1]).Equals("80"))
-                    {
-                        var characteristic = await args.Characteristic.Service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_SEND_LOG);
-                        bool isHold = Converters.GetHexValue(bytes[1]).Equals("81");
-                        int autoRecord = bytes[2] >> 6 & 1;
-                        int currentFrequency = (bytes[16] * 256) + bytes[17];
-                        int currentIndex = (bytes[7] * 256) + bytes[8];
-                        int maxIndex = (bytes[5] * 256) + bytes[6];
-                        args.Characteristic.ValueUpdated -= ValueUpdateScan;
-                        bytes = await GetMobileDefaults(selectedItem);
-                        if (bytes != null)
-                            await Navigation.PushModalAsync(new MobileScanningPage(characteristic, bytes, isHold, autoRecord == 1, currentFrequency, currentIndex, maxIndex, detectionType), false);
-                    }
-                    else if (Converters.GetHexValue(bytes[1]).Equals("83"))
-                    {
-                        var characteristic = await args.Characteristic.Service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_SEND_LOG);
-                        int currentFrequency = (bytes[16] * 256) + bytes[17];
-                        int currentIndex = (bytes[7] * 256) + bytes[8];
-                        int maxIndex = (bytes[5] * 256) + bytes[6];
-                        args.Characteristic.ValueUpdated -= ValueUpdateScan;
-                        bytes = await GetStationaryDefaults(selectedItem);
-                        if (bytes != null)
-                            await Navigation.PushModalAsync(new StationaryScanningPage(characteristic, bytes, currentFrequency, currentIndex, maxIndex, detectionType), false);
-                    }
-                    else if (Converters.GetHexValue(bytes[1]).Equals("86"))
-                    {
-                        var characteristic = await args.Characteristic.Service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_SEND_LOG);
-                        args.Characteristic.ValueUpdated -= ValueUpdateScan;
-                        await Navigation.PushModalAsync(new ManualScanningPage(characteristic, detectionType), false);
-                    }
+                }
+                else if (DevicesFound.Selector.Equals(ValueCodes.ACOUSTIC))
+                {
+                    var characteristic = await args.Characteristic.Service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_SEND_LOG);
+                    args.Characteristic.ValueUpdated -= ValueUpdateScan;
+                    await Navigation.PushModalAsync(new Acoustic.HomePage(characteristic));
                 }
             }
         }
 
-        private async Task<byte[]> GetBoardState(DeviceInformation selectedItem)
+        private void SetData(byte[] bytes)
         {
-            try
+            if (DevicesFound.Selector.Equals(ValueCodes.VHF))
             {
-                var service = await selectedItem.Device.GetServiceAsync(VhfReceiverUuids.UUID_SERVICE_DIAGNOSTIC);
-                if (service != null)
-                {
-                    var characteristic = await service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_BOARD_STATUS);
-                    if (characteristic != null)
-                    {
-                        byte[] bytes = await characteristic.ReadAsync();
-                        return bytes;
-                    }
-                }
+                receiverStatus.ChangeSDCard(bytes[7] == 1);
+                int baseFrequency = bytes[2];
+                int range = bytes[3];
+                Preferences.Set("BaseFrequency", baseFrequency);
+                Preferences.Set("Range", range);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error Service: " + e.Message);
-            }
-            return null;
         }
 
-        private async Task<byte[]> GetMobileDefaults(DeviceInformation selectedItem)
+        private async void ShowDisconnectionMessage(string message)
         {
-            try
-            {
-                var service = await selectedItem.Device.GetServiceAsync(VhfReceiverUuids.UUID_SERVICE_SCAN);
-                if (service != null)
-                {
-                    var characteristic = await service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_AERIAL);
-                    if (characteristic != null)
-                    {
-                        byte[] bytes = await characteristic.ReadAsync();
-                        return bytes;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error Service: " + e.Message);
-            }
-            return null;
-        }
-
-        private async Task<byte[]> GetStationaryDefaults(DeviceInformation selectedItem)
-        {
-            try
-            {
-                var service = await selectedItem.Device.GetServiceAsync(VhfReceiverUuids.UUID_SERVICE_SCAN);
-                if (service != null)
-                {
-                    var characteristic = await service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_STATIONARY);
-                    if (characteristic != null)
-                    {
-                        byte[] bytes = await characteristic.ReadAsync();
-                        return bytes;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error Service: " + e.Message);
-            }
-            return null;
-        }
-
-        private void SetData(byte[] bytes, DeviceInformation selectedItem)
-        {
-            int baseFrequency = bytes[1];
-            int range = bytes[2];
-            Preferences.Set("BaseFrequency", baseFrequency);
-            Preferences.Set("Range", range);
-
-            byte detectionType = 0;
-            if (selectedItem.Name.Contains("Fixed"))
-                detectionType = 0x08;
-            else if (selectedItem.Name.Contains("Variable"))
-                detectionType = 0x07;
-            else if (selectedItem.Name.Contains("Coded"))
-                detectionType = 0x09;
-            receiverStatus.ChangeTxType(detectionType);
-        }
-
-        private async void ShowDisconnectionMessage()
-        {
-            var popMessage = new ReceiverDisconnected();
+            var popMessage = new ReceiverDisconnected(message);
             await App.Current.MainPage.Navigation.PushPopupAsync(popMessage, true);
 
-            await Navigation.PushModalAsync(new SearchingDevicesPage(), false);
+            await Navigation.PushModalAsync(new BridgePage(), false);
         }
     }
 }

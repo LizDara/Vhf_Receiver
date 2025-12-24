@@ -17,5 +17,15 @@ namespace VhfReceiver.Widgets
             button.Text = baseNumber.ToString();
             return button;
         }
+
+        public static Label CreateLabel()
+        {
+            Label label = new Label();
+            label.HorizontalTextAlignment = TextAlignment.Center;
+            label.VerticalTextAlignment = TextAlignment.Center;
+            label.TextColor = Color.FromHex("1F2933");
+            label.FontSize = 16;
+            return label;
+        }
     }
 }

@@ -10,7 +10,7 @@
             Orientation="Vertical"
             VerticalOptions="Center"
             HorizontalOptions="FillAndExpand"
-            BackgroundColor="#F5F7FA"
+            BackgroundColor="{StaticResource catskill_white}"
             Spacing="0"
             Margin="16"
             Padding="16, 48">
@@ -20,7 +20,7 @@
 
             <Label
                 x:Name="StateMessage"
-                TextColor="#1F2933"
+                TextColor="{StaticResource ebony_clay}"
                 FontSize="30"
                 Margin="0, 24, 0, 0"
                 HorizontalTextAlignment="Center"/>

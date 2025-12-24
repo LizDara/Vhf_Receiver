@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.Scanning">
+
+    <StackLayout
+        Orientation="Vertical"
+        Spacing="0">
+
+        <StackLayout
+            HeightRequest="1"
+            BackgroundColor="{StaticResource light_gray}"
+            HorizontalOptions="Fill"/>
+
+        <ScrollView
+            Orientation="Vertical">
+
+            <StackLayout
+                x:Name="ScanDetails"
+                Orientation="Vertical"
+                Spacing="0"
+                Padding="16">
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Spacing="0"
+                    Padding="0, 0, 0, 8">
+
+                    <Label
+                        x:Name="Code"
+                        Text="Code"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Label
+                        x:Name="Period"
+                        Text="Period"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Label
+                        x:Name="Detections"
+                        Text="Detections"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Label
+                        x:Name="PulseRate"
+                        Text="Pulse Rate"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Label
+                        x:Name="Mortality"
+                        Text="Mortality"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"
+                        HorizontalOptions="CenterAndExpand"/>
+
+                    <Label
+                        x:Name="SignalStrength"
+                        Text="Signal Strength"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"
+                        HorizontalOptions="CenterAndExpand"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    HeightRequest="1"
+                    BackgroundColor="{StaticResource light_gray}"
+                    HorizontalOptions="Fill"/>
+
+            </StackLayout>
+
+        </ScrollView>
+
+        <Label
+            x:Name="ViewDetectionFilter"
+            Text="View Detection Filter Settings"
+            FontSize="12"
+            TextColor="{StaticResource ebony_clay}"
+            FontAttributes="Bold"
+            TextDecorations="Underline"
+            HorizontalOptions="EndAndExpand"
+            VerticalOptions="CenterAndExpand"
+            IsVisible="False">
+
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="ViewDetection_Tapped"/>
+            </Label.GestureRecognizers>
+
+        </Label>
+
+    </StackLayout>
+
+</ContentView>

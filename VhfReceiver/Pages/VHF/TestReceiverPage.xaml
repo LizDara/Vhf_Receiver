@@ -1,0 +1,599 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.TestReceiverPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <StackLayout
+            Orientation="Vertical"
+            VerticalOptions="Fill"
+            Spacing="0">
+
+            <common:Toolbar
+                x:Name="Toolbar"/>
+
+            <Label
+                Text="Test Results"
+                FontSize="20"
+                TextColor="{StaticResource limed_spruce}"
+                Margin="16, 24, 16, 12"/>
+
+            <ScrollView
+                x:Name="Result"
+                Orientation="Vertical"
+                VerticalOptions="FillAndExpand">
+
+                <StackLayout
+                    Orientation="Vertical"
+                    Spacing="0"
+                    VerticalOptions="Start"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    Margin="16, 0">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        VerticalOptions="Start"
+                        Padding="16">
+
+                        <Label
+                            Text="Frequency Range"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="12"
+                            Margin="0, 0, 0, 8"/>
+
+                        <Label
+                            x:Name="FrequencyRange"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="16"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        HeightRequest="1"
+                        BackgroundColor="{StaticResource light_gray}"
+                        HorizontalOptions="Fill"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        VerticalOptions="Start"
+                        Padding="16">
+
+                        <Label
+                            Text="Battery (%)"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="12"
+                            Margin="0, 0, 0, 8"/>
+
+                        <Label
+                            x:Name="BatteryPercentage"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="16"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        HeightRequest="1"
+                        BackgroundColor="{StaticResource light_gray}"
+                        HorizontalOptions="Fill"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        VerticalOptions="Start"
+                        Padding="16">
+
+                        <Label
+                            Text="Bytes Stored"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="12"
+                            Margin="0, 0, 0, 8"/>
+
+                        <Label
+                            x:Name="BytesStored"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="16"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        HeightRequest="1"
+                        BackgroundColor="{StaticResource light_gray}"
+                        HorizontalOptions="Fill"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        VerticalOptions="Start"
+                        Padding="16">
+
+                        <Label
+                            Text="Memory Used (%)"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="12"
+                            Margin="0, 0, 0, 8"/>
+
+                        <Label
+                            x:Name="MemoryUsed"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="16"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        HeightRequest="1"
+                        BackgroundColor="{StaticResource light_gray}"
+                        HorizontalOptions="Fill"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        VerticalOptions="Start"
+                        Padding="16">
+
+                        <Label
+                            Text="Frequency Tables"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="12"
+                            Margin="0, 0, 0, 8"/>
+
+                        <Label
+                            x:Name="FrequencyTables"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="16"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="TableOneInformation"
+                        Orientation="Vertical"
+                        IsVisible="False"
+                        Spacing="0">
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            VerticalOptions="Start"
+                            Padding="16">
+
+                            <Label
+                                Text="Table 1:"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="Table1"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="TableTwoInformation"
+                        Orientation="Vertical"
+                        IsVisible="False"
+                        Spacing="0">
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            VerticalOptions="Start"
+                            Padding="16">
+
+                            <Label
+                                Text="Table 2:"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="Table2"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="TableThreeInformation"
+                        Orientation="Vertical"
+                        IsVisible="False"
+                        Spacing="0">
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            VerticalOptions="Start"
+                            Padding="16">
+
+                            <Label
+                                Text="Table 3:"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="Table3"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="TableFourInformation"
+                        Orientation="Vertical"
+                        IsVisible="False"
+                        Spacing="0">
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            VerticalOptions="Start"
+                            Padding="16">
+
+                            <Label
+                                Text="Table 4:"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="Table4"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="TableFiveInformation"
+                        Orientation="Vertical"
+                        IsVisible="False"
+                        Spacing="0">
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            VerticalOptions="Start"
+                            Padding="16">
+
+                            <Label
+                                Text="Table 5:"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="Table5"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="TableSixInformation"
+                        Orientation="Vertical"
+                        IsVisible="False"
+                        Spacing="0">
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            VerticalOptions="Start"
+                            Padding="16">
+
+                            <Label
+                                Text="Table 6:"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="Table6"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="TableSevenInformation"
+                        Orientation="Vertical"
+                        IsVisible="False"
+                        Spacing="0">
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            VerticalOptions="Start"
+                            Padding="16">
+
+                            <Label
+                                Text="Table 7:"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="Table7"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="TableEightInformation"
+                        Orientation="Vertical"
+                        IsVisible="False"
+                        Spacing="0">
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            VerticalOptions="Start"
+                            Padding="16">
+
+                            <Label
+                                Text="Table 8:"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="Table8"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="TableNineInformation"
+                        Orientation="Vertical"
+                        IsVisible="False"
+                        Spacing="0">
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            VerticalOptions="Start"
+                            Padding="16">
+
+                            <Label
+                                Text="Table 9:"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="Table9"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="TableTenInformation"
+                        Orientation="Vertical"
+                        IsVisible="False"
+                        Spacing="0">
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            VerticalOptions="Start"
+                            Padding="16">
+
+                            <Label
+                                Text="Table 10:"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="Table10"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="TableElevenInformation"
+                        Orientation="Vertical"
+                        IsVisible="False"
+                        Spacing="0">
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            VerticalOptions="Start"
+                            Padding="16">
+
+                            <Label
+                                Text="Table 11:"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="Table11"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="TableTwelveInformation"
+                        Orientation="Vertical"
+                        IsVisible="False"
+                        Spacing="0">
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            VerticalOptions="Start"
+                            Padding="16">
+
+                            <Label
+                                Text="Table 12:"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                x:Name="Table12"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        HeightRequest="1"
+                        BackgroundColor="{StaticResource light_gray}"
+                        HorizontalOptions="Fill"/>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        VerticalOptions="Start"
+                        Padding="16">
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            HorizontalOptions="StartAndExpand"
+                            Spacing="0">
+
+                            <Label
+                                Text="Up to Date"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 8"/>
+
+                            <Label
+                                Text="No"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                        <Button
+                            Clicked="UpdateReceiver_Clicked"
+                            Text="Update Receiver"
+                            TextColor="{StaticResource mountain_meadow}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="4"
+                            HeightRequest="32"
+                            Padding="11, 6">
+                            <Button.Background>
+                                <LinearGradientBrush
+                                    EndPoint="0,1">
+
+                                    <GradientStop
+                                        Color="{StaticResource humming_bird}"
+                                        Offset="0.5"/>
+
+                                    <GradientStop
+                                        Color="{StaticResource humming_bird_dark}"
+                                        Offset="1.0"/>
+
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </ScrollView>
+
+            <common:VhfReceiverStatus
+                x:Name="ReceiverStatus"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

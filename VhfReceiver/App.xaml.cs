@@ -10,7 +10,7 @@ namespace VhfReceiver
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Pages.SearchingDevicesPage());
+            MainPage = new NavigationPage(new Pages.BridgePage());
         }
 
         protected override void OnStart()

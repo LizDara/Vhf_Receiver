@@ -38,7 +38,7 @@ namespace VhfReceiver.Utils
         {
             List<ValueInformation> values = new List<ValueInformation>();
 
-            for (int i = 2; i <= 200; i++)
+            for (int i = 3; i <= 200; i++)
             {
                 values.Add(new ValueInformation(i, i.ToString()));
             }
@@ -63,6 +63,18 @@ namespace VhfReceiver.Utils
             List<ValueInformation> values = new List<ValueInformation>();
 
             for (int i = 1; i <= 4; i++)
+            {
+                values.Add(new ValueInformation(i, i.ToString()));
+            }
+
+            return values;
+        }
+
+        public static List<ValueInformation> PeriodTolerance()
+        {
+            List<ValueInformation> values = new List<ValueInformation>();
+
+            for (int i = 4; i <= 20; i++)
             {
                 values.Add(new ValueInformation(i, i.ToString()));
             }

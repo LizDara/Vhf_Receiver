@@ -15,33 +15,38 @@
                         <viewControllerLayoutGuide type="top" id="Y8P-hJ-Z43"/>
                         <viewControllerLayoutGuide type="bottom" id="9ZL-r4-8FZ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleAspectFill" id="yd7-JS-zBw">
+                    <view key="view" contentMode="scaleToFill" id="yd7-JS-zBw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="LightEllipse" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="23">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="LightBlueEllipse" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="23">
                                 <rect key="frame" x="59" y="78" width="256" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="DarkEllipse" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="7z6-cM-swx">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="DarkBlueEllipse" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="7z6-cM-swx">
                                 <rect key="frame" x="69" y="88" width="236" height="236"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="receiver.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="kVH-eN-GL2">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="device.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="kVH-eN-GL2">
                                 <rect key="frame" x="87" y="106" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="Title" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="PmM-7I-clR">
-                                <rect key="frame" x="99" y="473" width="176" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" semanticContentAttribute="spatial" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ATS BRIDGE" textAlignment="center" lineBreakMode="wordWrap" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDS-H8-v3B">
+                                <rect key="frame" x="74" y="360" width="227" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="Logo" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="Qei-g4-3XP">
-                                <rect key="frame" x="82" y="389" width="210" height="60"/>
+                                <fontDescription key="fontDescription" name="NotoSansOriya-Bold" family="Noto Sans Oriya" pointSize="30"/>
+                                <color key="textColor" red="0.97254908080000002" green="0.98039215800000001" blue="0.99215686319999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="highlightedColor" red="0.97254908080000002" green="0.98039215800000001" blue="0.99215686319999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="logo.png" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="Qei-g4-3XP">
+                                <rect key="frame" x="82" y="565" width="210" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.10588235294117647" green="0.65490196078431373" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.074509806930000005" green="0.1019607931" blue="0.1725490093" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.27179779329999998" green="0.32810764650000002" blue="0.40000003579999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <connections>
                         <outlet property="view" destination="yd7-JS-zBw" id="6tQ-Dp-dFr"/>
@@ -53,10 +58,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="DarkEllipse" width="236" height="236"/>
-        <image name="LightEllipse" width="256" height="256"/>
-        <image name="Logo" width="210" height="62"/>
-        <image name="Title" width="178" height="23"/>
-        <image name="receiver.png" width="200" height="200"/>
+        <image name="DarkBlueEllipse" width="172" height="172"/>
+        <image name="LightBlueEllipse" width="196" height="196"/>
+        <image name="device.png" width="142" height="106"/>
+        <image name="logo.png" width="200" height="74"/>
     </resources>
 </document>

@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.ReceiverConfigurationPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="Fill"
+                Spacing="0">
+
+                <common:Toolbar
+                    x:Name="Toolbar"/>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    Padding="16"
+                    Spacing="0"
+                    Margin="16, 24, 16, 16"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EditFrequencyTables_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="Edit Frequency Tables"
+                        TextColor="{StaticResource slate_900}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Image
+                        Source="Next"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    Padding="16"
+                    Spacing="0"
+                    Margin="16, 0, 16, 16"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EditReceiverDetails_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="Edit Receiver Details"
+                        TextColor="{StaticResource slate_900}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Image
+                        Source="Next"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    Padding="16"
+                    Spacing="0"
+                    Margin="16, 0, 16, 16"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SetDetectionFilter_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="Set Detection Filter"
+                        TextColor="{StaticResource slate_900}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Image
+                        Source="Next"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    Padding="16"
+                    Spacing="0"
+                    Margin="16, 0, 16, 16"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CloneFromOtherReceiver_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="Clone From Other Receiver"
+                        TextColor="{StaticResource slate_900}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Image
+                        Source="Next"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand"/>
+
+                <common:VhfReceiverStatus
+                    x:Name="ReceiverStatus"/>
+
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -5,37 +5,75 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="VhfReceiver.Widgets.DocumentPicker">
 
-    <ListView
-        x:Name="FilesList"
-        ItemTapped="FilesList_Tapped"
-        VerticalOptions="Fill"
-        BackgroundColor="#E4E7EB"
-        SeparatorVisibility="None">
+    <Grid>
+        <StackLayout
+            Orientation="Vertical"
+            Spacing="8"
+            Padding="16"
+            Margin="24"
+            VerticalOptions="Center"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{StaticResource slate_300}">
 
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout
-                        Orientation="Vertical"
-                        Spacing="0"
-                        Padding="16"
-                        BackgroundColor="#F5F7FA"
-                        HorizontalOptions="Center">
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Center">
 
-                        <Image
-                            Source="Check"
-                            Margin="0, 0, 0, 8"/>
+                <Label
+                    Text="Select a File"
+                    TextColor="{StaticResource black}"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
 
-                        <Label
-                            Text="{Binding FileName}"
-                            TextColor="#3E4C59"
-                            FontSize="12"/>
+                <ImageButton
+                    Clicked="Close_Clicked"
+                    Source="Exit"
+                    HorizontalOptions="EndAndExpand"/>
 
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
+            </StackLayout>
 
-    </ListView>
+            <Label
+                x:Name="NoFiles"
+                VerticalOptions="CenterAndExpand"
+                Margin="0, 48"
+                TextColor="{StaticResource limed_spruce}"
+                FontSize="14"/>
+
+            <ListView
+                x:Name="FilesList"
+                ItemTapped="FilesList_Tapped"
+                HeightRequest="300"
+                SeparatorColor="{StaticResource slate_300}"
+                BackgroundColor="{StaticResource slate_300}"
+                SeparatorVisibility="Default">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout
+                                Orientation="Horizontal"
+                                Spacing="8"
+                                Padding="16"
+                                BackgroundColor="{StaticResource catskill_white}"
+                                VerticalOptions="Center">
+
+                                <Image
+                                    Source="SelectedFile"/>
+
+                                <Label
+                                    Text="{Binding FileName}"
+                                    TextColor="{StaticResource ebony_clay}"
+                                    FontSize="12"/>
+
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+        </StackLayout>
+    </Grid>
 
 </rg:PopupPage>

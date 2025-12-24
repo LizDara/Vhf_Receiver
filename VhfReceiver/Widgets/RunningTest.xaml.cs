@@ -1,6 +1,7 @@
 ﻿using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Extensions;
 using System.Threading.Tasks;
+using VhfReceiver.Utils;
 
 namespace VhfReceiver.Widgets
 {
@@ -44,8 +45,8 @@ namespace VhfReceiver.Widgets
             IsVisibleChecked = false;
             Message = "Runnning Diagnostics...";
 
-            Task.Delay(2000).ContinueWith(t => { IsVisibleLoading = false; IsVisibleChecked = true; Message = "Diagnostics Complete"; });
-            Task.Delay(4000).ContinueWith(t => App.Current.MainPage.Navigation.PopPopupAsync(true));
+            Task.Delay(ValueCodes.MESSAGE_PERIOD).ContinueWith(t => { IsVisibleLoading = false; IsVisibleChecked = true; Message = "Diagnostics Complete"; });
+            Task.Delay(ValueCodes.BRANDING_PERIOD).ContinueWith(t => App.Current.MainPage.Navigation.PopPopupAsync(true));
         }
     }
 }

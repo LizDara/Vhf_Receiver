@@ -1,0 +1,489 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    x:Class="VhfReceiver.Pages.FrequenciesPage"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="Fill"
+                Spacing="0">
+
+                <common:Toolbar
+                    x:Name="Toolbar"/>
+
+                <StackLayout
+                    x:Name="NoFrequencies"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand"
+                    IsVisible="False"
+                    Margin="16, 24">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Spacing="0"
+                        Padding="16, 24"
+                        VerticalOptions="StartAndExpand"
+                        IsVisible="True">
+
+                        <Label
+                            Text="No frequencies in this table."
+                            TextColor="{StaticResource black}"
+                            FontSize="24"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalTextAlignment="Center"
+                            Margin="0, 0, 0, 48"/>
+
+                        <Button
+                            Clicked="AddNewFrequency_Clicked"
+                            Text="Add New Frequency"
+                            TextColor="{StaticResource catskill_white}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="4"
+                            VerticalOptions="EndAndExpand">
+                            <Button.Background>
+                                <LinearGradientBrush
+                                    EndPoint="0,1">
+
+                                    <GradientStop
+                                        Color="{StaticResource mountain_meadow_light}"
+                                        Offset="0.5"/>
+
+                                    <GradientStop
+                                        Color="{StaticResource mountain_meadow}"
+                                        Offset="1.0"/>
+
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="FrequenciesOverview"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    IsVisible="False"
+                    Margin="16, 24"
+                    VerticalOptions="FillAndExpand">
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        Margin="0, 0, 0, 24">
+
+                        <Label
+                            Text="Tap to Edit"
+                            TextColor="{StaticResource black}"
+                            FontSize="20"
+                            VerticalOptions="EndAndExpand"/>
+
+                        <Button
+                            Clicked="DeleteFrequencies_Clicked"
+                            Text="Delete Frequencies"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            BackgroundColor="{StaticResource slate_300}"
+                            BorderColor="{StaticResource limed_spruce}"
+                            BorderWidth="1"
+                            CornerRadius="4"
+                            HeightRequest="32"
+                            Padding="11, 6"
+                            HorizontalOptions="EndAndExpand"/>
+
+                    </StackLayout>
+
+                    <ListView
+                        x:Name="FrequenciesList"
+                        ItemTapped="FrequenciesList_Tapped"
+                        BackgroundColor="{StaticResource slate_300}"
+                        VerticalOptions="FillAndExpand"
+                        SeparatorVisibility="None"
+                        RowHeight="60">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout
+                                        Orientation="Horizontal"
+                                        Spacing="0"
+                                        Padding="16"
+                                        Margin="0, 0, 0, 16"
+                                        BackgroundColor="{StaticResource catskill_white}">
+
+                                        <Label
+                                            Text="{Binding Frequency}"
+                                            TextColor="{StaticResource limed_spruce}"
+                                            FontSize="16"
+                                            HorizontalOptions="StartAndExpand"/>
+
+                                        <Image
+                                            Source="Next"/>
+
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+
+                    <Button
+                        Clicked="AddNewFrequency_Clicked"
+                        Text="Add New Frequency"
+                        TextColor="{StaticResource catskill_white}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="4">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow_light}"
+                                    Offset="0.5"/>
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow}"
+                                    Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="EditFrequency"
+                    Orientation="Vertical"
+                    IsVisible="False"
+                    VerticalOptions="FillAndExpand"
+                    Spacing="0">
+
+                    <common:EnterFrequency
+                        x:Name="EnterFrequency" />
+
+                    <Button
+                        x:Name="SaveFrequency"
+                        Clicked="SaveFrequency_Clicked"
+                        TextColor="{StaticResource catskill_white}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="4"
+                        Margin="24, 16"
+                        VerticalOptions="EndAndExpand">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow_light}"
+                                    Offset="0.5"/>
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow}"
+                                    Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="FrequenciesDelete"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    IsVisible="False"
+                    Margin="16, 24"
+                    VerticalOptions="FillAndExpand">
+
+                    <Label
+                        Text="Select Frequencies to Delete"
+                        TextColor="{StaticResource black}"
+                        FontSize="20"
+                        Margin="0, 0, 0, 24"/>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        VerticalOptions="Center"
+                        Spacing="0">
+
+                        <CheckBox
+                            x:Name="AllFrequencies"
+                            Color="{StaticResource mountain_meadow}"
+                            VerticalOptions="CenterAndExpand"
+                            CheckedChanged="AllFrequencies_Changed"/>
+
+                        <Label
+                            Text="All Frequencies"
+                            TextColor="{StaticResource limed_spruce}"
+                            VerticalOptions="CenterAndExpand"
+                            FontSize="16"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        HeightRequest="1"
+                        BackgroundColor="{StaticResource ghost}"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="0, 0, 0, 16"/>
+
+                    <ListView
+                        x:Name="FrequenciesDeleteList"
+                        ItemTapped="FrequenciesDeleteList_Tapped"
+                        VerticalOptions="FillAndExpand"
+                        BackgroundColor="{StaticResource slate_300}"
+                        SeparatorVisibility="None"
+                        RowHeight="60">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout
+                                        Orientation="Horizontal"
+                                        Spacing="0"
+                                        Padding="16"
+                                        Margin="0, 0, 0, 16"
+                                        BackgroundColor="{StaticResource catskill_white}">
+
+                                        <CheckBox
+                                            IsChecked="{Binding IsChecked}"
+                                            IsEnabled="False"
+                                            Color="{StaticResource mountain_meadow}"/>
+
+                                        <Label
+                                            Text="{Binding Frequency}"
+                                            TextColor="{StaticResource limed_spruce}"
+                                            FontSize="16"
+                                            HorizontalOptions="StartAndExpand"/>
+
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+
+                    <Button
+                        x:Name="DeleteFrequencies"
+                        Clicked="DeleteSelectedFrequencies_Clicked"
+                        Text="Delete Frequencies"
+                        TextColor="{StaticResource catskill_white}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="4">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow_light}"
+                                    Offset="0.5"/>
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow}"
+                                    Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="EditFrequencyTemperature"
+                    Orientation="Vertical"
+                    IsVisible="False"
+                    VerticalOptions="FillAndExpand"
+                    Padding="16, 24"
+                    Spacing="0">
+
+                    <Label
+                        Text="Frequency"
+                        TextColor="{StaticResource black}"
+                        FontSize="20"
+                        FontAttributes="Bold"/>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Padding="16"
+                        HorizontalOptions="Fill"
+                        Margin="0, 16, 0, 24">
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Frequency_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Label
+                            x:Name="Frequency"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"/>
+
+                        <Image
+                            Source="Next"/>
+
+                    </StackLayout>
+
+                    <Label
+                        Text="Temperature Coefficients"
+                        TextColor="{StaticResource black}"
+                        FontSize="20"
+                        FontAttributes="Bold"/>
+
+                    <Label
+                        Text="Coef-a"
+                        TextColor="{StaticResource black}"
+                        FontSize="16"
+                        Margin="0, 16, 0, 6"/>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Padding="16"
+                        HorizontalOptions="Fill">
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="CoefficientA_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Label
+                            x:Name="CoefficientA"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"/>
+
+                        <Image
+                            Source="Next"/>
+
+                    </StackLayout>
+
+                    <Label
+                        Text="Coef-b"
+                        TextColor="{StaticResource black}"
+                        FontSize="16"
+                        Margin="0, 16, 0, 6"/>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Padding="16"
+                        HorizontalOptions="Fill">
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="CoefficientB_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Label
+                            x:Name="CoefficientB"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"/>
+
+                        <Image
+                            Source="Next"/>
+
+                    </StackLayout>
+
+                    <Label
+                        Text="Constant"
+                        TextColor="{StaticResource black}"
+                        FontSize="16"
+                        Margin="0, 16, 0, 6"/>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Padding="16"
+                        HorizontalOptions="Fill">
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Constant_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Label
+                            x:Name="Constant"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"/>
+
+                        <Image
+                            Source="Next"/>
+
+                    </StackLayout>
+
+                    <Button
+                        x:Name="SaveChanges"
+                        Text="Save Changes"
+                        Clicked="SaveChanges_Clicked"
+                        TextColor="{StaticResource catskill_white}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="4"
+                        Margin="24, 16"
+                        VerticalOptions="EndAndExpand">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow_light}"
+                                    Offset="0.5"/>
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow}"
+                                    Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="EditCoefficient"
+                    Orientation="Vertical"
+                    IsVisible="False"
+                    VerticalOptions="FillAndExpand"
+                    Spacing="0">
+
+                    <common:EnterCoefficient
+                        x:Name="EnterCoefficient" />
+
+                    <Button
+                        x:Name="SaveCoefficient"
+                        Text="Save"
+                        Clicked="SaveCoefficient_Clicked"
+                        TextColor="{StaticResource catskill_white}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="4"
+                        Margin="24, 16"
+                        VerticalOptions="EndAndExpand">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow_light}"
+                                    Offset="0.5"/>
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow}"
+                                    Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                </StackLayout>
+
+                <common:VhfReceiverStatus
+                    x:Name="ReceiverStatus"/>
+
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

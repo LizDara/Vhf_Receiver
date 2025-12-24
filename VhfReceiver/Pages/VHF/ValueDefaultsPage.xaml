@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.ValueDefaultsPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="Fill"
+                Spacing="0">
+
+                <common:Toolbar
+                    x:Name="Toolbar"/>
+
+                <StackLayout
+                    x:Name="SetValue"
+                    Orientation="Vertical"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    Spacing="0"
+                    Margin="16"
+                    Padding="16"
+                    VerticalOptions="FillAndExpand">
+
+                    <Label
+                        Text="Set Value"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"
+                        Margin="0, 8"/>
+
+                    <Picker
+                        x:Name="Value"
+                        Title="Value"
+                        BackgroundColor="{StaticResource slate_300}"
+                        TextColor="{StaticResource limed_spruce}"
+                        ItemDisplayBinding="{Binding ValueNumber}"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand"/>
+
+                    <Button
+                        Clicked="SaveChanges_Clicked"
+                        Text="Save Changes"
+                        TextColor="{StaticResource catskill_white}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="4"
+                        VerticalOptions="EndAndExpand">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow_light}"
+                                    Offset="0.5"/>
+
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow}"
+                                    Offset="1.0"/>
+
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="StoreRate"
+                    Orientation="Vertical"
+                    Margin="16"
+                    Spacing="0"
+                    IsVisible="False"
+                    VerticalOptions="FillAndExpand">
+
+                    <Label
+                        Text="Select Store Rate"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="20"
+                        Margin="0, 0, 0, 8"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        VerticalOptions="StartAndExpand"
+                        BackgroundColor="{StaticResource catskill_white}">
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StoreRateCommand}" CommandParameter="0"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="Continuous Store"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="ContinuousStore"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StoreRateCommand}" CommandParameter="5"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="5 minutes"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="FiveMinutes"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StoreRateCommand}" CommandParameter="10"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="10 minutes"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="TenMinutes"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StoreRateCommand}" CommandParameter="15"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="15 minutes"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="FifteenMinutes"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StoreRateCommand}" CommandParameter="30"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="30 minutes"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="ThirtyMinutes"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StoreRateCommand}" CommandParameter="60"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="60 minutes"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="SixtyMinutes"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            HeightRequest="1"
+                            BackgroundColor="{StaticResource light_gray}"
+                            HorizontalOptions="Fill"/>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="16"
+                            HorizontalOptions="Fill"
+                            Spacing="0"
+                            VerticalOptions="Center">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StoreRateCommand}" CommandParameter="120"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <Label
+                                Text="120 minutes"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"
+                                HorizontalOptions="StartAndExpand"/>
+
+                            <Image
+                                x:Name="OneHundredTwentyMinutes"
+                                Source="Check"
+                                IsVisible="False"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="EditFrequency"
+                    Orientation="Vertical"
+                    IsVisible="False"
+                    VerticalOptions="FillAndExpand"
+                    Spacing="0">
+
+                    <common:EnterFrequency
+                        x:Name="EnterFrequency" />
+
+                    <Button
+                        x:Name="SaveFrequency"
+                        Clicked="SaveFrequency_Clicked"
+                        Text="Save Frequency"
+                        TextColor="{StaticResource catskill_white}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="4"
+                        Margin="24, 16"
+                        VerticalOptions="EndAndExpand">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow_light}"
+                                    Offset="0.5"/>
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow}"
+                                    Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="Tables"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand"
+                    IsVisible="False"
+                    Margin="16, 24">
+
+                    <Label
+                        x:Name="SelectedTables"
+                        TextColor="{StaticResource black}"
+                        FontSize="20"
+                        Margin="0, 0, 0, 24"/>
+
+                    <ListView
+                        x:Name="TablesList"
+                        ItemTapped="TablesList_Tapped"
+                        VerticalOptions="Fill"
+                        BackgroundColor="{StaticResource slate_300}"
+                        SeparatorVisibility="None"
+                        RowHeight="60">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout
+                                        Orientation="Horizontal"
+                                        Spacing="0"
+                                        Padding="16"
+                                        Margin="0, 0, 0, 16"
+                                        IsEnabled="{Binding IsEnabled}"
+                                        Opacity="{Binding Opacity}"
+                                        BackgroundColor="{StaticResource catskill_white}">
+
+                                        <CheckBox
+                                            Color="{StaticResource mountain_meadow}"
+                                            IsEnabled="False"
+                                            IsChecked="{Binding IsChecked}"/>
+
+                                        <Label
+                                            Text="{Binding TableFrequency}"
+                                            TextColor="{StaticResource limed_spruce}"
+                                            FontSize="16"
+                                            HorizontalOptions="StartAndExpand"/>
+
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+
+                    <Button
+                        x:Name="SaveTables"
+                        Clicked="SaveTables_Clicked"
+                        Text="Save Changes"
+                        TextColor="{StaticResource catskill_white}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="4"
+                        VerticalOptions="EndAndExpand">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow_light}"
+                                    Offset="0.5"/>
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow}"
+                                    Offset="1.0"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                </StackLayout>
+
+                <common:VhfReceiverStatus
+                    x:Name="ReceiverStatus"/>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

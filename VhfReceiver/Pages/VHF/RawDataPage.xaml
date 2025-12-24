@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.VHF.RawDataPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <StackLayout
+            Orientation="Vertical"
+            Spacing="0"
+            VerticalOptions="Fill">
+
+            <common:Toolbar
+                x:Name="Toolbar"/>
+
+            <StackLayout
+                x:Name="FileSource"
+                Spacing="0"
+                Orientation="Vertical"
+                VerticalOptions="FillAndExpand"
+                Margin="16, 24">
+
+                <Label
+                    Text="File Source"
+                    TextColor="{StaticResource limed_spruce}"
+                    FontSize="20"
+                    Margin="0, 0, 0, 16"/>
+
+                <StackLayout
+                    Spacing="8"
+                    Orientation="Vertical"
+                    Padding="16"
+                    BackgroundColor="{StaticResource catskill_white}">
+
+                    <StackLayout
+                        Spacing="0"
+                        Orientation="Horizontal">
+
+                        <Image
+                            x:Name="SDCard"
+                            Source="NoneSDCard"/>
+
+                        <StackLayout
+                            Spacing="0"
+                            Orientation="Vertical"
+                            Margin="8, 0, 0, 0">
+
+                            <Label
+                                Text="SD Card"
+                                TextColor="{StaticResource slate_gray}"
+                                FontSize="10"/>
+
+                            <Label
+                                x:Name="SDCardState"
+                                TextColor="{StaticResource ebony_clay}"
+                                FontSize="16"/>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <Label
+                        x:Name="NoneDetectedMessage"
+                        Text="Please check your mobile device and ensure an SD Card is connected."
+                        TextColor="{StaticResource ebony_clay}"
+                        FontSize="10"/>
+
+                </StackLayout>
+
+                <Label
+                    Text="Selected File"
+                    TextColor="{StaticResource limed_spruce}"
+                    FontSize="20"
+                    Margin="0, 24, 0, 16"/>
+
+                <StackLayout
+                    x:Name="SelectFile"
+                    Orientation="Horizontal"
+                    Spacing="0"
+                    Padding="16"
+                    VerticalOptions="StartAndExpand"
+                    BackgroundColor="{StaticResource catskill_white}">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="SelectFile_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="Select File"
+                        TextColor="{StaticResource ebony_clay}"
+                        FontSize="16"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Image
+                        Source="AddFile"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="SelectedFile"
+                    Spacing="0"
+                    Orientation="Horizontal"
+                    Padding="16"
+                    VerticalOptions="StartAndExpand"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    IsVisible="False">
+
+                    <Image
+                        Source="SelectedFile"
+                        Margin="0, 0, 8, 0"/>
+
+                    <StackLayout
+                        Spacing="0"
+                        Orientation="Vertical"
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="CenterAndExpand">
+
+                        <Label
+                            x:Name="FileName"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="10"/>
+
+                        <Label
+                            x:Name="FileDescription"
+                            TextColor="{StaticResource slate_gray}"
+                            FontSize="10"/>
+
+                    </StackLayout>
+
+                    <ImageButton
+                        Clicked="Delete_Clicked"
+                        Source="Exit"/>
+
+                </StackLayout>
+
+                <Button
+                    x:Name="ConvertRawData"
+                    Clicked="ConvertRawData_Clicked"
+                    Text="Convert Data File"
+                    TextColor="{StaticResource catskill_white}"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="4"
+                    VerticalOptions="EndAndExpand"
+                    Opacity="0.6"
+                    IsEnabled="False">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow_light}"
+                                Offset="0.5"/>
+
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow}"
+                                Offset="1.0"/>
+
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </StackLayout>
+
+            <StackLayout
+                x:Name="FileConversion"
+                Spacing="0"
+                Orientation="Vertical"
+                VerticalOptions="FillAndExpand"
+                Margin="16, 24"
+                IsVisible="False">
+
+                <StackLayout
+                    x:Name="ConvertingRawFile"
+                    Spacing="0"
+                    Orientation="Vertical"
+                    Padding="16"
+                    BackgroundColor="{StaticResource catskill_white}">
+
+                    <StackLayout
+                        Spacing="0"
+                        Orientation="Horizontal">
+
+                        <ActivityIndicator
+                            Color="{StaticResource keppel}"
+                            HeightRequest="48"
+                            IsRunning="True"
+                            Margin="0, 0, 8, 0"/>
+
+                        <Label
+                            Text="Converting Raw File ..."
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="20"/>
+
+                    </StackLayout>
+
+                    <ProgressBar
+                        x:Name="ConvertingRawPercentage"
+                        ProgressColor="{StaticResource mountain_meadow}"
+                        BackgroundColor="{StaticResource humming_bird}"
+                        Margin="0, 8, 0, 48"/>
+
+                    <Button
+                        Clicked="CancelConversion_Clicked"
+                        Text="Cancel Conversion"
+                        TextColor="{StaticResource ebony_clay}"
+                        FontSize="16"
+                        CornerRadius="4"
+                        BorderWidth="1"
+                        HeightRequest="32"
+                        Padding="8, 0"
+                        FontAttributes="Bold"
+                        BorderColor="{StaticResource ebony_clay}"
+                        BackgroundColor="{StaticResource catskill_white}"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="FileConverted"
+                    Spacing="0"
+                    Orientation="Vertical"
+                    Padding="24"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    IsVisible="False">
+
+                    <Image
+                        Source="check.png"/>
+
+                    <Label
+                        Text="File Converted"
+                        TextColor="{StaticResource ebony_clay}"
+                        FontSize="30"
+                        HorizontalOptions="CenterAndExpand"
+                        Margin="0, 24"/>
+
+                    <Label
+                        x:Name="FileNameSaved"
+                        HorizontalOptions="CenterAndExpand"
+                        TextColor="{StaticResource ebony_clay}"
+                        FontSize="10"/>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <common:VhfReceiverStatus
+                x:Name="ReceiverStatus"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

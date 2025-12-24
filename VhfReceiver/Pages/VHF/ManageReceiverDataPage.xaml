@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.ManageReceiverDataPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="Fill"
+                Spacing="0">
+
+                <common:Toolbar
+                    x:Name="Toolbar"/>
+
+                <StackLayout
+                    x:Name="Menu"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand"
+                    Spacing="0">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Padding="16"
+                        Margin="16, 24"
+                        Spacing="0">
+
+                        <Label
+                            x:Name="MemoryUsed"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="20"
+                            HorizontalTextAlignment="Start"/>
+
+                        <ProgressBar
+                            x:Name="MemoryUsedPercentage"
+                            ProgressColor="{StaticResource mountain_meadow}"
+                            BackgroundColor="{StaticResource humming_bird}"
+                            Margin="0, 8, 0, 8"/>
+
+                        <Label
+                            x:Name="BytesStored"
+                            FontSize="12"
+                            TextColor="{StaticResource ebony_clay}"
+                            HorizontalTextAlignment="Start"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Padding="16"
+                        Spacing="0"
+                        Margin="16, 0, 16, 16"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center">
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ViewData_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Label
+                            Text="View Data in Memory"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"/>
+
+                        <Image
+                            Source="Next"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Padding="16"
+                        Spacing="0"
+                        Margin="16, 0, 16, 16"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center">
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="DownloadData_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Label
+                            Text="Download Data in Memory"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"/>
+
+                        <Image
+                            Source="Next"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Padding="16"
+                        Spacing="0"
+                        Margin="16, 0, 16, 16"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Center">
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="DeleteReceiverData_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Label
+                            Text="Delete Receiver Data in Memory"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"/>
+
+                        <Image
+                            Source="Next"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand"/>
+
+                </StackLayout> 
+
+                <StackLayout
+                    x:Name="DeleteReceiverData"
+                    Orientation="Vertical"
+                    IsVisible="False"
+                    VerticalOptions="FillAndExpand"
+                    Spacing="0">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Spacing="0"
+                        Margin="16, 24"
+                        Padding="16, 24">
+
+                        <Label
+                            Text="Are you sure you want to delete all data blocks in memory?"
+                            TextColor="{StaticResource black}"
+                            FontSize="24"
+                            HorizontalTextAlignment="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            Margin="0, 0, 0, 24"/>
+
+                        <Button
+                            x:Name="DeleteReceiver"
+                            Clicked="DeleteReceiverData_Clicked"
+                            Text="Delete Receiver Data"
+                            TextColor="{StaticResource catskill_white}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="22"
+                            BackgroundColor="{StaticResource tall_poppy}"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="DeletingData"
+                    Orientation="Vertical"
+                    IsVisible="False"
+                    VerticalOptions="FillAndExpand"
+                    Spacing="0">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Spacing="0"
+                        Margin="16, 24"
+                        Padding="16, 24">
+
+                        <ActivityIndicator
+                            x:Name="Loading"
+                            Margin="0, 0, 0, 24"
+                            Color="{StaticResource keppel}"
+                            HeightRequest="48"
+                            WidthRequest="48"/>
+
+                        <Label
+                            Text="Deleting Memory ..."
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="30"
+                            HorizontalTextAlignment="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            Margin="0, 0, 0, 48"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="DeletionComplete"
+                    Orientation="Vertical"
+                    IsVisible="False"
+                    VerticalOptions="FillAndExpand"
+                    Spacing="0">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Spacing="0"
+                        Margin="16, 24"
+                        Padding="16, 24">
+
+                        <Image
+                            Source="check.png"
+                            Margin="0, 16"/>
+
+                        <Label
+                            Text="Deletion Complete"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="30"
+                            HorizontalTextAlignment="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            Margin="0, 0, 0, 48"/>
+
+                        <Button
+                            Clicked="ReturnDataScreen_Clicked"
+                            Text="Return to Data Screen"
+                            TextColor="{StaticResource catskill_white}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="22">
+                            <Button.Background>
+                                <LinearGradientBrush
+                                    EndPoint="0,1">
+
+                                    <GradientStop
+                                        Color="{StaticResource mountain_meadow_light}"
+                                        Offset="0.5"/>
+
+                                    <GradientStop
+                                        Color="{StaticResource mountain_meadow}"
+                                        Offset="1.0"/>
+
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="BeginDownload"
+                    Orientation="Vertical"
+                    IsVisible="False"
+                    VerticalOptions="FillAndExpand"
+                    Spacing="0">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Spacing="0"
+                        Margin="16, 24"
+                        Padding="16"
+                        IsVisible="True">
+
+                        <Label
+                            Text="Note: preparing the file requires downloading the data, then processing it in real time. These steps can take several minutes to complete."
+                            TextColor="{StaticResource black}"
+                            FontSize="18"
+                            Margin="0, 0, 0, 48"/>
+
+                        <Button
+                            Clicked="BeginDownload_Clicked"
+                            Text="Begin Download"
+                            TextColor="{StaticResource catskill_white}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="22">
+                            <Button.Background>
+                                <LinearGradientBrush
+                                    EndPoint="0,1">
+
+                                    <GradientStop
+                                        Color="{StaticResource mountain_meadow_light}"
+                                        Offset="0.5"/>
+
+                                    <GradientStop
+                                        Color="{StaticResource mountain_meadow}"
+                                        Offset="1.0"/>
+
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="DownloadingFile"
+                    Orientation="Vertical"
+                    IsVisible="False"
+                    VerticalOptions="FillAndExpand"
+                    Spacing="0">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Spacing="0"
+                        Margin="16, 24"
+                        Padding="16"
+                        IsVisible="True">
+
+                        <common:ProcessStates
+                            x:Name="ProcessStates"/>
+
+                        <Button
+                            Clicked="CancelDownload_Clicked"
+                            Text="Cancel Download"
+                            TextColor="{StaticResource catskill_white}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="22"
+                            BackgroundColor="{StaticResource tall_poppy}"
+                            Margin="0, 48, 0, 0"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="DownloadComplete"
+                    Orientation="Vertical"
+                    IsVisible="False"
+                    VerticalOptions="FillAndExpand"
+                    Spacing="0">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Spacing="0"
+                        Margin="16, 24"
+                        Padding="16, 24">
+
+                        <Image
+                            Source="check.png"
+                            Margin="0, 16"/>
+
+                        <Label
+                            Text="Download Complete"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="30"
+                            HorizontalTextAlignment="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            Margin="0, 0, 0, 48"/>
+
+                        <Button
+                            Clicked="OpenFile_Clicked"
+                            Text="Open File Location"
+                            TextColor="{StaticResource catskill_white}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="22"
+                            Margin="0, 0, 0, 16">
+                            <Button.Background>
+                                <LinearGradientBrush
+                                    EndPoint="0,1">
+
+                                    <GradientStop
+                                        Color="{StaticResource mountain_meadow_light}"
+                                        Offset="0.5"/>
+
+                                    <GradientStop
+                                        Color="{StaticResource mountain_meadow}"
+                                        Offset="1.0"/>
+
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+
+                        <Button
+                            Clicked="ReturnMenu_Clicked"
+                            Text="Return to Main Menu"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            BackgroundColor="{StaticResource catskill_white}"
+                            BorderColor="{StaticResource limed_spruce}"
+                            BorderWidth="1"
+                            CornerRadius="22"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand"/>
+
+                </StackLayout>
+
+                <common:VhfReceiverStatus
+                    x:Name="ReceiverStatus"/>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

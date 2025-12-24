@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.GpsRecordOptions">
+    <ContentView.Content>
+        <StackLayout
+            Spacing="8"
+            Orientation="Horizontal"
+            VerticalOptions="Center"
+            Margin="0, 0, 0, 16">
+
+            <Image
+                x:Name="GPSLocation"
+                Source="GpsOff"/>
+
+            <Label
+                x:Name="GPSState"
+                TextColor="{StaticResource ebony_clay}"
+                FontSize="16"
+                VerticalOptions="CenterAndExpand"/>
+
+            <Button
+                x:Name="RecordData"
+                Clicked="RecordData_Clicked"
+                Text="Record Data"
+                TextColor="{StaticResource catskill_white}"
+                FontSize="16"
+                HeightRequest="32"
+                Padding="8, 0"
+                FontAttributes="Bold"
+                CornerRadius="4"
+                HorizontalOptions="EndAndExpand">
+                <Button.Background>
+                    <LinearGradientBrush
+                        EndPoint="0,1">
+
+                    <GradientStop
+                        Color="{Binding FirstColor}"
+                        Offset="0.5"/>
+
+                    <GradientStop
+                        Color="{Binding SecondColor}"
+                        Offset="1.0"/>
+
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

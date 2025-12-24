@@ -40,14 +40,13 @@ namespace VhfReceiver.Utils
         public void SetFileName(bool isRaw)
         {
             DateTime time = DateTime.Now;
-            string month = (time.Month + 1 < 10) ? "0" + (time.Month + 1) : (time.Month + 1).ToString();
+            string month = (time.Month < 10) ? "0" + time.Month : time.Month.ToString();
             string day = time.Day < 10 ? "0" + time.Day : time.Day.ToString();
             string hour = time.Hour < 10 ? "0" + time.Hour : time.Hour.ToString();
             string minute = time.Minute < 10 ? "0" + time.Minute : time.Minute.ToString();
             string second = time.Second < 10 ? "0" + time.Second : time.Second.ToString();
 
-            //FileName = "D_" + (((time.Month + 1) < 10) ? "0" + (time.Month + 1) : time.Month + 1) + "_" + (((time.Day + 1) < 10) ? "0" + (time.Day + 1) : time.Day + 1) + "_" + time.Year + "_" + (((time.Hour + 1) < 10) ? "0" + (time.Hour + 1) : time.Hour + 1) + "_" + (((time.Minute + 1) < 10) ? "0" + (time.Minute + 1) : time.Minute + 1) + "_" + (((time.Second + 1) < 10) ? "0" + (time.Second + 1) : time.Second + 1) + (isRaw ? "Raw" : "") + ".txt";
-            FileName = "D_" + month + "_" + day + "_" + time.Year + "_" + hour + "_" + minute + "_" + second + (isRaw ? "Raw" : "") + ".txt";
+            FileName = "D" + ReceiverInformation.GetInstance().GetSerialNumber() + "_" + month + day + (time.Year - 2000).ToString() + hour + minute + second + (isRaw ? "Raw" : "") + ".txt";
         }
 
         public void ProcessSnapshotRaw(byte[] packRead)
@@ -62,7 +61,7 @@ namespace VhfReceiver.Utils
             }
             catch (Exception e)
             {
-                FileName += " || error: " + e.Message.ToString();
+                Console.WriteLine(e.Message);
                 Error = true;
             }
         }
@@ -81,7 +80,20 @@ namespace VhfReceiver.Utils
             }
             catch (Exception e)
             {
-                FileName += " || error: " + e.Message.ToString();
+                Console.WriteLine(e.Message);
+                Error = true;
+            }
+        }
+
+        public void ReplaceSnapshotRaw(byte[] packRead)
+        {
+            try
+            {
+                Array.Copy(packRead, 0, Snapshot, ByteIndex - packRead.Length, packRead.Length);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
                 Error = true;
             }
         }

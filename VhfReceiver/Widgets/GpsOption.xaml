@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.GpsOption">
+    <ContentView.Content>
+        <StackLayout
+            Orientation="Vertical"
+            Spacing="0">
+
+            <StackLayout
+                HeightRequest="1"
+                BackgroundColor="{StaticResource light_gray}"
+                HorizontalOptions="Fill"/>
+
+            <StackLayout
+                Orientation="Horizontal"
+                Spacing="0"
+                Padding="16">
+
+                <Label
+                    Text="GPS Data"
+                    TextColor="{StaticResource limed_spruce}"
+                    FontSize="12"
+                    HorizontalOptions="StartAndExpand"/>
+
+                <Switch
+                    x:Name="GPS"
+                    OnColor="{StaticResource humming_bird}"
+                    Toggled="GPS_Toggled">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="On">
+                                <VisualState.Setters>
+                                    <Setter
+                                        Property="ThumbColor"
+                                        Value="#147D64"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Off">
+                                <VisualState.Setters>
+                                    <Setter
+                                        Property="ThumbColor"
+                                        Value="#7B8794"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Switch>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.SelectDetectionFilterPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <StackLayout
+            Orientation="Vertical"
+            VerticalOptions="Fill"
+            Spacing="0">
+
+            <common:Toolbar
+                x:Name="Toolbar"/>
+
+            <ScrollView
+                Orientation="Vertical"
+                VerticalOptions="FillAndExpand">
+
+                <StackLayout
+                    Orientation="Vertical"
+                    Spacing="0"
+                    VerticalOptions="Start"
+                    Margin="16, 24, 16, 0">
+
+                    <Label
+                        Text="Transmitter Detection Filter Options"
+                        FontSize="20"
+                        TextColor="{StaticResource limed_spruce}"
+                        Margin="0, 0, 0, 12"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        BackgroundColor="{StaticResource catskill_white}">
+
+                        <StackLayout
+                            x:Name="PulseRateTap"
+                            Orientation="Horizontal"
+                            VerticalOptions="Center"
+                            Spacing="0"
+                            Padding="16">
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="PulseRateType_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0"
+                                HorizontalOptions="StartAndExpand">
+
+                                <Label
+                                    Text="Pulse Rate Type"
+                                    TextColor="{StaticResource limed_spruce}"
+                                    FontSize="12"
+                                    Margin="0, 0, 0, 8"/>
+
+                                <Label
+                                    x:Name="PulseRateType"
+                                    TextColor="{StaticResource ebony_clay}"
+                                    FontSize="16"/>
+
+                            </StackLayout>
+
+                            <Image
+                                x:Name="PulseRateNext"
+                                Source="Next"/>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            x:Name="Matches"
+                            Orientation="Vertical"
+                            Spacing="0"
+                            IsVisible="False">
+
+                            <StackLayout
+                                HeightRequest="1"
+                                BackgroundColor="{StaticResource light_gray}"
+                                HorizontalOptions="Fill"/>
+
+                            <StackLayout
+                                Orientation="Horizontal"
+                                VerticalOptions="Center"
+                                Spacing="0"
+                                Padding="16">
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="MatchesForValidPattern_Tapped"/>
+                                </StackLayout.GestureRecognizers>
+
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    Spacing="0"
+                                    HorizontalOptions="StartAndExpand">
+
+                                    <Label
+                                        Text="Matches For Valid Pattern"
+                                        TextColor="{StaticResource limed_spruce}"
+                                        FontSize="12"
+                                        Margin="0, 0, 0, 8"/>
+
+                                    <Label
+                                        x:Name="MatchesForValidPattern"
+                                        Text="0"
+                                        TextColor="{StaticResource ebony_clay}"
+                                        FontSize="16"/>
+
+                                </StackLayout>
+
+                                <Image
+                                    Source="Next"/>
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+                        <StackLayout
+                            x:Name="MaxMinPR"
+                            Orientation="Vertical"
+                            Spacing="0"
+                            IsVisible="False">
+
+                            <StackLayout
+                                HeightRequest="1"
+                                BackgroundColor="{StaticResource light_gray}"
+                                HorizontalOptions="Fill"/>
+
+                            <StackLayout
+                                Orientation="Horizontal"
+                                VerticalOptions="Center"
+                                Spacing="0"
+                                Padding="16">
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="MaxPulseRate_Tapped"/>
+                                </StackLayout.GestureRecognizers>
+
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    Spacing="0"
+                                    HorizontalOptions="StartAndExpand">
+
+                                    <Label
+                                        Text="Max Pulse Rate (ppm)"
+                                        TextColor="{StaticResource limed_spruce}"
+                                        FontSize="12"
+                                        Margin="0, 0, 0, 8"/>
+
+                                    <Label
+                                        x:Name="MaxPulseRate"
+                                        Text="0"
+                                        TextColor="{StaticResource ebony_clay}"
+                                        FontSize="16"/>
+
+                                </StackLayout>
+
+                                <Image
+                                    Source="Next"/>
+
+                            </StackLayout>
+
+                            <StackLayout
+                                HeightRequest="1"
+                                BackgroundColor="{StaticResource light_gray}"
+                                HorizontalOptions="Fill"/>
+
+                            <StackLayout
+                                Orientation="Horizontal"
+                                VerticalOptions="Center"
+                                Spacing="0"
+                                Padding="16">
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="MinPulseRate_Tapped"/>
+                                </StackLayout.GestureRecognizers>
+
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    Spacing="0"
+                                    HorizontalOptions="StartAndExpand">
+
+                                    <Label
+                                        Text="Min Pulse Rate (ppm)"
+                                        TextColor="{StaticResource limed_spruce}"
+                                        FontSize="12"
+                                        Margin="0, 0, 0, 8"/>
+
+                                    <Label
+                                        x:Name="MinPulseRate"
+                                        Text="0"
+                                        TextColor="{StaticResource ebony_clay}"
+                                        FontSize="16"/>
+
+                                </StackLayout>
+
+                                <Image
+                                    Source="Next"/>
+
+                            </StackLayout>
+
+                            <StackLayout
+                                HeightRequest="1"
+                                BackgroundColor="{StaticResource light_gray}"
+                                HorizontalOptions="Fill"/>
+
+                            <StackLayout
+                                Orientation="Horizontal"
+                                VerticalOptions="Center"
+                                Spacing="0"
+                                Padding="16">
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OptionalDataCalculation_Tapped"/>
+                                </StackLayout.GestureRecognizers>
+
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    Spacing="0"
+                                    HorizontalOptions="StartAndExpand">
+
+                                    <Label
+                                        Text="Optional Data Calculation"
+                                        TextColor="{StaticResource limed_spruce}"
+                                        FontSize="12"
+                                        Margin="0, 0, 0, 8"/>
+
+                                    <Label
+                                        x:Name="OptionalDataCalculation"
+                                        Text="None"
+                                        TextColor="{StaticResource ebony_clay}"
+                                        FontSize="16"/>
+
+                                </StackLayout>
+
+                                <Image
+                                    Source="Next"/>
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        x:Name="PulseRates"
+                        Orientation="Vertical"
+                        Spacing="0"
+                        Margin="0, 24, 0, 0"
+                        IsVisible="False">
+
+                        <Label
+                            Text="Pulse Rates"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="20"
+                            Margin="0, 0, 0, 12"/>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            BackgroundColor="{StaticResource catskill_white}"
+                            Spacing="0">
+
+                            <StackLayout
+                                Orientation="Horizontal"
+                                Spacing="0"
+                                VerticalOptions="Center"
+                                Padding="16">
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="PR1_Tapped"/>
+                                </StackLayout.GestureRecognizers>
+
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    Spacing="0"
+                                    HorizontalOptions="StartAndExpand">
+
+                                    <Label
+                                        Text="PR1 (ppm)"
+                                        TextColor="{StaticResource limed_spruce}"
+                                        FontSize="12"
+                                        Margin="0, 0, 0, 8"/>
+
+                                    <Label
+                                        x:Name="PR1"
+                                        Text="0"
+                                        TextColor="{StaticResource ebony_clay}"
+                                        FontSize="16"/>
+
+                                </StackLayout>
+
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    Spacing="0"
+                                    HorizontalOptions="StartAndExpand">
+
+                                    <Label
+                                        Text="PR1 Tolerance (ppm)"
+                                        TextColor="{StaticResource limed_spruce}"
+                                        FontSize="12"
+                                        Margin="0, 0, 0, 8"/>
+
+                                    <StackLayout
+                                        Orientation="Horizontal"
+                                        Spacing="0">
+
+                                        <Label
+                                            Text="+/-"
+                                            TextColor="{StaticResource ebony_clay}"
+                                            FontSize="16"
+                                            Margin="0, 0, 4, 0"/>
+
+                                        <Label
+                                            x:Name="PR1Tolerance"
+                                            Text="01"
+                                            TextColor="{StaticResource ebony_clay}"
+                                            FontSize="16"/>
+
+                                    </StackLayout>
+
+                                </StackLayout>
+
+                                <Image
+                                    Source="Next"/>
+
+                            </StackLayout>
+
+                            <StackLayout
+                                HeightRequest="1"
+                                BackgroundColor="{StaticResource light_gray}"
+                                HorizontalOptions="Fill"/>
+
+                            <StackLayout
+                                Orientation="Horizontal"
+                                Spacing="0"
+                                VerticalOptions="Center"
+                                Padding="16">
+
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="PR2_Tapped"/>
+                                </StackLayout.GestureRecognizers>
+
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    Spacing="0"
+                                    HorizontalOptions="StartAndExpand">
+
+                                    <Label
+                                        Text="PR2 (ppm)"
+                                        TextColor="{StaticResource limed_spruce}"
+                                        FontSize="12"
+                                        Margin="0, 0, 0, 8"/>
+
+                                    <Label
+                                        x:Name="PR2"
+                                        Text="0"
+                                        TextColor="{StaticResource ebony_clay}"
+                                        FontSize="16"/>
+
+                                </StackLayout>
+
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    Spacing="0"
+                                    HorizontalOptions="StartAndExpand">
+
+                                    <Label
+                                        Text="PR2 Tolerance (ppm)"
+                                        TextColor="{StaticResource limed_spruce}"
+                                        FontSize="12"
+                                        Margin="0, 0, 0, 8"/>
+
+                                    <StackLayout
+                                        Orientation="Horizontal"
+                                        Spacing="0">
+
+                                        <Label
+                                            Text="+/-"
+                                            TextColor="{StaticResource ebony_clay}"
+                                            FontSize="16"
+                                            Margin="0, 0, 4, 0"/>
+
+                                        <Label
+                                            x:Name="PR2Tolerance"
+                                            Text="01"
+                                            TextColor="{StaticResource ebony_clay}"
+                                            FontSize="16"/>
+
+                                    </StackLayout>
+
+                                </StackLayout>
+
+                                <Image
+                                    Source="Next"/>
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </ScrollView>
+
+            <common:VhfReceiverStatus
+                x:Name="ReceiverStatus"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,489 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.MobileScanningPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+
+        <StackLayout
+            Orientation="Vertical"
+            VerticalOptions="Fill"
+            Spacing="0">
+
+            <common:Toolbar
+                x:Name="Toolbar"/>
+
+            <StackLayout
+                x:Name="CurrentSettings"
+                Orientation="Vertical"
+                Spacing="0"
+                VerticalOptions="FillAndExpand"
+                Margin="0, 24">
+
+                <Label
+                    Text="Scan Settings"
+                    TextColor="{StaticResource limed_spruce}"
+                    FontSize="20"
+                    Margin="16, 0, 16, 16"/>
+
+                <common:MobileSetting
+                    x:Name="MobileSetting"/>
+
+                <Button
+                    x:Name="StartMobileScan"
+                    Clicked="StartMobileScan_Clicked"
+                    Text="Start Mobile Scan"
+                    TextColor="{StaticResource catskill_white}"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="4"
+                    Margin="16, 0"
+                    VerticalOptions="EndAndExpand">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow_light}"
+                                Offset="0.5"/>
+
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow}"
+                                Offset="1.0"/>
+
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </StackLayout>
+
+            <StackLayout
+                x:Name="MobileScanning"
+                Orientation="Vertical"
+                Spacing="0"
+                VerticalOptions="FillAndExpand"
+                Margin="16, 24"
+                IsVisible="False">
+
+                <common:GpsRecordOptions
+                    x:Name="GpsRecordOptions"/>
+
+                <StackLayout
+                    Orientation="Vertical"
+                    Spacing="0"
+                    BackgroundColor="{StaticResource catskill_white}">
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        Margin="16">
+
+                        <Label
+                            x:Name="Frequency"
+                            Text="Frequency"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            Margin="0, 0, 8, 0"/>
+
+                        <Image
+                            x:Name="HoldState"
+                            Source="Unlocked"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        VerticalOptions="Center"
+                        Margin="16, 0, 16, 16">
+
+                        <ImageButton
+                            x:Name="TuneDown"
+                            Clicked="TuneDown_Clicked"
+                            Source="TuneDown"/>
+
+                        <Label
+                            x:Name="FrequencyScan"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            Margin="8, 0"/>
+
+                        <ImageButton
+                            x:Name="TuneUp"
+                            Clicked="TuneUp_Clicked"
+                            Source="TuneUp"/>
+
+                        <Button
+                            x:Name="HoldFrequency"
+                            Clicked="HoldFrequency_Clicked"
+                            Text="Edit Frequency"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="12"
+                            CornerRadius="4"
+                            BorderWidth="1"
+                            HeightRequest="32"
+                            Padding="8, 0"
+                            FontAttributes="Bold"
+                            BorderColor="{StaticResource ebony_clay}"
+                            BackgroundColor="{StaticResource catskill_white}"
+                            HorizontalOptions="EndAndExpand"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        HeightRequest="1"
+                        BackgroundColor="{StaticResource light_gray}"
+                        HorizontalOptions="Fill"/>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        Padding="16">
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0">
+
+                            <Label
+                                x:Name="MaxIndex"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="12"
+                                Margin="0, 0, 0, 16"/>
+
+                            <StackLayout
+                                Orientation="Horizontal"
+                                Spacing="0"
+                                VerticalOptions="Center">
+
+                                <ImageButton
+                                    x:Name="Left"
+                                    Clicked="Left_Clicked"
+                                    Source="Left"/>
+
+                                <Label
+                                    x:Name="TableIndex"
+                                    TextColor="{StaticResource ebony_clay}"
+                                    FontSize="16"
+                                    VerticalOptions="CenterAndExpand"
+                                    Margin="8, 0"/>
+
+                                <ImageButton
+                                    x:Name="Right"
+                                    Clicked="Right_Clicked"
+                                    Source="Right"/>
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+                        <Label
+                            x:Name="EditTable"
+                            Text="Edit Table"
+                            FontSize="12"
+                            TextColor="{StaticResource ghost}"
+                            FontAttributes="Bold"
+                            TextDecorations="Underline"
+                            HorizontalOptions="EndAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            IsEnabled="False">
+
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="EditTable_Tapped"/>
+                            </Label.GestureRecognizers>
+
+                        </Label>
+
+                    </StackLayout>
+
+                    <common:IDAudio
+                        x:Name="IDAudio"/>
+
+                    <common:Coordinates
+                        x:Name="Coordinates"
+                        IsVisible="False"/>
+
+                    <common:Scanning
+                        x:Name="Scanning"/>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout
+                x:Name="EditTableScan"
+                Orientation="Vertical"
+                IsVisible="False"
+                VerticalOptions="FillAndExpand"
+                Margin="16, 24"
+                Spacing="0">
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    Padding="16"
+                    Spacing="0"
+                    Margin="0, 0, 0, 16"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        HorizontalOptions="CenterAndExpand">
+
+                        <Label
+                            Text="Current Frequency"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            Margin="0, 0, 0, 8"/>
+
+                        <Label
+                            x:Name="CurrentFrequency"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="16"
+                            FontAttributes="Bold"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        HorizontalOptions="CenterAndExpand">
+
+                        <Label
+                            Text="Current Index"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            Margin="0, 0, 0, 8"/>
+
+                        <Label
+                            x:Name="CurrentIndex"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="16"
+                            FontAttributes="Bold"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        HorizontalOptions="CenterAndExpand">
+
+                        <Label
+                            Text="Table Total"
+                            TextColor="{StaticResource limed_spruce}"
+                            FontSize="12"
+                            FontAttributes="Bold"
+                            Margin="0, 0, 0, 8"/>
+
+                        <Label
+                            x:Name="TableTotal"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="16"
+                            FontAttributes="Bold"/>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    Padding="16"
+                    Spacing="0"
+                    Margin="0, 0, 0, 16"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="AddFrequencyTable_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="Add a Frequency to Table"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Image
+                        Source="Next"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    Padding="16"
+                    Spacing="0"
+                    Margin="0, 0, 0, 16"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="DeleteFrequencyTable_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="Delete Current Frequency From Table"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Image
+                        Source="Next"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    Padding="16"
+                    Spacing="0"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="MergeTable_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="Merge Table Into Table"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Image
+                        Source="Next"/>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout
+                x:Name="EditFrequency"
+                Orientation="Vertical"
+                IsVisible="False"
+                VerticalOptions="FillAndExpand"
+                Spacing="0">
+
+                <common:EnterFrequency
+                    x:Name="EnterFrequency" />
+
+                <Button
+                    x:Name="SaveFrequency"
+                    Clicked="SaveFrequency_Clicked"
+                    Text="Change Frequency"
+                    TextColor="{StaticResource catskill_white}"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="4"
+                    Margin="24, 16"
+                    VerticalOptions="EndAndExpand">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow_light}"
+                                Offset="0.5"/>
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow}"
+                                Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </StackLayout>
+
+            <StackLayout
+                x:Name="Tables"
+                Orientation="Vertical"
+                Spacing="0"
+                VerticalOptions="FillAndExpand"
+                IsVisible="False"
+                Margin="16, 24">
+
+                <Label
+                    Text="Select tables to merge into scan table"
+                    TextColor="{StaticResource black}"
+                    FontSize="20"
+                    Margin="0, 0, 0, 24"/>
+
+                <ListView
+                    x:Name="TablesList"
+                    ItemTapped="TablesList_Tapped"
+                    VerticalOptions="FillAndExpand"
+                    BackgroundColor="{StaticResource slate_300}"
+                    SeparatorVisibility="None"
+                    RowHeight="60">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout
+                                    Orientation="Horizontal"
+                                    Spacing="0"
+                                    Padding="16"
+                                    Margin="0, 0, 0, 16"
+                                    BackgroundColor="{StaticResource catskill_white}">
+
+                                    <CheckBox
+                                        Color="{StaticResource mountain_meadow}"
+                                        IsChecked="{Binding IsChecked}"
+                                        IsEnabled="False"/>
+
+                                    <Label
+                                        Text="{Binding TableFrequency}"
+                                        TextColor="{StaticResource limed_spruce}"
+                                        FontSize="16"
+                                        HorizontalOptions="StartAndExpand"/>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+                <Button
+                    x:Name="MergeTables"
+                    Clicked="MergeTables_Clicked"
+                    Text="Merge Tables"
+                    TextColor="{StaticResource catskill_white}"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="4"
+                    VerticalOptions="End">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow_light}"
+                                Offset="0.5"/>
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow}"
+                                Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </StackLayout>
+
+            <common:VhfReceiverStatus
+                x:Name="ReceiverStatus"/>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

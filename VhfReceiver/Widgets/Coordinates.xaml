@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.Coordinates">
+    <ContentView.Content>
+        <StackLayout
+            Orientation="Vertical"
+            Spacing="0">
+
+            <StackLayout
+                HeightRequest="1"
+                BackgroundColor="{StaticResource light_gray}"
+                HorizontalOptions="Fill"/>
+
+            <StackLayout
+                Orientation="Horizontal"
+                Padding="16"
+                Spacing="0">
+
+                <StackLayout
+                    Orientation="Vertical"
+                    Spacing="8"
+                    HorizontalOptions="StartAndExpand">
+
+                    <Label
+                        Text="Latitude"
+                        FontSize="12"
+                        TextColor="{StaticResource limed_spruce}"/>
+
+                    <Label
+                        x:Name="Latitude"
+                        FontSize="16"
+                        TextColor="{StaticResource ebony_clay}"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Vertical"
+                    Spacing="8"
+                    HorizontalOptions="StartAndExpand">
+
+                    <Label
+                        Text="Longitude"
+                        FontSize="12"
+                        TextColor="{StaticResource limed_spruce}"/>
+
+                    <Label
+                        x:Name="Longitude"
+                        FontSize="16"
+                        TextColor="{StaticResource ebony_clay}"/>
+
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -3,239 +3,113 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="VhfReceiver.Pages.SearchingDevicesPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
     NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False"
-    BackgroundColor="#E4E7EB">
+    BackgroundColor="{StaticResource slate_300}">
     <ContentPage.Content>
-        <Grid>
+        <StackLayout
+            Orientation="Vertical"
+            VerticalOptions="Fill"
+            Spacing="0">
+
+            <common:Toolbar
+                x:Name="Toolbar"/>
 
             <StackLayout
-                x:Name="SearchingDevices"
                 Orientation="Vertical"
-                VerticalOptions="StartAndExpand"
-                Spacing="0">
-
-                <StackLayout
-                    Orientation="Horizontal"
-                    Spacing="0">
-
-                    <ImageButton
-                        x:Name="Refresh"
-                        Clicked="Refresh_Clicked"
-                        IsVisible="False"
-                        Source="Rotate"
-                        CornerRadius="25"
-                        Padding="15"
-                        HeightRequest="48"
-                        WidthRequest="48"
-                        BackgroundColor="#F5F7FA"
-                        Margin="0, 24, 24, 0"
-                        HorizontalOptions="EndAndExpand"/>
-
-                    <StackLayout
-                        x:Name="RefreshSpace"
-                        Spacing="0"
-                        HeightRequest="48"
-                        Padding="15"/>
-
-                </StackLayout>
-
-                <RelativeLayout
-                    HeightRequest="256"
-                    HorizontalOptions="Center">
-
-                    <Ellipse
-                        Fill="#CBD2D9"
-                        Stroke="#F5F7FA"
-                        StrokeThickness="8"
-                        HeightRequest="256"
-                        WidthRequest="256"/>
-
-                    <Image
-                        Source="receiver.png"
-                        HeightRequest="200"
-                        Margin="28, 28, 0, 0"/>
-
-                </RelativeLayout>
-
-                <ActivityIndicator
-                    x:Name="LoadingSearch"
-                    Margin="0, 64, 0, 0"
-                    Color="#3EBD93"
-                    HeightRequest="48"
-                    WidthRequest="48"/>
+                Spacing="0"
+                VerticalOptions="FillAndExpand"
+                Margin="16, 24">
 
                 <Label
-                    x:Name="Searching"
-                    IsVisible="False"
-                    Text="Searching for Receivers"
-                    TextColor="#334E68"
+                    Text="{Binding TitleSearching}"
+                    TextColor="{StaticResource black}"
                     FontSize="18"
-                    HorizontalTextAlignment="Center"
-                    Margin="0, 32, 0, 8"/>
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"/>
 
                 <Label
-                    x:Name="Select"
-                    IsVisible="False"
-                    Text="Select ATS Receiver"
-                    TextColor="#1F2933"
-                    FontSize="30"
+                    Text="{Binding Message}"
+                    TextColor="{StaticResource black}"
+                    FontSize="16"
                     HorizontalTextAlignment="Center"
-                    Margin="0, 32, 0, 8"/>
+                    Margin="0, 16, 0, 24"/>
 
-                <ListView
-                    x:Name="DevicesList"
-                    IsVisible="False"
-                    ItemTapped="DevicesList_Tapped"
-                    RowHeight="90"
-                    SeparatorVisibility="None"
-                    SelectionMode="None"
-                    VerticalOptions="FillAndExpand"
-                    BackgroundColor="#E4E7EB">
+                <common:Devices
+                    x:Name="DevicesFound"/>
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout
-                                    Orientation="Horizontal"
-                                    BackgroundColor="#F5F7FA"
-                                    Margin="16, 0, 16, 16"
-                                    Padding="16"
-                                    Spacing="0">
-
-                                    <StackLayout
-                                        Orientation="Vertical"
-                                        Spacing="0">
-
-                                        <Label
-                                            Text="{Binding Name}"
-                                            FontSize="18"
-                                            Margin="0, 0, 0, 8"
-                                            TextColor="#1F2933"/>
-
-                                        <Label
-                                            Text="{Binding Range}"
-                                            FontSize="12"
-                                            TextColor="#1F2933"/>
-
-                                    </StackLayout>
-
-                                    <StackLayout
-                                        Orientation="Vertical"
-                                        HorizontalOptions="EndAndExpand"
-                                        VerticalOptions="CenterAndExpand"
-                                        Spacing="0">
-
-                                        <Image
-                                            Source="FullBattery"
-                                            Margin="0, 0, 0, 8"/>
-
-                                        <Label
-                                            Text="{Binding Battery}"
-                                            TextColor="#1F2933"
-                                            FontSize="12"/>
-
-                                    </StackLayout>
-
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-
-                </ListView>
-
-            </StackLayout>
-
-            <StackLayout
-                x:Name="ConnectingDevice"
-                Orientation="Vertical"
-                VerticalOptions="Start"
-                IsVisible="False"
-                Spacing="0">
-
-                <RelativeLayout
-                    HeightRequest="256"
-                    HorizontalOptions="Center"
-                    Margin="0, 64, 0, 0">
-
-                    <Ellipse
-                        Fill="#CBD2D9"
-                        Stroke="#F5F7FA"
-                        StrokeThickness="8"
-                        HeightRequest="256"
-                        WidthRequest="256"/>
-
-                    <Image
-                        Source="receiver.png"
-                        HeightRequest="200"
-                        Margin="28, 28, 0, 0"/>
-
-                </RelativeLayout>
-
-                <ActivityIndicator
-                    x:Name="LoadingConnect"
-                    Margin="0, 64, 0, 0"
-                    Color="#3EBD93"
-                    HeightRequest="48"
-                    WidthRequest="48"/>
-
-                <Image
-                    x:Name="CheckedStatus"
-                    Margin="0, 64, 0, 0"
-                    Source="check.png"
+                <common:Devices
+                    x:Name="SelectedDevice"
                     IsVisible="False"/>
 
-                <Label
-                    x:Name="ConnectionStatus"
-                    Text="Connecting ..."
-                    TextColor="#334E68"
-                    FontSize="18"
-                    HorizontalTextAlignment="Center"
-                    Margin="0, 16, 0, 0"/>
+                <Button
+                    x:Name="Retry"
+                    Clicked="Retry_Clicked"
+                    Text="Retry"
+                    TextColor="{StaticResource ebony_clay}"
+                    FontSize="12"
+                    FontAttributes="Bold"
+                    BorderColor="{StaticResource ebony_clay}"
+                    BorderWidth="1"
+                    CornerRadius="4"
+                    HeightRequest="32"
+                    Padding="32, 6"
+                    HorizontalOptions="Center"
+                    IsVisible="False"/>
 
-            </StackLayout>
-
-            <StackLayout
-                x:Name="Status"
-                Orientation="Horizontal"
-                BackgroundColor="#F5F7FA"
-                Padding="16"
-                VerticalOptions="EndAndExpand"
-                IsVisible="False"
-                Spacing="0">
-
-                <StackLayout
-                    Orientation="Vertical">     
-
-                    <Label
-                        x:Name="DeviceName"
-                        FontSize="18"
-                        TextColor="#1F2933"/>
-
-                    <Label
-                        x:Name="DeviceRange"
-                        FontSize="12"
-                        TextColor="#1F2933"/>
-
-                </StackLayout>
+                <Image
+                    x:Name="Connected"
+                    Source="check.png"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    IsVisible="False"/>
 
                 <StackLayout
                     Orientation="Vertical"
-                    HorizontalOptions="EndAndExpand"
+                    Spacing="24"
+                    HorizontalOptions="CenterAndExpand"
                     VerticalOptions="CenterAndExpand">
 
-                    <Image
-                        Source="FullBattery"/>
+                    <ActivityIndicator
+                        x:Name="Loading"
+                        HeightRequest="48"
+                        WidthRequest="48"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"/>
 
-                    <Label
-                        x:Name="DeviceBattery"
-                        TextColor="#1F2933"
-                        FontSize="12"/>
+                    <Button
+                        x:Name="Cancel"
+                        Clicked="Cancel_Clicked"
+                        Text="Cancel"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        TextColor="{StaticResource ebony_clay}"
+                        BorderColor="{StaticResource ebony_clay}"
+                        BorderWidth="1"
+                        CornerRadius="4"
+                        HeightRequest="32"
+                        Padding="32, 6"
+                        IsVisible="False"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="CenterAndExpand"/>
 
                 </StackLayout>
 
+                <Button
+                    Clicked="Connect_Clicked"
+                    Text="Connect"
+                    TextColor="{StaticResource white_ice}"
+                    IsEnabled="{Binding IsEnabledButton}"
+                    Opacity="{Binding OpacityButton}"
+                    VerticalOptions="End"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="4"
+                    BackgroundColor="{StaticResource slate_900}"/>
+
             </StackLayout>
 
-        </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

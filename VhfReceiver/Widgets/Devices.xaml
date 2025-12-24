@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.Devices">
+    <ContentView.Content>
+        <ListView
+            x:Name="DevicesList"
+            ItemTapped="DevicesList_Tapped"
+            SeparatorVisibility="None"
+            SelectionMode="None"
+            HasUnevenRows="True"
+            BackgroundColor="{StaticResource slate_300}"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout
+                            Orientation="Vertical"
+                            BackgroundColor="{StaticResource catskill_white}"
+                            Spacing="0"
+                            HeightRequest="{Binding Height}"
+                            MinimumHeightRequest="80"
+                            Margin="0, 0, 0, 16">
+
+                            <StackLayout
+                                Orientation="Horizontal"
+                                Spacing="12"
+                                VerticalOptions="Center"
+                                Padding="16">
+
+                                <RelativeLayout
+                                    HeightRequest="56"
+                                    WidthRequest="56"
+                                    HorizontalOptions="Center">
+
+                                    <Ellipse
+                                        Fill="{Binding BaseColor}"
+                                        Stroke="{StaticResource slate_300}"
+                                        StrokeThickness="4"
+                                        HeightRequest="56"
+                                        WidthRequest="56"/>
+
+                                    <Image
+                                        Source="{Binding LogoImage}"
+                                        HeightRequest="48"
+                                        Margin="16, 4, 0, 0"/>
+
+                                </RelativeLayout>
+
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    Spacing="8"
+                                    HorizontalOptions="StartAndExpand">
+
+                                    <Label
+                                        Text="{Binding Name}"
+                                        FontSize="18"
+                                        TextColor="{StaticResource ebony_clay}"/>
+
+                                    <Label
+                                        Text="{Binding Status}"
+                                        FontSize="12"
+                                        TextColor="{StaticResource ebony_clay}"/>
+
+                                </StackLayout>
+
+                                <Image
+                                    Source="DeviceSelected"
+                                    IsVisible="{Binding Visible}"/>
+
+                            </StackLayout>
+
+                            <StackLayout
+                                HeightRequest="1"
+                                BackgroundColor="{StaticResource slate_300}"
+                                HorizontalOptions="Fill"
+                                IsVisible="{Binding VisibleDetails}"/>
+
+                            <StackLayout
+                                Orientation="Horizontal"
+                                VerticalOptions="Center"
+                                Padding="16"
+                                IsVisible="{Binding VisibleDetails}">
+
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    Spacing="8"
+                                    HorizontalOptions="StartAndExpand">
+
+                                    <Label
+                                        Text="Frequency Range"
+                                        TextColor="{StaticResource slate_700}"
+                                        FontSize="12"/>
+
+                                    <Label
+                                        Text="{Binding Range}"
+                                        TextColor="{StaticResource slate_900}"
+                                        FontSize="16"/>
+
+                                </StackLayout>
+
+                                <Image
+                                    Source="{Binding BatteryImage}"/>
+
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    Spacing="8">
+
+                                    <Label
+                                        Text="Battery"
+                                        TextColor="{StaticResource slate_700}"
+                                        FontSize="10"/>
+
+                                    <Label
+                                        Text="{Binding Battery}"
+                                        TextColor="{StaticResource slate_900}"
+                                        FontSize="12"
+                                        HorizontalTextAlignment="End"/>
+
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentView.Content>
+</ContentView>

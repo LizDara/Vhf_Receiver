@@ -18,20 +18,20 @@
                             HeightRequest="20"
                             WidthRequest="20">
                             <Ellipse
-                                Fill="White"
+                                Fill="{StaticResource white}"
                                 HeightRequest="18"
                                 HorizontalOptions="Center"
-                                Stroke="#7B8794"
+                                Stroke="{StaticResource slate_gray}"
                                 StrokeThickness="1"
                                 VerticalOptions="Center"
                                 WidthRequest="18" />
                             <Ellipse
                                 x:Name="Check"
                                 BackgroundColor="Transparent"
-                                Fill="#000000"
+                                Fill="{StaticResource black}"
                                 HeightRequest="10"
                                 HorizontalOptions="Center"
-                                Stroke="#000000"
+                                Stroke="{StaticResource black}"
                                 StrokeThickness="0"
                                 VerticalOptions="Center"
                                 WidthRequest="10" />
@@ -64,28 +64,28 @@
             Orientation="Vertical"
             VerticalOptions="Center"
             HorizontalOptions="FillAndExpand"
-            BackgroundColor="#F5F7FA"
+            BackgroundColor="{StaticResource catskill_white}"
             Spacing="0"
             Margin="16"
             Padding="16, 48">
 
             <Label
                 Text="Select Detection Filter"
-                TextColor="#1F2933"
+                TextColor="{StaticResource ebony_clay}"
                 FontSize="24"
                 HorizontalTextAlignment="Center"
                 Margin="0, 0, 0, 32"/>
 
             <Label
                 Text="Please select a transmitter detection filter to continue. You can change this later in receiver options."
-                TextColor="#000000"
+                TextColor="{StaticResource black}"
                 FontSize="16"
                 HorizontalTextAlignment="Center"
                 Margin="0, 0, 0, 16"/>
 
             <RadioButton
                 CheckedChanged="Detection_Changed"
-                TextColor="#3E4C59"
+                TextColor="{StaticResource limed_spruce}"
                 FontSize="16"
                 Value="9"
                 Content="Coded"
@@ -94,7 +94,7 @@
 
             <RadioButton
                 CheckedChanged="Detection_Changed"
-                TextColor="#3E4C59"
+                TextColor="{StaticResource limed_spruce}"
                 FontSize="16"
                 Value="8"
                 Content="Non Coded (Fixed Pulse Rate)"
@@ -102,7 +102,7 @@
 
             <RadioButton
                 CheckedChanged="Detection_Changed"
-                TextColor="#3E4C59"
+                TextColor="{StaticResource limed_spruce}"
                 FontSize="16"
                 Value="7"
                 Content="Non Coded (Variable Pulse Rate)"
@@ -111,7 +111,7 @@
             <Button
                 Clicked="Continue_Clicked"
                 Text="Continue"
-                TextColor="#EFFCF6"
+                TextColor="{StaticResource catskill_white}"
                 FontSize="16"
                 FontAttributes="Bold"
                 CornerRadius="22"
@@ -121,11 +121,11 @@
                         EndPoint="0,1">
 
                         <GradientStop
-                            Color="#1BA786"
+                            Color="{StaticResource mountain_meadow_light}"
                             Offset="0.5"/>
 
                         <GradientStop
-                            Color="#147D64"
+                            Color="{StaticResource mountain_meadow}"
                             Offset="1.0"/>
 
                     </LinearGradientBrush>

@@ -12,27 +12,46 @@ namespace VhfReceiver.Widgets
     {
         public List<FileInformation> Files;
 
-        public DocumentPicker()
+        public DocumentPicker(string fileName)
         {
             InitializeComponent();
 
-            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string finalPath = Path.Combine(documentsPath, "atstrack");
-            string[] files = Directory.GetFiles(finalPath);
-            Files = new List<FileInformation>();
+            string root = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileName);
+            if (!Directory.Exists(root))
+            {
+                var info = Directory.CreateDirectory(root);
+                if (!info.Exists)
+                    throw new Exception("Folder '" + fileName + "' can't be created.");
+            }
+            //File.WriteAllText(Path.Combine(root, "example.txt"), "Table9" + ValueCodes.CR + ValueCodes.LF + "150123");
+            string[] files = Directory.GetFiles(root);
+            if (files.Length > 0)
+            {
+                NoFiles.IsVisible = false;
+                Files = new List<FileInformation>();
 
-            foreach (string path in files)
-                Files.Add(new FileInformation(path));
+                foreach (string path in files)
+                    Files.Add(new FileInformation(path));
 
-            FilesList.ItemsSource = Files;
+                FilesList.ItemsSource = Files;
+            }
+            else
+            {
+                FilesList.IsVisible = false;
+                NoFiles.Text = "No file was found in the '" + fileName + "' directory.";
+            }
+        }
+
+        private void Close_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage.Navigation.PopPopupAsync(true);
         }
 
         private void FilesList_Tapped(object sender, ItemTappedEventArgs e)
         {
             FileInformation fileInformation = e.Item as FileInformation;
-            var frequenciesList = File.ReadAllLines(fileInformation.FilePath);
 
-            MessagingCenter.Send(frequenciesList, "Tables");
+            MessagingCenter.Send(fileInformation, ValueCodes.FILE);
             App.Current.MainPage.Navigation.PopPopupAsync(true);
         }
     }

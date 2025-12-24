@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.StartScanningPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <StackLayout
+            Orientation="Vertical"
+            VerticalOptions="Fill"
+            Spacing="0">
+
+            <common:Toolbar
+                x:Name="Toolbar"/>
+
+            <StackLayout
+                x:Name="Menu"
+                Orientation="Vertical"
+                Spacing="16"
+                VerticalOptions="FillAndExpand"
+                Margin="16, 24">
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    Padding="16"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ManualScan_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="Manual Scan"
+                        TextColor="{StaticResource slate_900}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Image
+                        Source="Next"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    Padding="16"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="MobileScan_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="Mobile Scan"
+                        TextColor="{StaticResource slate_900}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Image
+                        Source="Next"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    Padding="16"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center">
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="StationaryScan_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+
+                    <Label
+                        Text="Stationary Scan"
+                        TextColor="{StaticResource slate_900}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand"/>
+
+                    <Image
+                        Source="Next"/>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout
+                x:Name="Warning"
+                Orientation="Vertical"
+                Spacing="16"
+                BackgroundColor="{StaticResource catskill_white}"
+                HorizontalOptions="CenterAndExpand"
+                Margin="16, 24"
+                Padding="16"
+                IsVisible="False">
+
+                <Label
+                    x:Name="WarningMessage"
+                    TextColor="{StaticResource black}"
+                    FontSize="24"/>
+
+                <Button
+                    x:Name="GoToPage"
+                    Clicked="GoTo_Clicked"
+                    TextColor="{StaticResource catskill_white}"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="22">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow_light}"
+                                Offset="0.5"/>
+
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow}"
+                                Offset="1.0"/>
+
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="FillAndExpand"/>
+
+            <common:VhfReceiverStatus
+                x:Name="ReceiverStatus"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.Acoustic.HomePage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="Fill"
+                Spacing="0">
+
+                <StackLayout
+                    Orientation="Vertical"
+                    BackgroundColor="{StaticResource slate_900}"
+                    Padding="16, 16, 16, 24"
+                    Spacing="24">
+
+                    <common:DisconnectMenu
+                        x:Name="DisconnectMenu"/>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Spacing="16"
+                        VerticalOptions="Center">
+
+                        <RelativeLayout
+                            HeightRequest="72"
+                            WidthRequest="72"
+                            VerticalOptions="Center">
+
+                            <Image
+                                Source="AcousticColor"
+                                HeightRequest="72"
+                                WidthRequest="72"/>
+
+                            <Image
+                                Source="acoustic.png"
+                                HeightRequest="40"
+                                WidthRequest="40"
+                                Margin="16"/>
+
+                        </RelativeLayout>
+
+                        <Label
+                            x:Name="DeviceName"
+                            FontSize="24"
+                            VerticalOptions="CenterAndExpand"
+                            TextColor="{StaticResource catskill_white}"/>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+                <ScrollView
+                    Orientation="Vertical"
+                    Margin="16, 24"
+                    VerticalOptions="FillAndExpand">
+
+                    <StackLayout
+                        Spacing="16"
+                        Orientation="Vertical"
+                        Padding="16"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        VerticalOptions="StartAndExpand">
+
+                        <Label
+                            Text="Status"
+                            TextColor="{StaticResource slate_700}"
+                            FontSize="20"
+                            FontAttributes="Bold"/>
+
+                        <Label
+                            Text="Battery Voltage"
+                            TextColor="{StaticResource slate_700}"
+                            FontSize="12"
+                            Margin="0, 8, 0, 0"/>
+
+                        <Label
+                            x:Name="BatteryVoltage"
+                            TextColor="{StaticResource slate_900}"
+                            FontSize="16"/>
+
+                        <Label
+                            Text="# dets for current HR"
+                            TextColor="{StaticResource slate_700}"
+                            FontSize="12"
+                            Margin="0, 8, 0, 0"/>
+
+                        <Label
+                            x:Name="DetsHR"
+                            TextColor="{StaticResource slate_900}"
+                            FontSize="16"/>
+
+                        <Label
+                            Text="Battery Usage Since Start"
+                            TextColor="{StaticResource slate_700}"
+                            FontSize="12"
+                            Margin="0, 8, 0, 0"/>
+
+                        <Label
+                            x:Name="BatteryUsage"
+                            TextColor="{StaticResource slate_900}"
+                            FontSize="16"/>
+
+                        <Label
+                            Text="UTC Time"
+                            TextColor="{StaticResource slate_700}"
+                            FontSize="12"
+                            Margin="0, 8, 0, 0"/>
+
+                        <Label
+                            x:Name="UTCTime"
+                            TextColor="{StaticResource slate_900}"
+                            FontSize="16"/>
+
+                        <Label
+                            Text="Tilt"
+                            TextColor="{StaticResource slate_700}"
+                            FontSize="12"
+                            Margin="0, 8, 0, 0"/>
+
+                        <Label
+                            x:Name="Tilt"
+                            TextColor="{StaticResource slate_900}"
+                            FontSize="16"/>
+
+                        <Label
+                            Text="Temperature"
+                            TextColor="{StaticResource slate_700}"
+                            FontSize="12"
+                            Margin="0, 8, 0, 0"/>
+
+                        <Label
+                            x:Name="Temperature"
+                            TextColor="{StaticResource slate_900}"
+                            FontSize="16"/>
+
+                        <Label
+                            Text="Pressure"
+                            TextColor="{StaticResource slate_700}"
+                            FontSize="12"
+                            Margin="0, 8, 0, 0"/>
+
+                        <Label
+                            x:Name="Pressure"
+                            TextColor="{StaticResource slate_900}"
+                            FontSize="16"/>
+
+                        <Label
+                            Text="Error Code"
+                            TextColor="{StaticResource slate_700}"
+                            FontSize="12"
+                            Margin="0, 8, 0, 0"/>
+
+                        <Label
+                            x:Name="ErrorCode"
+                            TextColor="{StaticResource slate_900}"
+                            FontSize="16"/>
+
+                    </StackLayout>
+
+                </ScrollView>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

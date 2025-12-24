@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.BridgePage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <StackLayout
+            Orientation="Vertical"
+            Spacing="0">
+
+            <common:Toolbar
+                x:Name="Toolbar"/>
+
+            <StackLayout
+                Orientation="Vertical"
+                Spacing="0"
+                Margin="16, 24">
+
+                <StackLayout
+                    Orientation="Vertical"
+                    Spacing="0"
+                    BackgroundColor="{StaticResource slate_50}"
+                    Padding="16">
+
+                    <Label
+                        x:Name="Subtitle"
+                        TextColor="{StaticResource black}"
+                        FontSize="18"
+                        FontAttributes="Bold"/>
+
+                    <Label
+                        x:Name="Message"
+                        TextColor="{StaticResource black}"
+                        FontSize="16"/>
+
+                </StackLayout>
+
+                <Label
+                    x:Name="Title"
+                    TextColor="{StaticResource black}"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    Margin="0, 16"/>
+
+                <ListView
+                    x:Name="CategoriesList"
+                    ItemTapped="CategoriesList_Tapped"
+                    SeparatorVisibility="None"
+                    SelectionMode="None"
+                    RowHeight="100"
+                    VerticalOptions="FillAndExpand"
+                    BackgroundColor="{StaticResource slate_300}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout
+                                    Orientation="Horizontal"
+                                    Spacing="8"
+                                    BackgroundColor="{StaticResource catskill_white}"
+                                    Margin="0, 0, 0, 16"
+                                    Padding="16"
+                                    VerticalOptions="Center">
+
+                                    <RelativeLayout
+                                        HeightRequest="56"
+                                        WidthRequest="56"
+                                        HorizontalOptions="Center">
+
+                                        <Ellipse
+                                            Fill="{Binding BaseColor}"
+                                            Stroke="{StaticResource slate_300}"
+                                            StrokeThickness="4"
+                                            HeightRequest="56"
+                                            WidthRequest="56"/>
+
+                                        <Image
+                                            Source="{Binding LogoImage}"
+                                            HeightRequest="48"
+                                            Margin="16, 4, 0, 0"/>
+
+                                    </RelativeLayout>
+
+                                    <StackLayout
+                                        Orientation="Vertical"
+                                        Spacing="8"
+                                        HorizontalOptions="StartAndExpand">
+
+                                        <Label
+                                            Text="{Binding Name}"
+                                            TextColor="{StaticResource ebony_clay}"
+                                            FontSize="16"
+                                            FontAttributes="Bold"/>
+
+                                        <Label
+                                            Text="{Binding Description}"
+                                            TextColor="{StaticResource ebony_clay}"
+                                            FontSize="12"/>
+
+                                    </StackLayout>
+
+                                    <Image
+                                        Source="Next"/>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

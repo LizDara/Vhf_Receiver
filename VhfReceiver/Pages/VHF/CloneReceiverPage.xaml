@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.CloneReceiverPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="Start"
+                Spacing="0">
+
+                <common:Toolbar
+                    x:Name="Toolbar"/>
+
+                <StackLayout
+                    x:Name="NoReceiversDetected"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="16, 24"
+                    Padding="16, 32"
+                    IsVisible="False">
+
+                    <RelativeLayout
+                        HeightRequest="128"
+                        VerticalOptions="Center"
+                        HorizontalOptions="CenterAndExpand">
+
+                        <Ellipse
+                            Fill="{StaticResource light_red}"
+                            Stroke="{StaticResource tall_poppy}"
+                            StrokeThickness="8"
+                            HeightRequest="128"
+                            WidthRequest="128"/>
+
+                        <Image
+                            Source="receiver.png"
+                            HeightRequest="96"
+                            Margin="16, 16, 0, 0"/>
+
+                    </RelativeLayout>
+
+                    <Label
+                        Text="No Receivers Detected"
+                        TextColor="{StaticResource ebony_clay}"
+                        FontSize="30"
+                        Margin="0, 32, 0, 16"
+                        HorizontalTextAlignment="Center"/>
+
+                    <Label
+                        Text="Make sure receivers are on and connected via the clone cable."
+                        TextColor="{StaticResource ebony_clay}"
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="ReadyToClone"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    BackgroundColor="{StaticResource catskill_white}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="16, 24"
+                    Padding="16, 32"
+                    IsVisible="False">
+
+                    <RelativeLayout
+                        HeightRequest="128"
+                        VerticalOptions="Center"
+                        HorizontalOptions="CenterAndExpand">
+
+                        <Ellipse
+                            Fill="{StaticResource humming_bird}"
+                            Stroke="{StaticResource keppel}"
+                            StrokeThickness="8"
+                            HeightRequest="128"
+                            WidthRequest="128"/>
+
+                        <Image
+                            Source="receiver.png"
+                            HeightRequest="96"
+                            Margin="16, 16, 0, 0"/>
+
+                    </RelativeLayout>
+
+                    <Label
+                        Text="Ready To Clone"
+                        TextColor="{StaticResource ebony_clay}"
+                        FontSize="30"
+                        Margin="0, 32, 0, 0"
+                        HorizontalTextAlignment="Center"/>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <common:VhfReceiverStatus/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

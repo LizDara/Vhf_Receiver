@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Pages;
+using VhfReceiver.Utils;
 
 namespace VhfReceiver.Widgets
 {
@@ -11,7 +12,7 @@ namespace VhfReceiver.Widgets
             InitializeComponent();
             StateMessage.Text = message;
 
-            Task.Delay(700).ContinueWith(t => App.Current.MainPage.Navigation.PopPopupAsync(true));
+            Task.Delay(ValueCodes.MESSAGE_PERIOD).ContinueWith(t => App.Current.MainPage.Navigation.PopPopupAsync(true));
         }
     }
 }

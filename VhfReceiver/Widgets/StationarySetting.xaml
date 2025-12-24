@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.StationarySetting">
+
+    <StackLayout
+        Orientation="Vertical"
+        Spacing="0"
+        BackgroundColor="{StaticResource catskill_white}">
+
+        <StackLayout
+            x:Name="ScanTimeoutTap"
+            Orientation="Horizontal"
+            VerticalOptions="Center"
+            Spacing="0"
+            Padding="16">
+
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="ScanTimeout_Tapped"/>
+            </StackLayout.GestureRecognizers>
+
+            <StackLayout
+                Orientation="Vertical"
+                Spacing="0"
+                HorizontalOptions="StartAndExpand">
+
+                <Label
+                    Text="Timeout (Seconds)"
+                    TextColor="{StaticResource limed_spruce}"
+                    FontSize="12"
+                    Margin="0, 0, 0, 8"/>
+
+                <Label
+                    x:Name="ScanTimeout"
+                    TextColor="{StaticResource ebony_clay}"
+                    FontSize="16"/>
+
+            </StackLayout>
+
+            <Image
+                Source="Next"/>
+
+        </StackLayout>
+
+        <StackLayout
+            HeightRequest="1"
+            BackgroundColor="{StaticResource light_gray}"
+            HorizontalOptions="Fill"/>
+
+        <StackLayout
+            x:Name="ScanTimeTap"
+            Orientation="Horizontal"
+            VerticalOptions="Center"
+            Spacing="0"
+            Padding="16">
+
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="ScanTime_Tapped"/>
+            </StackLayout.GestureRecognizers>
+
+            <StackLayout
+                Orientation="Vertical"
+                Spacing="0"
+                HorizontalOptions="StartAndExpand">
+
+                <Label
+                    Text="Scan Time (Seconds)"
+                    TextColor="{StaticResource limed_spruce}"
+                    FontSize="12"
+                    Margin="0, 0, 0, 8"/>
+
+                <Label
+                    x:Name="ScanTime"
+                    TextColor="{StaticResource ebony_clay}"
+                    FontSize="16"/>
+
+            </StackLayout>
+
+            <Image
+                Source="Next"/>
+
+        </StackLayout>
+
+        <StackLayout
+            HeightRequest="1"
+            BackgroundColor="{StaticResource light_gray}"
+            HorizontalOptions="Fill"/>
+
+        <StackLayout
+            x:Name="StoreRateTap"
+            Orientation="Horizontal"
+            VerticalOptions="Center"
+            Spacing="0"
+            Padding="16">
+
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="StoreRate_Tapped"/>
+            </StackLayout.GestureRecognizers>
+
+            <StackLayout
+                Orientation="Vertical"
+                Spacing="0"
+                HorizontalOptions="StartAndExpand">
+
+                <Label
+                    Text="Store Rate (Minutes)"
+                    TextColor="{StaticResource limed_spruce}"
+                    FontSize="12"
+                    Margin="0, 0, 0, 8"/>
+
+                <Label
+                    x:Name="StoreRate"
+                    TextColor="{StaticResource ebony_clay}"
+                    FontSize="16"/>
+
+            </StackLayout>
+
+            <Image
+                x:Name="Next"
+                Source="Next"/>
+
+        </StackLayout>
+
+        <StackLayout
+            HeightRequest="1"
+            BackgroundColor="{StaticResource light_gray}"
+            HorizontalOptions="Fill"/>
+
+        <StackLayout
+            x:Name="FrequencyTableNumberTap"
+            Orientation="Horizontal"
+            VerticalOptions="Center"
+            Spacing="0"
+            Padding="16">
+
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="FrequencyTableNumber_Tapped"/>
+            </StackLayout.GestureRecognizers>
+
+            <StackLayout
+                Orientation="Vertical"
+                Spacing="0"
+                HorizontalOptions="StartAndExpand">
+
+                <Label
+                    Text="Scan Tables"
+                    TextColor="{StaticResource limed_spruce}"
+                    FontSize="12"
+                    Margin="0, 0, 0, 8"/>
+
+                <Label
+                    x:Name="FrequencyTableNumber"
+                    TextColor="{StaticResource ebony_clay}"
+                    FontSize="16"/>
+
+            </StackLayout>
+
+            <Image
+                Source="Next"/>
+
+        </StackLayout>
+
+        <StackLayout
+            HeightRequest="1"
+            BackgroundColor="{StaticResource light_gray}"
+            HorizontalOptions="Fill"/>
+
+        <StackLayout
+            x:Name="NumberOfAntennasTap"
+            Orientation="Horizontal"
+            VerticalOptions="Center"
+            Spacing="0"
+            Padding="16">
+
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="NumberOfAntennas_Tapped"/>
+            </StackLayout.GestureRecognizers>
+
+            <StackLayout
+                Orientation="Vertical"
+                Spacing="0"
+                HorizontalOptions="StartAndExpand">
+
+                <Label
+                    Text="Number of Antennas"
+                    TextColor="{StaticResource limed_spruce}"
+                    FontSize="12"
+                    Margin="0, 0, 0, 8"/>
+
+                <Label
+                    x:Name="NumberOfAntennas"
+                    TextColor="{StaticResource ebony_clay}"
+                    FontSize="16"/>
+
+            </StackLayout>
+
+            <Image
+                Source="Next"/>
+
+        </StackLayout>
+
+        <StackLayout
+            HeightRequest="1"
+            BackgroundColor="{StaticResource light_gray}"
+            HorizontalOptions="Fill"/>
+
+        <StackLayout
+            Orientation="Horizontal"
+            VerticalOptions="Center"
+            Spacing="0"
+            Padding="16">
+
+            <Label
+                Text="External Data Transfer"
+                TextColor="{StaticResource limed_spruce}"
+                FontSize="12"
+                Margin="0, 0, 0, 8"
+                HorizontalOptions="StartAndExpand"
+                VerticalTextAlignment="Center"/>
+
+            <Switch
+                x:Name="ExternalDataTransfer"
+                OnColor="{StaticResource humming_bird}"
+                Toggled="ExternalDataTransfer_Toggled">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="On">
+                            <VisualState.Setters>
+                                <Setter
+                                    Property="ThumbColor"
+                                    Value="#147D64"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Off">
+                            <VisualState.Setters>
+                                <Setter
+                                    Property="ThumbColor"
+                                    Value="#7B8794"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+            </Switch>
+
+        </StackLayout>
+
+        <StackLayout
+            HeightRequest="1"
+            BackgroundColor="{StaticResource light_gray}"
+            HorizontalOptions="Fill"/>
+
+        <StackLayout
+            Orientation="Horizontal"
+            VerticalOptions="Center"
+            Spacing="0"
+            Padding="16">
+
+            <Label
+                Text="Reference Frequency"
+                TextColor="{StaticResource limed_spruce}"
+                FontSize="12"
+                Margin="0, 0, 0, 8"
+                HorizontalOptions="StartAndExpand"
+                VerticalTextAlignment="Center"/>
+
+            <Switch
+                x:Name="ReferenceFrequencySwitch"
+                OnColor="{StaticResource humming_bird}"
+                Toggled="ReferenceFrequency_Toggled">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="On">
+                            <VisualState.Setters>
+                                <Setter
+                                    Property="ThumbColor"
+                                    Value="#147D64"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Off">
+                            <VisualState.Setters>
+                                <Setter
+                                    Property="ThumbColor"
+                                    Value="#7B8794"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+            </Switch>
+
+        </StackLayout>
+
+        <StackLayout
+            HeightRequest="1"
+            BackgroundColor="{StaticResource light_gray}"
+            HorizontalOptions="Fill"/>
+
+        <StackLayout
+            x:Name="ReferenceFrequencyTap"
+            Orientation="Horizontal"
+            VerticalOptions="Center"
+            Spacing="0"
+            Padding="16">
+
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="ReferenceFrequency_Tapped"/>
+            </StackLayout.GestureRecognizers>
+
+            <StackLayout
+                Orientation="Vertical"
+                Spacing="0"
+                HorizontalOptions="StartAndExpand">
+
+                <Label
+                    Text="Reference Frequency"
+                    TextColor="{StaticResource limed_spruce}"
+                    FontSize="12"
+                    Margin="0, 0, 0, 8"/>
+
+                <Label
+                    x:Name="ReferenceFrequency"
+                    TextColor="{StaticResource ebony_clay}"
+                    FontSize="16"/>
+
+            </StackLayout>
+
+            <Image
+                Source="Next"/>
+
+        </StackLayout>
+
+        <StackLayout
+            HeightRequest="1"
+            BackgroundColor="{StaticResource light_gray}"
+            HorizontalOptions="Fill"/>
+
+        <StackLayout
+            x:Name="ReferenceFrequencyStoreRateTap"
+            Orientation="Horizontal"
+            VerticalOptions="Center"
+            Spacing="0"
+            Padding="16">
+
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="ReferenceFrequencyStoreRate_Tapped"/>
+            </StackLayout.GestureRecognizers>
+
+            <StackLayout
+                Orientation="Vertical"
+                Spacing="0"
+                HorizontalOptions="StartAndExpand">
+
+                <Label
+                    Text="Reference Frequency Store Rate (Minutes)"
+                    TextColor="{StaticResource limed_spruce}"
+                    FontSize="12"
+                    Margin="0, 0, 0, 8"/>
+
+                <Label
+                    x:Name="ReferenceFrequencyStoreRate"
+                    TextColor="{StaticResource ebony_clay}"
+                    FontSize="16"/>
+
+            </StackLayout>
+
+            <Image
+                Source="Next"/>
+
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentView>

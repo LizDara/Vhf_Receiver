@@ -10,7 +10,7 @@
             Orientation="Vertical"
             VerticalOptions="Center"
             HorizontalOptions="FillAndExpand"
-            BackgroundColor="#F5F7FA"
+            BackgroundColor="{StaticResource catskill_white}"
             Spacing="0"
             Margin="16"
             Padding="16, 48">
@@ -18,7 +18,7 @@
             <ActivityIndicator
                 IsRunning="True"
                 Margin="0, 0, 0, 24"
-                Color="#3EBD93"
+                Color="{StaticResource keppel}"
                 HeightRequest="48"
                 IsVisible="{Binding IsVisibleLoading}"
                 WidthRequest="48"/>
@@ -30,7 +30,7 @@
 
             <Label
                 Text="{Binding Message}"
-                TextColor="#1F2933"
+                TextColor="{StaticResource ebony_clay}"
                 FontSize="30"
                 HorizontalTextAlignment="Center"/>
 

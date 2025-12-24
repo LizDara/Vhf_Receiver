@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.DisconnectMenu">
+    <StackLayout
+        Orientation="Horizontal"
+        Spacing="0">
+
+        <Button
+            Clicked="Disconnect_Clicked"
+            Text="Disconnect"
+            TextColor="{StaticResource slate_50}"
+            FontSize="16"
+            FontAttributes="Bold"
+            BackgroundColor="{StaticResource slate_900}"
+            BorderColor="{StaticResource slate_50}"
+            BorderWidth="1"
+            CornerRadius="8"
+            HeightRequest="32"
+            Padding="11, 6"
+            HorizontalOptions="StartAndExpand"/>
+
+        <ImageButton
+            x:Name="MenuOption"
+            Clicked="Menu_Clicked"
+            Source="Menu"
+            Padding="8"
+            BackgroundColor="{StaticResource slate_900}"/>
+
+    </StackLayout>
+</ContentView>

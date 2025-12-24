@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Extensions;
 
 using Xamarin.Forms;
 using VhfReceiver.Utils;
-using VhfReceiver.Pages;
 
 namespace VhfReceiver.Widgets
 {
@@ -78,34 +76,24 @@ namespace VhfReceiver.Widgets
 
         private async void SaveChanges_Clicked(object sender, EventArgs e)
         {
-            ReceiverInformation receiverInformation = ReceiverInformation.GetReceiverInformation();
-            try
+            byte[] b;
+            string description;
+            if (Converters.GetHexValue(Option).Equals("59"))
             {
-                var service = await receiverInformation.GetDevice().GetServiceAsync(VhfReceiverUuids.UUID_SERVICE_SCAN);
-                if (service != null)
-                {
-                    var characteristic = await service.GetCharacteristicAsync(VhfReceiverUuids.UUID_CHARACTERISTIC_TX_TYPE);
-                    if (characteristic != null)
-                    {
-                        byte[] b;
-                        if (Converters.GetHexValue(Option).Equals("59"))
-                            b = new byte[] { Option, (byte)int.Parse(NewDigit.Text), Background.IsToggled ? (byte)1 : (byte)0 };
-                        else
-                            b = new byte[] { Option, Background.IsToggled ? (byte)1 : (byte)0 };
-
-                        bool result = await characteristic.WriteAsync(b);
-                        if (result)
-                            await App.Current.MainPage.Navigation.PopPopupAsync();
-                    }
-                }
+                description = "Single (" + NewDigit.Text + ")";
+                b = new byte[] { Option, (byte)int.Parse(NewDigit.Text), Background.IsToggled ? (byte)1 : (byte)0 };
             }
-            catch
+            else
+            {
+                description = Converters.GetHexValue(Option).Equals("5A") ? "All" : "None";
+                b = new byte[] { Option, Background.IsToggled ? (byte)1 : (byte)0 };
+            }
+
+            bool result = await TransferBLEData.WriteScanning(b);
+            if (result)
             {
                 await App.Current.MainPage.Navigation.PopPopupAsync();
-
-                var popMessage = new ReceiverDisconnected();
-                await App.Current.MainPage.Navigation.PushPopupAsync(popMessage, true);
-                await Navigation.PushModalAsync(new SearchingDevicesPage());
+                MessagingCenter.Send(description, ValueCodes.VALUE);
             }
         }
     }

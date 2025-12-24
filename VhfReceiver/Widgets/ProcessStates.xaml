@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.ProcessStates">
+    <ContentView.Content>
+        <StackLayout
+            Orientation="Vertical"
+            Spacing="0">
+
+            <StackLayout
+                Orientation="Horizontal"
+                Spacing="0">
+
+                <Image
+                    x:Name="FirstStatus"
+                    Source="LightCircle"/>
+
+                <Label
+                    x:Name="FirstMessage"
+                    Text="Downloading Data"
+                    TextColor="{StaticResource slate_gray}"
+                    FontSize="18"
+                    Margin="16, 0, 0, 0"/>
+
+                <Label
+                    Text="{Binding DownloadPercent}"
+                    TextColor="{StaticResource slate_gray}"
+                    FontSize="18"/>
+
+                <ActivityIndicator
+                    x:Name="FirstIndicator"
+                    IsRunning="True"
+                    HeightRequest="24"
+                    WidthRequest="24"
+                    Color="{StaticResource keppel}"
+                    HorizontalOptions="EndAndExpand"/>
+
+            </StackLayout>
+
+            <Image
+                Source="Line"
+                Margin="11, 0, 0, 0"
+                HorizontalOptions="StartAndExpand"/>
+
+            <StackLayout
+                Orientation="Horizontal"
+                Spacing="0">
+
+                <Image
+                    x:Name="SecondStatus"
+                    Source="LightCircle"/>
+
+                <Label
+                    x:Name="SecondMessage"
+                    Text="Processing Data"
+                    TextColor="{StaticResource slate_gray}"
+                    FontSize="18"
+                    Margin="16, 0, 0, 0"/>
+
+                <ActivityIndicator
+                    x:Name="SecondIndicator"
+                    IsRunning="True"
+                    HeightRequest="24"
+                    WidthRequest="24"
+                    Color="{StaticResource keppel}"
+                    HorizontalOptions="EndAndExpand"/>
+
+            </StackLayout>
+
+            <Image
+                Source="Line"
+                Margin="11, 0, 0, 0"
+                HorizontalOptions="StartAndExpand"/>
+
+            <StackLayout
+                Orientation="Horizontal"
+                Spacing="0">
+
+                <Image
+                    x:Name="ThirdStatus"
+                    Source="LightCircle"/>
+
+                <Label
+                    x:Name="ThirdMessage"
+                    Text="Preparing File"
+                    TextColor="{StaticResource slate_gray}"
+                    FontSize="18"
+                    Margin="16, 0, 0, 0"/>
+
+                <ActivityIndicator
+                    x:Name="ThirdIndicator"
+                    IsRunning="True"
+                    HeightRequest="24"
+                    WidthRequest="24"
+                    Color="{StaticResource keppel}"
+                    HorizontalOptions="EndAndExpand"/>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

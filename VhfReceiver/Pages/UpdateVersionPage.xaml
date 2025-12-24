@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.UpdateVersionPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <StackLayout
+            Orientation="Vertical"
+            Spacing="0"
+            VerticalOptions="Fill">
+
+            <common:Toolbar
+                x:Name="Toolbar"/>
+
+            <StackLayout
+                x:Name="UpdateMessage"
+                Orientation="Vertical"
+                Spacing="16"
+                VerticalOptions="FillAndExpand"
+                Margin="16, 24"
+                HorizontalOptions="Center">
+
+                <Label
+                    x:Name="FirmwareVersion"
+                    TextColor="{StaticResource black}"
+                    FontSize="18"
+                    FontAttributes="Bold"/>
+
+                <Label
+                    Text="The latest version of firmware file will be downloaded before installing."
+                    TextColor="{StaticResource black}"
+                    FontSize="16"/>
+
+                <Button
+                    Clicked="Begin_Clicked"
+                    Text="Begin"
+                    TextColor="{StaticResource catskill_white}"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="4"
+                    VerticalOptions="EndAndExpand">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow_light}"
+                                Offset="0.5"/>
+
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow}"
+                                Offset="1.0"/>
+
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </StackLayout>
+
+            <StackLayout
+                x:Name="UpdatingProcess"
+                Orientation="Vertical"
+                Spacing="0"
+                Margin="16, 24"
+                Padding="16"
+                HorizontalOptions="Center"
+                BackgroundColor="{StaticResource catskill_white}">
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Spacing="8">
+
+                    <ActivityIndicator
+                        x:Name="Loading"
+                        Color="{StaticResource keppel}"
+                        HeightRequest="48"
+                        WidthRequest="48"/>
+
+                    <Label
+                        x:Name="State"
+                        TextColor="{StaticResource ebony_clay}"
+                        FontSize="20"
+                        FontAttributes="Bold"/>
+
+                </StackLayout>
+
+                <ProgressBar
+                    x:Name="UpdateProgress"
+                    ProgressColor="{StaticResource mountain_meadow}"
+                    BackgroundColor="{StaticResource humming_bird}"
+                    Margin="0, 12, 0, 8"/>
+
+                <Label
+                    x:Name="FileName"
+                    TextColor="{StaticResource black}"
+                    FontSize="12"
+                    Margin="0, 0, 0, 24"/>
+
+                <common:ProcessStates
+                    x:Name="ProcessStates"/>
+
+                <Button
+                    Clicked="CancelUpdate_Clicked"
+                    Text="Cancel Update"
+                    TextColor="{StaticResource ebony_clay}"
+                    FontSize="16"
+                    CornerRadius="4"
+                    BorderWidth="1"
+                    HeightRequest="32"
+                    Padding="8, 0"
+                    Margin="0, 20, 0, 0"
+                    FontAttributes="Bold"
+                    BorderColor="{StaticResource ebony_clay}"
+                    BackgroundColor="{StaticResource catskill_white}"/>
+
+            </StackLayout>
+
+            <StackLayout
+                x:Name="InstallationComplete"
+                Orientation="Vertical"
+                Spacing="0"
+                Margin="16, 24"
+                Padding="16"
+                BackgroundColor="{StaticResource catskill_white}">
+
+                <Image
+                    Source="check.png"/>
+
+                <Label
+                    Text="Installation Complete"
+                    TextColor="{StaticResource ebony_clay}"
+                    FontSize="30"
+                    Margin="0, 16, 0, 24"/>
+
+                <Button
+                    Clicked="ReturnMenu_Clicked"
+                    Text="Return to Device Screen"
+                    TextColor="{StaticResource catskill_white}"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="4">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow_light}"
+                                Offset="0.5"/>
+
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow}"
+                                Offset="1.0"/>
+
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.HomePage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="Start"
+                Spacing="0">
+
+                <StackLayout
+                    Orientation="Vertical"
+                    Spacing="24"
+                    Padding="16, 24"
+                    BackgroundColor="{StaticResource slate_900}"
+                    VerticalOptions="StartAndExpand">
+
+                    <common:DisconnectMenu
+                        x:Name="DisconnectMenu"/>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        VerticalOptions="Start"
+                        Spacing="12">
+
+                        <RelativeLayout
+                            HeightRequest="128"
+                            VerticalOptions="Center"
+                            HorizontalOptions="CenterAndExpand">
+
+                            <Ellipse
+                                Fill="{StaticResource slate_700}"
+                                Stroke="{StaticResource slate_300}"
+                                StrokeThickness="8"
+                                HeightRequest="128"
+                                WidthRequest="128"/>
+
+                            <Image
+                                Source="receiver.png"
+                                HeightRequest="96"
+                                Margin="16, 16, 0, 0"/>
+
+                        </RelativeLayout>
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            VerticalOptions="CenterAndExpand"
+                            Spacing="8">
+
+                            <Label
+                                x:Name="DeviceName"
+                                TextColor="{StaticResource catskill_white}"
+                                FontSize="24"/>
+
+                            <StackLayout
+                                Orientation="Horizontal"
+                                VerticalOptions="Center"
+                                Spacing="8">
+
+                                <Image
+                                    x:Name="BatteryImage"/>
+
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    HorizontalOptions="StartAndExpand">
+
+                                    <Label
+                                        Text="Battery"
+                                        FontSize="10"
+                                        TextColor="{StaticResource humming_bird}"/>
+
+                                    <Label
+                                        x:Name="DeviceBattery"
+                                        TextColor="{StaticResource catskill_white}"
+                                        FontSize="16"/>
+
+                                </StackLayout>
+
+                                <Image
+                                    x:Name="SDCardImage"/>
+
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    HorizontalOptions="StartAndExpand">
+
+                                    <Label
+                                        Text="SD Card"
+                                        FontSize="10"
+                                        TextColor="{StaticResource humming_bird}"/>
+
+                                    <Label
+                                        x:Name="SDCard"
+                                        TextColor="{StaticResource catskill_white}"
+                                        FontSize="16"/>
+
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <Button
+                        Clicked="StartScanning_Clicked"
+                        Text="Start Scanning"
+                        TextColor="{StaticResource mountain_meadow}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="4"
+                        VerticalOptions="EndAndExpand">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+
+                                <GradientStop
+                                    Color="{StaticResource humming_bird}"
+                                    Offset="0.5"/>
+
+                                <GradientStop
+                                    Color="{StaticResource humming_bird_dark}"
+                                    Offset="1.0"/>
+
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Vertical"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="StartAndExpand"
+                    Spacing="16"
+                    Padding="16, 24">
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Padding="16"
+                        HorizontalOptions="Fill">
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ReceiverConfiguration_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Label
+                            Text="Receiver Configuration"
+                            TextColor="{StaticResource slate_900}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"/>
+
+                        <Image
+                            Source="Next"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Padding="16"
+                        HorizontalOptions="Fill">
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ManageReceiverData_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Label
+                            Text="Manage Receiver Data"
+                            TextColor="{StaticResource slate_900}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"/>
+
+                        <Image
+                            Source="Next"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Padding="16"
+                        HorizontalOptions="Fill">
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ConvertRawData_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Label
+                            Text="Convert Raw Data (SD Card)"
+                            TextColor="{StaticResource slate_900}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"/>
+
+                        <Image
+                            Source="Next"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        Padding="16"
+                        HorizontalOptions="Fill">
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TestReceiver_Tapped"/>
+                        </StackLayout.GestureRecognizers>
+
+                        <Label
+                            Text="Diagnostics"
+                            TextColor="{StaticResource slate_900}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            HorizontalOptions="StartAndExpand"/>
+
+                        <Image
+                            Source="Next"/>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

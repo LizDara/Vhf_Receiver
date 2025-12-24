@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.VhfReceiverStatus"
+    VerticalOptions="End">
+
+    <StackLayout
+        Orientation="Horizontal"
+        BackgroundColor="{StaticResource catskill_white}"
+        Padding="8"
+        HorizontalOptions="FillAndExpand">
+
+        <RelativeLayout
+            HeightRequest="64"
+            VerticalOptions="Center"
+            HorizontalOptions="Start"
+            Margin="0, 4, 0, 4">
+
+            <Ellipse
+                Fill="{StaticResource keppel}"
+                Stroke="{StaticResource humming_bird}"
+                StrokeThickness="8"
+                HeightRequest="64"
+                WidthRequest="64"/>
+
+            <Image
+                Source="receiver.png"
+                HeightRequest="40"
+                Margin="12, 12, 0, 0"/>
+
+        </RelativeLayout>
+
+        <StackLayout
+            Orientation="Horizontal"
+            VerticalOptions="Center">
+
+            <Image
+                Source="{Binding BatteryImage}"
+                Margin="8, 0, 8, 0"/>
+
+            <StackLayout
+                Orientation="Vertical">
+
+                <Label
+                    Text="Battery"
+                    FontSize="10"
+                    TextColor="{StaticResource slate_gray}"/>
+
+                <Label
+                    Text="{Binding BatteryPercent}"
+                    TextColor="{StaticResource ebony_clay}"
+                    FontSize="16"/>
+
+            </StackLayout>
+
+            <Image
+                Source="{Binding SDCardImage}"
+                Margin="20, 0, 8, 0"/>
+
+            <StackLayout
+                Orientation="Vertical">
+
+                <Label
+                    Text="SD Card"
+                    FontSize="10"
+                    TextColor="{StaticResource slate_gray}"/>
+
+                <Label
+                    Text="{Binding SDCardState}"
+                    TextColor="{StaticResource ebony_clay}"
+                    FontSize="16"/>
+
+            </StackLayout>
+
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentView>

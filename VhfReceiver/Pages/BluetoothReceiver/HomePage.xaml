@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.BluetoothReceiver.HomePage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <StackLayout
+            Orientation="Vertical"
+            Spacing="0"
+            VerticalOptions="Fill">
+
+            <common:Toolbar
+                x:Name="Toolbar"/>
+
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="StartAndExpand"
+                BackgroundColor="{StaticResource catskill_white}"
+                Margin="16, 24"
+                Padding="16"
+                Spacing="24">
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Spacing="8">
+
+                    <RelativeLayout
+                        HeightRequest="64"
+                        VerticalOptions="Center"
+                        HorizontalOptions="CenterAndExpand">
+
+                        <Ellipse
+                            Fill="{StaticResource boston_blue}"
+                            Stroke="{StaticResource slate_300}"
+                            StrokeThickness="4"
+                            HeightRequest="64"
+                            WidthRequest="64"/>
+
+                        <Image
+                            Source="bluetooth.png"
+                            HeightRequest="32"
+                            Margin="18, 16, 0, 0"/>
+
+                    </RelativeLayout>
+
+                    <Label
+                        x:Name="DeviceName"
+                        FontSize="24"
+                        VerticalOptions="CenterAndExpand"
+                        TextColor="{StaticResource limed_spruce}"/>
+
+                </StackLayout>
+
+                <Button
+                    Clicked="DetectTags_Clicked"
+                    Text="Detect Tags"
+                    TextColor="{StaticResource catskill_white}"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="4">
+                    <Button.Background>
+                        <LinearGradientBrush
+                            EndPoint="0,1">
+
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow_light}"
+                                Offset="0.5"/>
+
+                            <GradientStop
+                                Color="{StaticResource mountain_meadow}"
+                                Offset="1.0"/>
+
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

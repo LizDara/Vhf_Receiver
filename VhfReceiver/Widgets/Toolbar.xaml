@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.Toolbar">
+    <StackLayout
+        Orientation="Vertical"
+        Spacing="0">
+
+        <StackLayout
+            x:Name="State"
+            HeightRequest="8"
+            BackgroundColor="{StaticResource mountain_meadow}"
+            HorizontalOptions="Fill"/>
+
+        <StackLayout
+            Orientation="Horizontal"
+            BackgroundColor="{StaticResource catskill_white}"
+            VerticalOptions="Center"
+            Spacing="0"
+            Padding="16, 8">
+
+            <ImageButton
+                x:Name="Back"
+                Source="Back"
+                Padding="8"
+                BackgroundColor="{StaticResource catskill_white}"/>
+
+            <Label
+                x:Name="TitleToolbar"
+                TextColor="{StaticResource light_blue}"
+                FontSize="20"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="Center"/>
+
+        </StackLayout>
+    </StackLayout>
+</ContentView>

@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.BluetoothReceiver.TagDetectionPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+        <StackLayout
+            Orientation="Vertical"
+            Spacing="0"
+            VerticalOptions="Fill">
+
+            <common:Toolbar
+                x:Name="Toolbar"/>
+
+            <StackLayout
+                Orientation="Vertical"
+                Spacing="16"
+                VerticalOptions="FillAndExpand"
+                Margin="16, 24">
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Spacing="8"
+                    Padding="16"
+                    BackgroundColor="{StaticResource catskill_white}">
+
+                    <Image
+                        x:Name="Gps"/>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="12"
+                        HorizontalOptions="StartAndExpand">
+
+                        <Label
+                            x:Name="LocationData"
+                            TextColor="{StaticResource black}"
+                            FontSize="16"/>
+
+                        <Label
+                            x:Name="Coordinates"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="12"/>
+
+                    </StackLayout>
+
+                    <Button
+                        x:Name="Location"
+                        Clicked="Location_Clicked"
+                        TextColor="{StaticResource ebony_clay}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        BackgroundColor="{StaticResource catskill_white}"
+                        BorderColor="{StaticResource ebony_clay}"
+                        BorderWidth="1"
+                        CornerRadius="8"
+                        HeightRequest="32"
+                        Padding="11, 6"/>
+
+                </StackLayout>
+
+                <Label
+                    Text="Detected Tags:"
+                    TextColor="{StaticResource black}"
+                    FontSize="18"
+                    FontAttributes="Bold"/>
+
+                <ListView
+                    x:Name="TagsList"
+                    ItemTapped="TagsList_Tapped"
+                    SeparatorVisibility="None"
+                    SelectionMode="None"
+                    HasUnevenRows="True"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="{StaticResource slate_300}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    BackgroundColor="{StaticResource catskill_white}"
+                                    Spacing="0"
+                                    HeightRequest="{Binding Height}"
+                                    MinimumHeightRequest="72"
+                                    Margin="0, 0, 0, 16">
+
+                                    <StackLayout
+                                        Orientation="Horizontal"
+                                        Padding="16"
+                                        Spacing="0">
+
+                                        <Image
+                                            Source="LightCircle"/>
+
+                                        <Label
+                                            Text="{Binding Code}"
+                                            TextColor="{StaticResource limed_spruce}"
+                                            FontSize="16"
+                                            VerticalOptions="CenterAndExpand"
+                                            Margin="8, 0"/>
+
+                                        <Label
+                                            Text="Detections: "
+                                            TextColor="{StaticResource ebony_clay}"
+                                            FontSize="12"
+                                            VerticalOptions="CenterAndExpand"/>
+
+                                        <Label
+                                            Text="{Binding Detection}"
+                                            TextColor="{StaticResource ebony_clay}"
+                                            FontSize="12"
+                                            VerticalOptions="CenterAndExpand"/>
+
+                                        <ImageButton
+                                            Source="Up"
+                                            HorizontalOptions="EndAndExpand"/>
+
+                                    </StackLayout>
+
+                                    <StackLayout
+                                        HeightRequest="1"
+                                        BackgroundColor="{StaticResource slate_300}"
+                                        HorizontalOptions="Fill"
+                                        IsVisible="{Binding Visible}"/>
+
+                                    <StackLayout
+                                        Orientation="Vertical"
+                                        Spacing="12"
+                                        Padding="16"
+                                        IsVisible="{Binding Visible}">
+
+                                        <StackLayout
+                                            Orientation="Horizontal"
+                                            Spacing="0">
+
+                                            <Label
+                                                Text="RSSI (dBm): "
+                                                TextColor="{StaticResource ebony_clay}"
+                                                FontSize="12"/>
+
+                                            <Label
+                                                Text="{Binding Rssi}"
+                                                TextColor="{StaticResource ebony_clay}"
+                                                FontSize="12"/>
+
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Orientation="Horizontal"
+                                            Spacing="0">
+
+                                            <Label
+                                                Text="Time Since (secs): "
+                                                TextColor="{StaticResource ebony_clay}"
+                                                FontSize="12"/>
+
+                                            <Label
+                                                Text="{Binding TimeSince}"
+                                                TextColor="{StaticResource ebony_clay}"
+                                                FontSize="12"/>
+
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Orientation="Horizontal"
+                                            Spacing="0">
+
+                                            <Label
+                                                Text="Temperature (C): "
+                                                TextColor="{StaticResource ebony_clay}"
+                                                FontSize="12"/>
+
+                                            <Label
+                                                Text="{Binding Temperature}"
+                                                TextColor="{StaticResource ebony_clay}"
+                                                FontSize="12"/>
+
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Orientation="Horizontal"
+                                            Spacing="0">
+
+                                            <Label
+                                                Text="Voltage (mV): "
+                                                TextColor="{StaticResource ebony_clay}"
+                                                FontSize="12"/>
+
+                                            <Label
+                                                Text="{Binding Voltage}"
+                                                TextColor="{StaticResource ebony_clay}"
+                                                FontSize="12"/>
+
+                                        </StackLayout>
+
+                                    </StackLayout>
+                                        
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

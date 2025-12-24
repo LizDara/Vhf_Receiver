@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<rg:PopupPage
+    xmlns:rg="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Widgets.ViewDetectionFilter">
+    <Grid>
+        <StackLayout
+            Orientation="Vertical"
+            Spacing="0"
+            BackgroundColor="{StaticResource catskill_white}"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Center"
+            Margin="16"
+            Padding="16, 24">
+
+            <StackLayout
+                Orientation="Horizontal"
+                Spacing="0"
+                HorizontalOptions="Fill"
+                Margin="0, 0, 0, 16">
+
+                <Label
+                    Text="Non Coded Detection Filter"
+                    TextColor="{StaticResource limed_spruce}"
+                    FontSize="16"
+                    HorizontalOptions="StartAndExpand"/>
+
+                <ImageButton
+                    Clicked="Close_Clicked"
+                    Source="Exit"
+                    Margin="24, 24, 0, 0"
+                    HorizontalOptions="StartAndExpand"/>
+
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Horizontal"
+                Spacing="0"
+                HorizontalOptions="Fill">
+
+                <StackLayout
+                    Orientation="Vertical"
+                    Spacing="0"
+                    HorizontalOptions="StartAndExpand">
+
+                    <Label
+                        Text="Filter Type"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"/>
+
+                    <Label
+                        x:Name="FilterType"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        Margin="0, 0, 0, 16"/>
+
+                    <Label
+                        x:Name="PulseRate1"
+                        Text="PR1 (ppm)"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"/>
+
+                    <Label
+                        x:Name="PR1"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        Margin="0, 0, 0, 16"/>
+
+                    <Label
+                        x:Name="PulseRate2"
+                        Text="PR2 (ppm)"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"/>
+
+                    <Label
+                        x:Name="PR2"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        Margin="0, 0, 0, 16"/>
+
+                    <Label
+                        x:Name="OptionalDataCalculation"
+                        Text="Optional Data Calculation"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"/>
+
+                    <Label
+                        x:Name="DataCalculation"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"
+                        FontAttributes="Bold"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Vertical"
+                    Spacing="0"
+                    HorizontalOptions="StartAndExpand">
+
+                    <Label
+                        Text="Matches for Valid Pattern"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"/>
+
+                    <Label
+                        x:Name="Matches"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        Margin="0, 0, 0, 16"/>
+
+                    <Label
+                        x:Name="PulseRate1Tolerance"
+                        Text="PR1 Tolerance (ms)"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"/>
+
+                    <Label
+                        x:Name="PR1Tolerance"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"
+                        FontAttributes="Bold"
+                        Margin="0, 0, 0, 16"/>
+
+                    <Label
+                        x:Name="PulseRate2Tolerance"
+                        Text="PR2 Tolerance (ms)"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"/>
+
+                    <Label
+                        x:Name="PR2Tolerance"
+                        TextColor="{StaticResource limed_spruce}"
+                        FontSize="12"
+                        FontAttributes="Bold"/>
+
+                </StackLayout>
+
+            </StackLayout>
+
+        </StackLayout>
+    </Grid>
+</rg:PopupPage>

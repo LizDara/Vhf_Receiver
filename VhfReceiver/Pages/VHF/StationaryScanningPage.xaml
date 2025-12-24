@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="VhfReceiver.Pages.StationaryScanningPage"
+    xmlns:common="clr-namespace:VhfReceiver.Widgets;assembly=VhfReceiver"
+    NavigationPage.HasNavigationBar="False"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource slate_300}">
+    <ContentPage.Content>
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="Fill"
+                Spacing="0">
+
+                <common:Toolbar
+                    x:Name="Toolbar"/>
+
+                <StackLayout
+                    x:Name="CurrentSettings"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand"
+                    Margin="0, 24">
+
+                    <ScrollView
+                        Orientation="Vertical"
+                        Margin="16, 12"
+                        VerticalOptions="StartAndExpand">
+
+                        <StackLayout
+                            Orientation="Vertical"
+                            Spacing="0"
+                            VerticalOptions="StartAndExpand">
+
+                            <Label
+                                Text="Scan Settings"
+                                TextColor="{StaticResource limed_spruce}"
+                                FontSize="20"
+                                Margin="0, 0, 0, 16"/>
+
+                            <common:StationarySetting
+                                x:Name="StationarySetting"/>
+
+                        </StackLayout>
+
+                    </ScrollView>
+
+                    <Button
+                        x:Name="StartStationaryScan"
+                        Clicked="StartStationaryScan_Clicked"
+                        Text="Start Stationary Scan"
+                        TextColor="{StaticResource catskill_white}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        VerticalOptions="End"
+                        CornerRadius="4"
+                        Margin="16, 0">
+                        <Button.Background>
+                            <LinearGradientBrush
+                                EndPoint="0,1">
+
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow_light}"
+                                    Offset="0.5"/>
+
+                                <GradientStop
+                                    Color="{StaticResource mountain_meadow}"
+                                    Offset="1.0"/>
+
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+                </StackLayout>
+
+                <StackLayout
+                    x:Name="StationaryScanning"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand"
+                    Margin="16, 24"
+                    IsVisible="False">
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Spacing="0"
+                        VerticalOptions="Center"
+                        Margin="0, 0, 0, 16">
+
+                        <Label
+                            Text="Scan Details"
+                            TextColor="{StaticResource ebony_clay}"
+                            FontSize="20"/>
+
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        Spacing="0"
+                        BackgroundColor="{StaticResource catskill_white}">
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Spacing="0"
+                            Padding="16"
+                            VerticalOptions="Center">
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0"
+                                HorizontalOptions="StartAndExpand">
+
+                                <Label
+                                    Text="Frequency"
+                                    TextColor="{StaticResource limed_spruce}"
+                                    FontSize="12"
+                                    Margin="0, 0, 0, 16"/>
+
+                                <Label
+                                    x:Name="FrequencyScan"
+                                    TextColor="{StaticResource ebony_clay}"
+                                    FontSize="16"/>
+
+                            </StackLayout>
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0"
+                                HorizontalOptions="StartAndExpand">
+
+                                <Label
+                                    x:Name="MaxIndex"
+                                    TextColor="{StaticResource limed_spruce}"
+                                    FontSize="12"
+                                    Margin="0, 0, 0, 16"/>
+
+                                <Label
+                                    x:Name="TableIndex"
+                                    TextColor="{StaticResource ebony_clay}"
+                                    FontSize="16"/>
+
+                            </StackLayout>
+
+                            <StackLayout
+                                Orientation="Vertical"
+                                Spacing="0"
+                                HorizontalOptions="StartAndExpand">
+
+                                <Label
+                                    Text="Antenna #"
+                                    TextColor="{StaticResource limed_spruce}"
+                                    FontSize="12"
+                                    Margin="0, 0, 0, 16"/>
+
+                                <Label
+                                    x:Name="CurrentAntenna"
+                                    TextColor="{StaticResource ebony_clay}"
+                                    FontSize="16"/>
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+                        <common:Scanning
+                            x:Name="Scanning"/>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+                <common:VhfReceiverStatus
+                    x:Name="ReceiverStatus"/>
+
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

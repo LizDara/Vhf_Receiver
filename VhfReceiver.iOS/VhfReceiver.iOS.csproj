@@ -49,7 +49,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
@@ -122,10 +122,6 @@
     <ImageAsset Include="Assets.xcassets\Rotate.imageset\rotate.svg" />
     <ImageAsset Include="Assets.xcassets\LightFullBattery.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\LightFullBattery.imageset\battery_full_light.svg" />
-    <ImageAsset Include="Assets.xcassets\MediumBattery.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\MediumBattery.imageset\battery_medium.svg" />
-    <ImageAsset Include="Assets.xcassets\LowBattery.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\LowBattery.imageset\battery_low.svg" />
     <ImageAsset Include="Assets.xcassets\EmptyBattery.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\EmptyBattery.imageset\battery_empty.svg" />
     <ImageAsset Include="Assets.xcassets\Exit.imageset\Contents.json" />
@@ -140,12 +136,6 @@
     <ImageAsset Include="Assets.xcassets\FullBattery.imageset\battery_full.svg" />
     <ImageAsset Include="Assets.xcassets\SplashScreen.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\SplashScreen.imageset\splash_screen.svg" />
-    <ImageAsset Include="Assets.xcassets\LightEllipse.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\LightEllipse.imageset\light_ellipse.svg" />
-    <ImageAsset Include="Assets.xcassets\DarkEllipse.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\DarkEllipse.imageset\dark_ellipse.svg" />
-    <ImageAsset Include="Assets.xcassets\Title.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Title.imageset\title.svg" />
     <ImageAsset Include="Assets.xcassets\LightCircle.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\LightCircle.imageset\LightCircle.svg" />
     <ImageAsset Include="Assets.xcassets\GreenCircle.imageset\Contents.json" />
@@ -178,8 +168,36 @@
     <ImageAsset Include="Assets.xcassets\Border.imageset\border.svg" />
     <ImageAsset Include="Assets.xcassets\GpsOff.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\GpsOff.imageset\gps_off.svg" />
-    <ImageAsset Include="Assets.xcassets\GpsOn.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\GpsOn.imageset\gps_on.svg" />
+    <ImageAsset Include="Assets.xcassets\NoSDCard.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\NoSDCard.imageset\no_sd_card.svg" />
+    <ImageAsset Include="Assets.xcassets\SDCard.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\SDCard.imageset\sd_card.svg" />
+    <ImageAsset Include="Assets.xcassets\GpsValid.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\GpsValid.imageset\gps_valid.svg" />
+    <ImageAsset Include="Assets.xcassets\GpsSearching.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\GpsFailed.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\GpsFailed.imageset\gps_failed.svg" />
+    <ImageAsset Include="Assets.xcassets\GpsSearching.imageset\gps_searching.svg" />
+    <ImageAsset Include="Assets.xcassets\NoneSDCard.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\NoneSDCard.imageset\none_sdcard.svg" />
+    <ImageAsset Include="Assets.xcassets\AddFile.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AddFile.imageset\add_file.svg" />
+    <ImageAsset Include="Assets.xcassets\SelectedFile.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\SelectedFile.imageset\selected_file.svg" />
+    <ImageAsset Include="Assets.xcassets\DeviceSelected.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\DeviceSelected.imageset\selected.svg" />
+    <ImageAsset Include="Assets.xcassets\FullBatteryLight.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\FullBatteryLight.imageset\battery_full_light.svg" />
+    <ImageAsset Include="Assets.xcassets\Menu.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Menu.imageset\menu.svg" />
+    <ImageAsset Include="Assets.xcassets\AcousticColor.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AcousticColor.imageset\acousticColor.svg" />
+    <ImageAsset Include="Assets.xcassets\DarkBlueEllipse.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LightBlueEllipse.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\DarkBlueEllipse.imageset\ellipse_dark.svg" />
+    <ImageAsset Include="Assets.xcassets\LightBlueEllipse.imageset\ellipse_light.svg" />
+    <ImageAsset Include="Assets.xcassets\Up.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Up.imageset\up.svg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -212,11 +230,17 @@
   <ItemGroup>
     <BundleResource Include="Resources\receiver.png" />
     <BundleResource Include="Resources\check.png" />
+    <BundleResource Include="Resources\device.png" />
+    <BundleResource Include="Resources\logo.png" />
+    <BundleResource Include="Resources\vhf.png" />
+    <BundleResource Include="Resources\acoustic.png" />
+    <BundleResource Include="Resources\beacon.png" />
+    <BundleResource Include="Resources\wildlink.png" />
+    <BundleResource Include="Resources\bluetooth.png" />
+    <BundleResource Include="Resources\tags.png" />
+    <BundleResource Include="Resources\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets.xcassets\LightEllipse.imageset\" />
-    <Folder Include="Assets.xcassets\DarkEllipse.imageset\" />
-    <Folder Include="Assets.xcassets\Title.imageset\" />
     <Folder Include="Assets.xcassets\Checked.imageset\" />
     <Folder Include="Assets.xcassets\LightCircle.imageset\" />
     <Folder Include="Assets.xcassets\GreenCircle.imageset\" />
@@ -235,5 +259,20 @@
     <Folder Include="Assets.xcassets\Border.imageset\" />
     <Folder Include="Assets.xcassets\GpsOff.imageset\" />
     <Folder Include="Assets.xcassets\GpsOn.imageset\" />
+    <Folder Include="Assets.xcassets\NoSDCard.imageset\" />
+    <Folder Include="Assets.xcassets\SDCard.imageset\" />
+    <Folder Include="Assets.xcassets\GpsValid.imageset\" />
+    <Folder Include="Assets.xcassets\GpsSearching.imageset\" />
+    <Folder Include="Assets.xcassets\GpsFailed.imageset\" />
+    <Folder Include="Assets.xcassets\NoneSDCard.imageset\" />
+    <Folder Include="Assets.xcassets\AddFile.imageset\" />
+    <Folder Include="Assets.xcassets\SelectedFile.imageset\" />
+    <Folder Include="Assets.xcassets\DeviceSelected.imageset\" />
+    <Folder Include="Assets.xcassets\FullBatteryLight.imageset\" />
+    <Folder Include="Assets.xcassets\Menu.imageset\" />
+    <Folder Include="Assets.xcassets\AcousticColor.imageset\" />
+    <Folder Include="Assets.xcassets\DarkBlueEllipse.imageset\" />
+    <Folder Include="Assets.xcassets\LightBlueEllipse.imageset\" />
+    <Folder Include="Assets.xcassets\Up.imageset\" />
   </ItemGroup>
 </Project>
